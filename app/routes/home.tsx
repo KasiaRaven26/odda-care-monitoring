@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Route } from "./+types/home";
+import SensorInsights from "../components/SensorInsights";
 
 const slides = [
   {
@@ -8,7 +9,7 @@ const slides = [
     title: "Independence at home",
   },
   {
-    src: "/images/odda-son-work-dashboard.png",
+    src: "/images/son-office.png",
     alt: "Dorosły syn sprawdzający na telefonie dashboard Odda Care",
     title: "Reassurance wherever you are",
   },
@@ -83,7 +84,7 @@ export default function Home() {
       className="shrink-0 transition-opacity hover:opacity-80"
     >
       <img
-        src="/images/odda-logo.jpeg"
+        src="/images/odda-logo-transparent.png"
         alt="Odda Care"
         className="h-20 w-auto mix-blend-multiply lg:h-24"
       />
@@ -97,13 +98,19 @@ export default function Home() {
         How it works
       </a>
 
+
       <a
         href="#about"
         className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
       >
         About
       </a>
-
+<a
+  href="/technology"
+  className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+>
+  Technology
+</a>
       <a
         href="#pricing"
         className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
@@ -312,6 +319,7 @@ export default function Home() {
           </div>
         
       </section>
+      <SensorInsights />
       
    <section
   ref={technologyRef}
