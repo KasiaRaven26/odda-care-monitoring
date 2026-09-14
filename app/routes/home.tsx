@@ -24,7 +24,59 @@ export function meta({}: Route.MetaArgs) {
     },
   ];
 }
+type DropdownMenuProps = {
+  label: string;
+  href: string;
+  items: string[];
+};
+
+function DesktopDropdown({
+  label,
+  href,
+  items,
+}: DropdownMenuProps) {
+  return (
+    <div className="group relative">
+      <a
+        href={href}
+        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-semibold text-black transition-colors duration-200 hover:bg-black/5"
+      >
+        {label}
+
+        <svg
+          viewBox="0 0 20 20"
+          fill="none"
+          aria-hidden="true"
+          className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+        >
+          <path
+            d="M5 7.5 10 12.5 15 7.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
+
+      <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="rounded-[20px] border border-black/10 bg-white/95 p-2 shadow-[0_18px_45px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+          {items.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className="block w-full rounded-[14px] px-4 py-3 text-left text-sm font-medium text-black transition-colors hover:bg-[#E1E6DC]"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 export default function Home() {
+  
     const technologyRef = useRef<HTMLElement>(null);
   const [technologyVisible, setTechnologyVisible] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -86,14 +138,14 @@ export default function Home() {
       <img
         src="/images/odda-logo-transparent.png"
         alt="Odda Care"
-        className="h-20 w-auto mix-blend-multiply lg:h-24"
+       className="h-16 w-auto mix-blend-multiply lg:h-[77px]"
       />
     </a>
 
     <nav className="hidden items-center gap-2 md:flex">
       <a
         href="#how-it-works"
-        className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+        className="rounded-full px-5 py-3 text-base font-semibold text-black transition-colors hover:bg-[#E1E6DC]"
       >
         How it works
       </a>
@@ -101,26 +153,26 @@ export default function Home() {
 
       <a
         href="#about"
-        className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+        className="rounded-full px-5 py-3 text-base font-semibold text-black transition-colors hover:bg-[#E1E6DC]"
       >
         About
       </a>
 <a
   href="/technology"
-  className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+  className="rounded-full px-5 py-3 text-base font-semibold text-black transition-colors hover:bg-[#E1E6DC]"
 >
   Technology
 </a>
       <a
         href="#pricing"
-        className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+        className="rounded-full px-5 py-3 text-base font-semibold text-black transition-colors hover:bg-[#E1E6DC]"
       >
         Pricing
       </a>
 
       <a
        href="/faq"
-        className="rounded-full px-5 py-3 text-base font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
+        className="rounded-full px-5 py-3 text-base font-semibold text-black transition-colors hover:bg-[#E1E6DC]"
       >
         FAQ
       </a>

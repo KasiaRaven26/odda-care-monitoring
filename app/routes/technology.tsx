@@ -2,51 +2,57 @@ import { useState } from "react";
 
 const technologyItems = [
   {
-    
     title: "Odda Hub",
     image: "/images/odda-hub-transparent.png",
     description:
       "The quiet centre of the system. It securely collects information from the sensors and sends it to Odda View.",
   },
   {
-    
     title: "Motion sensor",
     image: "/images/odda-motion-sensor-transparent.png",
     description:
       "Notices everyday movement in key rooms, helping Odda understand routines without cameras or microphones.",
   },
   {
-    
     title: "Environmental sensor",
     image: "/images/odda-environment-sensor-transparent.png",
     description:
       "Monitors conditions around the home, including temperature and humidity, to help identify meaningful changes.",
   },
   {
-    
     title: "Door sensor",
     image: "/images/odda-door-sensor-transparent.png",
     description:
       "Lets you know when an important door opens or closes, including activity at unusual times of day or night.",
   },
   {
-  
     title: "Smart plug",
     image: "/images/odda-smart-plug-transparent.png",
     description:
       "Helps build a picture of familiar routines, such as whether the kettle has been used at the usual time.",
   },
   {
-    
     title: "Assistance button",
-    image:  "/images/odda-assistance-button-transparent.png",
+    image: "/images/odda-assistance-button-transparent.png",
     description:
       "An optional way to ask for help. It works alongside Odda’s passive monitoring as an additional layer of support.",
   },
 ];
 
+function ExpandIcon({ open }: { open: boolean }) {
+  return (
+    <span
+      className={`relative block h-4 w-4 transform-gpu transition-transform duration-[160ms] ease-out ${
+        open ? "rotate-45" : "rotate-0"
+      }`}
+    >
+      <span className="absolute left-1/2 top-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+
+      <span className="absolute left-1/2 top-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+    </span>
+  );
+}
 export default function TechnologyPage() {
-  const [systemOpen, setSystemOpen] = useState(false);
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   return (
@@ -77,11 +83,11 @@ export default function TechnologyPage() {
           </div>
 
           {/* Hero image */}
-          <div className="overflow-hidden rounded-[30px]">
+          <div className="overflow-hidden rounded-[32px] bg-[#F3F1EA] shadow-[0_18px_50px_rgba(48,54,45,0.10)]">
             <img
-              src="/images/odda-hub-installation-living-room-v2.png"
-              alt="Odda hub being installed in a living room"
-              className="aspect-[4/3] h-full w-full object-cover object-center"
+              src="/images/odda-sensor-installation-technology.png"
+              alt="Odda installer fitting a sensor inside a home"
+              className="aspect-[4/3] w-full object-cover object-center transition-transform duration-700 ease-out hover:scale-[1.025]"
             />
           </div>
         </div>
@@ -92,13 +98,13 @@ export default function TechnologyPage() {
             "No cameras",
             "No microphones",
             "No permanent installation",
-          ].map((item) => (
+          ].map((principle) => (
             <div
-              key={item}
+              key={principle}
               className="flex items-center gap-3 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-black"
             >
               <span className="h-2 w-2 rounded-full bg-[#D5A827]" />
-              {item}
+              {principle}
             </div>
           ))}
         </div>
@@ -106,137 +112,73 @@ export default function TechnologyPage() {
 
       {/* Technology products */}
       <section className="mx-auto max-w-[1380px] px-2 pb-20 sm:px-6 lg:px-10">
-        {/* Section heading */}
-        <div className="mb-8 max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
-            What’s inside the system
-          </p>
+        <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {technologyItems.map((item) => {
+            const isOpen = openItem === item.title;
 
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-black sm:text-4xl">
-            Small devices working quietly together.
-          </h2>
+            return (
+              <article key={item.title}>
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#929F8B]">
+                  {/* Product image */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={`absolute inset-0 h-full w-full object-contain p-8 transform-gpu transition-all duration-[320ms] ease-out sm:p-10 ${
+                      isOpen
+                        ? "scale-[1.03] opacity-50"
+                        : "scale-100 opacity-100 group-hover:scale-[1.05]"
+                    }`}
+                  />
 
-          <p className="mt-4 text-base leading-7 text-[#656A62]">
-            Each device notices one small part of everyday life. Odda View
-            brings everything together and turns it into clear, useful
-            information.
-          </p>
-        </div>
+                  {/* Plus / close button */}
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-label={
+                      isOpen
+                        ? `Close information about ${item.title}`
+                        : `Open information about ${item.title}`
+                    }
+                    onClick={() =>
+                      setOpenItem(isOpen ? null : item.title)
+                    }
+                   className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transition-all duration-[160ms] ease-out hover:scale-105 hover:border-white/55 hover:bg-white/25 active:scale-95"
+                  >
+                    <ExpandIcon open={isOpen} />
+                  </button>
 
-        {/* Complete system card */}
-        <div className="mb-6 overflow-hidden rounded-[28px] border border-black/10 bg-white">
-          <div className="grid items-center md:grid-cols-[210px_1fr_auto]">
-            {/* Complete kit image */}
-            <div className="m-3 mx-auto h-[180px] w-[180px] overflow-hidden rounded-[22px]">
-              <img
-                src="/images/odda-kit-product.png"
-                alt="The complete Odda sensor kit"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
-              />
-            </div>
+                  {/* Title visible when closed */}
+                  <h3
+                    className={`absolute bottom-6 left-6 max-w-[80%] text-2xl font-semibold leading-tight tracking-[-0.035em] text-white transition-all duration-[200ms] ease-out ${
+                      isOpen
+                        ? "translate-y-3 opacity-0"
+                        : "translate-y-0 opacity-100"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
 
-            {/* System information */}
-            <div className="px-6 py-5 md:px-8">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/50">
-                The complete Odda system
-              </span>
+                  {/* Information sliding onto the card */}
+<div
+  className={`absolute inset-x-3 bottom-3 z-20 rounded-[22px] border border-white/70 bg-white/95 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.12)] backdrop-blur-md transform-gpu transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+    isOpen
+      ? "translate-y-0 opacity-100"
+      : "pointer-events-none translate-y-[115%] opacity-0"
+  }`}
+>
+  <h3 className="pr-14 text-xl font-semibold leading-tight tracking-[-0.03em] text-black">
+    {item.title}
+  </h3>
 
-              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-black">
-                Designed to work as one.
-              </h3>
-
-              <p className="mt-2 max-w-xl text-sm leading-6 text-[#656A62]">
-                Sensors notice everyday activity, while Odda View turns it into
-                clear and reassuring information.
-              </p>
-            </div>
-
-            {/* System Read more */}
-            <div className="px-6 pb-6 md:pb-0 md:pr-8">
-              <button
-                type="button"
-                aria-expanded={systemOpen}
-                onClick={() => setSystemOpen((open) => !open)}
-                className="whitespace-nowrap rounded-full border border-black bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white"
-              >
-                {systemOpen ? "Show less" : "Read more"}
-              </button>
-            </div>
-          </div>
-
-          {/* Expanded system information */}
-          <div
-            className={`grid transition-all duration-500 ease-in-out ${
-              systemOpen
-                ? "grid-rows-[1fr] border-t border-black/10"
-                : "grid-rows-[0fr]"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div className="grid gap-5 px-6 py-6 text-sm leading-6 text-[#656A62] md:grid-cols-3 md:px-8">
-                <p>
-                  Small sensors quietly notice movement, door activity and
-                  familiar household routines.
-                </p>
-
-                <p>
-                  The Odda Hub securely connects the devices and sends their
-                  information to Odda View.
-                </p>
-
-                <p>
-                  Odda View translates those signals into useful updates rather
-                  than technical sensor data.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Individual device cards */}
-<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-  {technologyItems.map((item) => (
-    <article
-      key={item.title}
-      className="overflow-hidden rounded-[28px]"
-    >
-      <details className="group">
-        <summary className="relative cursor-pointer list-none overflow-hidden rounded-[28px] bg-[#929F8B] [&::-webkit-details-marker]:hidden">
-          {/* Przezroczyste zdjęcie produktu */}
-          <div className="aspect-[4/3]">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-full w-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-            />
-          </div>
-
-          {/* Numer */}
-          <span className="absolute left-7 top-6 text-sm font-semibold text-black/50">
-            {item.number}
-          </span>
-
-          {/* Duży tytuł bez tła i bordera */}
-          <h3 className="absolute bottom-7 left-7 max-w-[55%] text-2xl font-semibold tracking-[-0.035em] text-">
-            {item.title}
-          </h3>
-
-          {/* Read more bezpośrednio na zdjęciu */}
-          <span className="absolute bottom-6 right-6 rounded-full border-2 border-white bg-transparent px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 group-hover:bg-white group-hover:text-black">
-            Read more
-          </span>
-        </summary>
-
-        {/* Tekst po rozwinięciu */}
-        <div className="rounded-b-[28px] border border-t-0 border-black/10 bg-white px-7 py-6">
-          <p className="text-sm leading-6 text-[#656A62]">
-            {item.description}
-          </p>
-        </div>
-      </details>
-    </article>
-  ))}
+  <p className="mt-4 text-[17px] leading-7 text-black">
+    {item.description}
+  </p>
 </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
     </main>
   );
