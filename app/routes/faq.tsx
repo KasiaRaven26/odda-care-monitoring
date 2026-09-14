@@ -171,68 +171,26 @@ export function meta({}: Route.MetaArgs) {
 export default function FaqPage() {
   return (
     <main className="min-h-screen bg-[#F6F1E7] font-['Montserrat'] text-[#3C4738]">
-      <header className="sticky top-0 z-50 border-b border-[#3C4738]/10 bg-[#F6F1E7]/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[90rem] items-center justify-between px-6 py-3 lg:px-12">
-          <a
-            href="/"
-            aria-label="Odda Care home"
-            className="shrink-0 transition-opacity hover:opacity-80"
-          >
-            <img
-              src="/images/odda-logo.jpeg"
-              alt="Odda Care"
-              className="h-20 w-auto mix-blend-multiply lg:h-24"
-            />
-          </a>
+     <header>
+  <div className="...">
+    {/* Logo */}
+    <a
+      href="/"
+      aria-label="Odda Care home"
+      className="shrink-0 transition-opacity hover:opacity-80"
+    >
+      <img
+        src="/images/odda-logo-transparent.png"
+        alt="Odda Care"
+        className="h-16 w-auto mix-blend-multiply lg:h-[77px]"
+      />
+    </a>
 
-          <nav className="hidden items-center gap-2 md:flex">
-            <a
-              href="/#technology"
-              className="rounded-full px-5 py-3 font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
-            >
-              How it works
-            </a>
-
-            <a
-              href="/#about"
-              className="rounded-full px-5 py-3 font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
-            >
-              About
-            </a>
-
-            <a
-              href="/#pricing"
-              className="rounded-full px-5 py-3 font-semibold text-[#30362D] transition-colors hover:bg-[#E1E6DC]"
-            >
-              Pricing
-            </a>
-
-            <a
-              href="/faq"
-              className="rounded-full bg-[#E1E6DC] px-5 py-3 font-semibold text-[#30362D]"
-            >
-              FAQ
-            </a>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="/"
-              className="rounded-full border border-[#3C4738]/30 px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-white"
-            >
-              Back home
-            </a>
-
-            <a
-              href="/#contact"
-              className="hidden rounded-full bg-[#66735E] px-7 py-4 font-semibold text-white transition-colors hover:bg-[#56614F] sm:inline-flex"
-            >
-              Get in touch
-            </a>
-          </div>
-        </div>
-      </header>
-
+    <nav>
+      {/* linki */}
+    </nav>
+  </div>
+</header>
      <section className="px-6 py-16 lg:px-10 lg:py-20">
   <div className="mx-auto max-w-7xl">
     {/* Nagłówek i zdjęcie */}
