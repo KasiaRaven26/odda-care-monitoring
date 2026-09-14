@@ -238,7 +238,7 @@ export default function FaqPage() {
     {/* Nagłówek i zdjęcie */}
     <div className="relative mt-12 aspect-[16/7] overflow-hidden rounded-[2.5rem]">
   <img
-    src="/images/odda-family-faq.png"
+    src="/images/odda-family-faq2.png"
     alt="Older mother and her adult son looking through a family album"
     className="h-full w-full object-cover"
   />
