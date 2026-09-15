@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 
 const technologyItems = [
@@ -7,38 +7,52 @@ const technologyItems = [
     image: "/images/odda-hub-transparent.png",
     description:
       "The quiet centre of the system. It securely collects information from the sensors and sends it to Odda View.",
+    placement:
+      "Place it near a power socket in a central part of the home. It should remain plugged in.",
   },
   {
     title: "Motion sensor",
     image: "/images/odda-motion-sensor-transparent.png",
     description:
       "Notices everyday movement in key rooms, helping Odda understand routines without cameras or microphones.",
+    placement:
+      "Position it in a hallway or main living space, facing into the room rather than directly towards a window.",
   },
   {
     title: "Environmental sensor",
     image: "/images/odda-environment-sensor-transparent.png",
     description:
       "Monitors conditions around the home, including temperature and humidity, to help identify meaningful changes.",
+    placement:
+      "Use it in a living room or bedroom, away from radiators, direct sunlight and areas with frequent steam.",
   },
   {
     title: "Door sensor",
     image: "/images/odda-door-sensor-transparent.png",
     description:
       "Lets you know when an important door opens or closes, including activity at unusual times of day or night.",
+    placement:
+      "Fit the two parts to the door and frame so they sit close together whenever the door is closed.",
   },
   {
     title: "Smart plug",
     image: "/images/odda-smart-plug-transparent.png",
     description:
       "Helps build a picture of familiar routines, such as whether the kettle has been used at the usual time.",
+    placement:
+      "Use it with a familiar appliance, such as the kettle or a lamp, to help understand everyday routines.",
   },
   {
     title: "Assistance button",
     image: "/images/odda-assistance-button-transparent.png",
     description:
       "An optional way to ask for help. It works alongside Odda’s passive monitoring as an additional layer of support.",
+    placement:
+      "Place it somewhere easy to reach, such as beside the bed or near a favourite chair.",
   },
 ];
+
+type TechnologyItem = (typeof technologyItems)[number];
 
 function ExpandIcon({ open }: { open: boolean }) {
   return (
@@ -55,7 +69,29 @@ function ExpandIcon({ open }: { open: boolean }) {
 }
 
 export default function TechnologyPage() {
-  const [openItem, setOpenItem] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<TechnologyItem | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const unmountTimer = useRef<number | null>(null);
+
+  const openDetails = (item: TechnologyItem) => {
+    if (unmountTimer.current !== null) {
+      window.clearTimeout(unmountTimer.current);
+      unmountTimer.current = null;
+    }
+
+    setSelectedItem(item);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => setDetailsOpen(true));
+    });
+  };
+
+  const closeDetails = () => {
+    setDetailsOpen(false);
+    unmountTimer.current = window.setTimeout(() => {
+      setSelectedItem(null);
+      unmountTimer.current = null;
+    }, 700);
+  };
 
   return (
     <>
@@ -191,74 +227,108 @@ export default function TechnologyPage() {
           </div>
 
           <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {technologyItems.map((item) => {
-              const isOpen = openItem === item.title;
+            {technologyItems.map((item) => (
+              <article key={item.title}>
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#929F8B]">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 h-full w-full object-contain p-8 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] sm:p-10"
+                  />
 
-              return (
-                <article key={item.title}>
-                  <div className="group relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#929F8B]">
-                    {/* Product image */}
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className={`absolute inset-0 h-full w-full object-contain p-8 transform-gpu transition-all duration-[320ms] ease-out sm:p-10 ${
-                        isOpen
-                          ? "scale-[1.03] opacity-50"
-                          : "scale-100 opacity-100 group-hover:scale-[1.05]"
-                      }`}
-                    />
+                  <button
+                    type="button"
+                    aria-haspopup="dialog"
+                    aria-label={`Open information about ${item.title}`}
+                    onClick={() => openDetails(item)}
+                    className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-105 hover:border-white/55 hover:bg-white/25 active:scale-95"
+                  >
+                    <ExpandIcon open={false} />
+                  </button>
 
-                    {/* Plus / close button */}
-                    <button
-                      type="button"
-                      aria-expanded={isOpen}
-                      aria-label={
-                        isOpen
-                          ? `Close information about ${item.title}`
-                          : `Open information about ${item.title}`
-                      }
-                      onClick={() =>
-                        setOpenItem(isOpen ? null : item.title)
-                      }
-                      className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transition-all duration-[160ms] ease-out hover:scale-105 hover:border-white/55 hover:bg-white/25 active:scale-95"
-                    >
-                      <ExpandIcon open={isOpen} />
-                    </button>
-
-                    {/* Title */}
-                    <h3
-                      className={`absolute bottom-6 left-6 max-w-[80%] text-2xl font-semibold leading-tight tracking-[-0.035em] text-white transition-all duration-[200ms] ease-out ${
-                        isOpen
-                          ? "translate-y-3 opacity-0"
-                          : "translate-y-0 opacity-100"
-                      }`}
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* Information card */}
-                    <div
-                      className={`absolute inset-x-3 bottom-3 z-20 rounded-[22px] border border-white/70 bg-white/95 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.12)] backdrop-blur-md transform-gpu transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isOpen
-                          ? "translate-y-0 opacity-100"
-                          : "pointer-events-none translate-y-[115%] opacity-0"
-                      }`}
-                    >
-                      <h3 className="pr-14 text-xl font-semibold leading-tight tracking-[-0.03em] text-black">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-4 text-[17px] leading-7 text-black">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+                  <h3 className="absolute bottom-6 left-6 max-w-[80%] text-2xl font-semibold leading-tight tracking-[-0.035em] text-white">
+                    {item.title}
+                  </h3>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
+
       </main>
+
+      {/* Device details card */}
+      {selectedItem && (
+        <div
+          className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-500 sm:p-6 ${
+            detailsOpen
+              ? "bg-black/35 backdrop-blur-[2px]"
+              : "bg-black/0 backdrop-blur-none"
+          }`}
+        >
+          <article
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="device-details-title"
+            className={`pointer-events-auto relative z-10 max-h-[calc(100vh-2rem)] w-full max-w-[540px] origin-center overflow-y-auto rounded-[28px] bg-white p-5 font-['Montserrat'] shadow-[0_30px_90px_rgba(0,0,0,0.24)] will-change-transform transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-6 ${
+              detailsOpen
+                ? "scale-100 opacity-100"
+                : "scale-[0.9] opacity-0"
+            }`}
+          >
+            <button
+              type="button"
+              aria-label="Close device information"
+              onClick={closeDetails}
+              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#F3F1EA] text-black shadow-[0_6px_20px_rgba(0,0,0,0.10)] transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95"
+            >
+              <ExpandIcon open />
+            </button>
+
+            <div className="grid grid-cols-[105px_1fr] items-center gap-5 sm:grid-cols-[135px_1fr] sm:gap-6">
+              <div className="flex aspect-square items-center justify-center overflow-hidden rounded-[20px] bg-[#929F8B]">
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  className="h-full w-full object-contain p-5"
+                />
+              </div>
+
+              <div className="pr-9 sm:pr-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+                  Device details
+                </p>
+
+                <h2
+                  id="device-details-title"
+                  className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.04em] text-black sm:text-3xl"
+                >
+                  {selectedItem.title}
+                </h2>
+
+                <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
+                  {selectedItem.description}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-[20px] bg-[#F3F1EA] px-5 py-4">
+              <p className="text-[13px] font-semibold text-[#89967E]">
+                Where to place it
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-black sm:text-base sm:leading-7">
+                {selectedItem.placement}
+              </p>
+            </div>
+
+            <p className="mt-4 text-xs leading-5 text-black/55">
+              Final positioning is agreed during setup and does not require a
+              permanent installation.
+            </p>
+          </article>
+        </div>
+      )}
     </>
   );
 }

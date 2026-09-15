@@ -251,7 +251,7 @@ export default function Home() {
 
         <a
           href="#contact"
-          className="mt-2 rounded-2xl bg-[#66735E] px-4 py-3 text-center font-semibold text-white"
+          className="mt-2 rounded-m bg-[#66735E] px-4 py-3 text-center font-semibold text-white"
         >
           Get in touch
         </a>
