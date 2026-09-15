@@ -9,7 +9,7 @@ const slides = [
     title: "Independence at home",
   },
   {
-    src: "/images/son-office.png",
+    src: "/images/odda-son-work-dashboard.png",
     alt: "Dorosły syn sprawdzający na telefonie dashboard Odda Care",
     title: "Reassurance wherever you are",
   },
