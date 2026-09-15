@@ -63,7 +63,7 @@ export default function TechnologyPage() {
 
       <main className="min-h-screen bg-white px-4 py-16 lg:py-20">
         {/* Hero */}
-        <section className="mx-auto max-w-[1380px] px-2 py-12 sm:px-6 lg:px-10 lg:py-16">
+      <section className="mx-auto max-w-[1380px] px-2 py-12 sm:px-6 lg:px-10 lg:py-16">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
             {/* Hero text */}
             <div>
@@ -71,52 +71,125 @@ export default function TechnologyPage() {
                 The technology behind Odda
               </p>
 
-              <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-black sm:text-6xl lg:text-7xl">
-                A simple guide to what’s actually in the home.
-              </h1>
+              <h1 className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.12] tracking-tight text-[#89967E] md:text-4xl lg:text-5xl">
+  A simple guide to what’s actually in the home.
+</h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-8 text-[#4F554C]">
-                Home monitoring technology is new to most families, so we
-                explain everything clearly — no jargon and no assumptions.
-              </p>
+           <p className="mt-7 max-w-xl text-lg leading-8 text-black">
+  Home monitoring technology is new to most families, so we explain everything
+  clearly — no jargon and no assumptions.
+</p>
 
-              <p className="mt-4 max-w-xl text-base leading-7 text-[#656A62]">
-                Every device is small, battery-powered and designed to blend
-                quietly into the home. Nothing records images or sound, and
-                nothing about the installation is permanent.
-              </p>
+<p className="mt-4 max-w-xl text-base leading-7 text-black">
+  Every device is small, battery-powered and designed to blend quietly into the
+  home. Nothing records images or sound, and nothing about the installation is
+  permanent.
+</p>
             </div>
 
-            {/* Hero image */}
-            <div className="overflow-hidden rounded-[32px] bg-[#F3F1EA] shadow-[0_18px_50px_rgba(48,54,45,0.10)]">
-              <img
-                src="/images/odda-sensor-installation-technology.png"
-                alt="Odda installer fitting a sensor inside a home"
-                className="aspect-[4/3] w-full object-cover object-center transition-transform duration-700 ease-out hover:scale-[1.025]"
-              />
-            </div>
+            <div className="ml-auto w-full overflow-hidden rounded-[32px] bg-[#F3F1EA] shadow-[0_18px_50px_rgba(48,54,45,0.10)] lg:w-4/5">
+  <img
+    src="/images/odda-sensor-installation-technology.png"
+    alt="Odda installer fitting a sensor inside a home"
+    className="aspect-[4/3] w-full object-cover object-center"
+  />
+</div>
           </div>
 
-          {/* Three principles */}
-          <div className="mt-10 flex flex-wrap gap-3">
-            {[
-              "No cameras",
-              "No microphones",
-              "No permanent installation",
-            ].map((principle) => (
-              <div
-                key={principle}
-                className="flex items-center gap-3 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-black"
-              >
-                <span className="h-2 w-2 rounded-full bg-[#D5A827]" />
-                {principle}
-              </div>
-            ))}
-          </div>
+
         </section>
 
+       {/* Odda View mockups */}
+<section className="mx-auto max-w-[1380px] px-2 py-16 sm:px-6 lg:px-10 lg:py-20">
+  <div className="overflow-hidden rounded-[36px] bg-[#F3F1EA] px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
+    {/* Heading */}
+    <div className="mb-10 max-w-3xl text-left">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">
+        ODDA VIEW
+      </p>
+
+      <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.045em] text-black sm:text-5xl">
+        Where information becomes reassurance.
+      </h2>
+
+      <p className="mt-5 w-full max-w-2xl !mx-0 text-base leading-7 text-[#656A62] sm:text-lg">
+        Odda View brings information from every sensor together and turns it
+        into something clear and easy to understand — without technical data or
+        complicated sensor logs.
+      </p>
+    </div>
+
+    <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+      {/* Both mockups in one card */}
+<article className="overflow-hidden rounded-[28px] bg-white p-3 sm:p-4">
+  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+    {/* Home mockup */}
+    <div className="group relative h-[480px] overflow-hidden rounded-[22px] bg-white sm:h-[560px]">
+      <img
+        src="/images/odda-view-home.png"
+        alt="Odda View home screen showing the current home status"
+        loading="lazy"
+        className="absolute left-1/2 top-1/2 w-[250%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain will-change-transform transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.25]"
+      />
+    </div>
+
+    {/* Monthly report mockup */}
+    <div className="group relative h-[480px] overflow-hidden rounded-[22px] bg-white sm:h-[560px]">
+      <img
+        src="/images/odda-view-monthly-report.png"
+        alt="Odda View monthly report showing activity and home conditions"
+        loading="lazy"
+        className="absolute left-1/2 top-1/2 w-[250%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain will-change-transform transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.25]"
+      />
+    </div>
+  </div>
+</article>
+{/* Mockup descriptions */}
+<article className="flex flex-col justify-center rounded-[28px] bg-white px-7 py-9 sm:px-9 lg:px-10">
+  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+    What you can see
+  </p>
+
+  <div className="mt-7">
+    <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
+      At a glance
+    </h3>
+
+    <p className="mt-3 text-sm leading-6 text-[#656A62] sm:text-base sm:leading-7">
+      See the current home status, recent activity and environmental conditions
+      in one clear view.
+    </p>
+  </div>
+
+  <div className="my-7 h-px w-full bg-black/10" />
+
+  <div>
+    <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
+      Monthly reports
+    </h3>
+
+    <p className="mt-3 text-sm leading-6 text-[#656A62] sm:text-base sm:leading-7">
+      Understand longer-term routines and meaningful changes without having to
+      interpret technical sensor data.
+    </p>
+  </div>
+</article>
+    </div>
+  </div>
+</section>
+
         {/* Technology products */}
-        <section className="mx-auto max-w-[1380px] px-2 pb-20 sm:px-6 lg:px-10">
+        <section className="mx-auto max-w-[1380px] px-2 pb-20 pt-4 sm:px-6 lg:px-10">
+          <div className="mb-10 max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">
+              What’s inside the system
+            </p>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-black sm:text-4xl">
+              Small devices working quietly together.
+            </h2>
+          </div>
+
           <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {technologyItems.map((item) => {
               const isOpen = openItem === item.title;
@@ -152,7 +225,7 @@ export default function TechnologyPage() {
                       <ExpandIcon open={isOpen} />
                     </button>
 
-                    {/* Title visible when closed */}
+                    {/* Title */}
                     <h3
                       className={`absolute bottom-6 left-6 max-w-[80%] text-2xl font-semibold leading-tight tracking-[-0.035em] text-white transition-all duration-[200ms] ease-out ${
                         isOpen
@@ -163,7 +236,7 @@ export default function TechnologyPage() {
                       {item.title}
                     </h3>
 
-                    {/* Information sliding onto the card */}
+                    {/* Information card */}
                     <div
                       className={`absolute inset-x-3 bottom-3 z-20 rounded-[22px] border border-white/70 bg-white/95 p-6 shadow-[0_14px_35px_rgba(0,0,0,0.12)] backdrop-blur-md transform-gpu transition-all duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isOpen
