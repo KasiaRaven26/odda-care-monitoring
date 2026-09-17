@@ -107,7 +107,7 @@ export default function Navbar() {
           <a
             href="/login"
             aria-label="Odda Hub"
-            className="group relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#DDD4C7] text-black transition-colors hover:bg-[#CFC3B3]"
+            className="group relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#C9CCC5] text-white transition-colors hover:bg-[#CFC3B3]"
           >
             <svg
               viewBox="0 0 24 24"
@@ -130,7 +130,7 @@ export default function Navbar() {
 
           <a
             href="/#contact"
-            className="rounded-full bg-[#65745E] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#56614F]"
+            className="rounded-full bg-[#65745E] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#56614F]"
           >
             Get in touch
           </a>

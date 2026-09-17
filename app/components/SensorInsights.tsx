@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const technologyItems = [
   {
@@ -67,31 +67,120 @@ function ExpandIcon({ open }: { open: boolean }) {
 }
 
 export default function SensorInsights() {
-  const [selectedItem, setSelectedItem] = useState<TechnologyItem | null>(null);
+  const [selectedItem, setSelectedItem] =
+    useState<TechnologyItem | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const unmountTimer = useRef<number | null>(null);
+  const hoverTimer = useRef<number | null>(null);
+  const closeHoverTimer = useRef<number | null>(null);
+
+  // Animacja tekstu po prawej stronie
+  const textPanelRef = useRef<HTMLElement | null>(null);
+  const [textPanelVisible, setTextPanelVisible] = useState(false);
+
+  useEffect(() => {
+  const element = textPanelRef.current;
+
+  if (!element) {
+    setTextPanelVisible(true);
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setTextPanelVisible(true);
+        observer.disconnect();
+      }
+    },
+    {
+      threshold: 0.05,
+      rootMargin: "0px 0px 80px 0px",
+    }
+  );
+
+  observer.observe(element);
+
+  return () => observer.disconnect();
+}, []);
 
   function openDetails(item: TechnologyItem) {
-    if (unmountTimer.current !== null) {
-      window.clearTimeout(unmountTimer.current);
-      unmountTimer.current = null;
-    }
+  if (hoverTimer.current !== null) {
+    window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = null;
+  }
 
-    setSelectedItem(item);
+  if (closeHoverTimer.current !== null) {
+    window.clearTimeout(closeHoverTimer.current);
+    closeHoverTimer.current = null;
+  }
 
+  if (unmountTimer.current !== null) {
+    window.clearTimeout(unmountTimer.current);
+    unmountTimer.current = null;
+  }
+
+  setSelectedItem(item);
+
+  window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => setDetailsOpen(true));
+      setDetailsOpen(true);
     });
+  });
+}
+
+function scheduleOpen(item: TechnologyItem) {
+  if (hoverTimer.current !== null) {
+    window.clearTimeout(hoverTimer.current);
   }
 
-  function closeDetails() {
-    setDetailsOpen(false);
+  hoverTimer.current = window.setTimeout(() => {
+    hoverTimer.current = null;
+    openDetails(item);
+  }, 180);
+}
 
-    unmountTimer.current = window.setTimeout(() => {
-      setSelectedItem(null);
-      unmountTimer.current = null;
-    }, 700);
+function cancelScheduledOpen() {
+  if (hoverTimer.current !== null) {
+    window.clearTimeout(hoverTimer.current);
+    hoverTimer.current = null;
   }
+}
+
+function scheduleClose() {
+  if (closeHoverTimer.current !== null) {
+    window.clearTimeout(closeHoverTimer.current);
+  }
+
+  closeHoverTimer.current = window.setTimeout(() => {
+    closeHoverTimer.current = null;
+    closeDetails();
+  }, 220);
+}
+
+function cancelScheduledClose() {
+  if (closeHoverTimer.current !== null) {
+    window.clearTimeout(closeHoverTimer.current);
+    closeHoverTimer.current = null;
+  }
+}
+
+function closeDetails() {
+  cancelScheduledOpen();
+  cancelScheduledClose();
+
+  if (unmountTimer.current !== null) {
+    window.clearTimeout(unmountTimer.current);
+  }
+
+  setDetailsOpen(false);
+
+  unmountTimer.current = window.setTimeout(() => {
+    setSelectedItem(null);
+    unmountTimer.current = null;
+  }, 850);
+}
+  
 
   return (
     <>
@@ -106,14 +195,12 @@ export default function SensorInsights() {
               ODDA HUB
             </p>
 
-            <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.045em] text-black sm:text-5xl">
-              Where information becomes reassurance.
+            <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.045em] text-black sm:text-4xl">
+       The heart of Odda.
             </h2>
 
             <p className="mt-5 w-full max-w-2xl text-base leading-7 text-black sm:text-lg">
-              Odda View brings information from every sensor together and turns
-              it into something clear and easy to understand — without
-              technical data or complicated sensor logs.
+              Sensors gather the signals. Odda View turns them into clear, meaningful updates - learning what normal looks like, noticing important changes and explaining everything in plain, everyday language.
             </p>
           </div>
 
@@ -141,34 +228,45 @@ export default function SensorInsights() {
             </article>
 
             <article className="flex flex-col justify-center px-7 py-9 sm:px-9 lg:px-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
-                What you can see
-              </p>
+  
 
-              <div className="mt-7">
-                <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
-                  At a glance
-                </h3>
+  <div className="mt-7">
+    <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
+      At a glance
+    </h3>
 
-                <p className="mt-3 text-sm leading-6 text-[#656A62] sm:text-base sm:leading-7">
-                  See the current home status, recent activity and environmental
-                  conditions in one clear view.
-                </p>
-              </div>
+    <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
+      A quick daily check — is everything usual, or does something need
+      attention — plus live temperature, humidity and sensor status.
+    </p>
+  </div>
 
-              <div className="my-7 h-px w-full bg-black/10" />
+  <div className="my-6 h-px w-full bg-black/10" />
 
-              <div>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
-                  Monthly reports
-                </h3>
+  <div>
+    <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
+      Weekly patterns
+    </h3>
 
-                <p className="mt-3 text-sm leading-6 text-[#656A62] sm:text-base sm:leading-7">
-                  Understand longer-term routines and meaningful changes without
-                  having to interpret technical sensor data.
-                </p>
-              </div>
-            </article>
+    <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
+      See activity broken down week by week, so small changes in routine are
+      easy to spot before they become a concern.
+    </p>
+  </div>
+
+  <div className="my-6 h-px w-full bg-black/10" />
+
+  <div>
+    <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
+      Monthly reports
+    </h3>
+
+    <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
+      A downloadable summary of averages and trends — easy to share with family
+      or a GP, without digging through raw data.
+    </p>
+  </div>
+</article>
           </div>
         </div>
       </section>
@@ -176,11 +274,11 @@ export default function SensorInsights() {
       {/* Technology products */}
       <section className="mx-auto max-w-[1380px] px-2 pb-20 pt-4 sm:px-6 lg:px-10">
         <div className="mb-10 max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white">
             What’s inside the system
           </p>
 
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-black sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white :text-4xl">
             Small devices working quietly together.
           </h2>
         </div>
@@ -200,8 +298,12 @@ export default function SensorInsights() {
                   type="button"
                   aria-haspopup="dialog"
                   aria-label={`Open information about ${item.title}`}
+                  onMouseEnter={() => scheduleOpen(item)}
+                  onMouseLeave={cancelScheduledOpen}
+                  onFocus={() => scheduleOpen(item)}
+                  onBlur={cancelScheduledOpen}
                   onClick={() => openDetails(item)}
-                  className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transition-all duration-300 ease-out hover:scale-105 hover:border-white/55 hover:bg-white/25 active:scale-95"
+                  className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transform-gpu transition-[transform,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-110 hover:border-white/70 hover:bg-white/25 hover:shadow-[0_10px_28px_rgba(0,0,0,0.14)] active:scale-95"
                 >
                   <ExpandIcon open={false} />
                 </button>
@@ -218,20 +320,22 @@ export default function SensorInsights() {
       {/* Device details modal */}
       {selectedItem && (
         <div
-          className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-500 sm:p-6 ${
+          className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-black/35 p-4 transition-opacity duration-[650ms] ease-out sm:p-6 ${
             detailsOpen
-              ? "bg-black/35 backdrop-blur-[2px]"
-              : "bg-black/0 backdrop-blur-none"
+              ? "opacity-100"
+              : "opacity-0"
           }`}
         >
           <article
             role="dialog"
             aria-modal="true"
             aria-labelledby="device-details-title"
-            className={`pointer-events-auto relative z-10 max-h-[calc(100vh-2rem)] w-full max-w-[540px] origin-center overflow-y-auto rounded-[28px] bg-white p-5 font-['Montserrat'] shadow-[0_30px_90px_rgba(0,0,0,0.24)] will-change-transform transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-6 ${
+            onMouseEnter={cancelScheduledClose}
+            onMouseLeave={scheduleClose}
+            className={`pointer-events-auto relative z-10 max-h-[calc(100vh-2rem)] w-full max-w-[540px] origin-center overflow-y-auto rounded-[28px] bg-white p-5 font-['Montserrat'] shadow-[0_30px_90px_rgba(0,0,0,0.24)] will-change-transform transform-gpu transition-[transform,opacity] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:p-6 ${
               detailsOpen
-                ? "scale-100 opacity-100"
-                : "scale-[0.9] opacity-0"
+                ? "translate-y-0 scale-100 opacity-100"
+                : "translate-y-3 scale-[0.975] opacity-0"
             }`}
           >
             <button

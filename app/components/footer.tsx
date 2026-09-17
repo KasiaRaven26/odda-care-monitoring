@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="relative z-10">
           <div className="grid gap-12 border-b border-black/10 pb-14 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.16em]">
+              <h3 className="mb-5 text-sm text-black font-semibold uppercase tracking-[0.16em]">
                 Discover
               </h3>
 
@@ -30,11 +30,11 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.16em]">
+              <h3 className="mb-5 text-sm text-black font-semibold uppercase tracking-[0.16em]">
                 Odda
               </h3>
 
-              <div className="flex flex-col gap-3 text-[15px] text-black/65">
+              <div className="flex flex-col gap-3 text-[15px] text-black">
                 <a href="/#about" className="transition hover:text-black">
                   About us
                 </a>
@@ -50,11 +50,11 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.16em]">
+              <h3 className="mb-5 text-sm text-black font-semibold uppercase tracking-[0.16em]">
                 Support
               </h3>
 
-              <div className="flex flex-col gap-3 text-[15px] text-black/65">
+              <div className="flex flex-col gap-3 text-[15px] text-black">
                 <Link to="/privacy" className="transition hover:text-black">
                   Privacy policy
                 </Link>
@@ -70,11 +70,11 @@ export default function Footer() {
             </div>
 
             <div className="max-w-xs">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em]">
+              <p className="text-sm  text-black font-semibold uppercase tracking-[0.16em]">
                 Stay connected
               </p>
 
-              <p className="mt-5 text-[15px] leading-7 text-black/60">
+              <p className="mt-5 text-[15px] leading-7 text-black">
                 Simple technology and meaningful insight for greater peace of
                 mind.
               </p>
@@ -90,7 +90,7 @@ export default function Footer() {
 
           <div className="mt-12 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
   <div>
-    <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-black/55">
+    <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-black">
       <Link to="/privacy" className="transition hover:text-black">
         Privacy Policy
       </Link>
@@ -104,7 +104,7 @@ export default function Footer() {
       </Link>
     </div>
 
-    <p className="mt-5 text-xs text-black/50">
+    <p className="mt-5 text-xs text-black">
       © Odda Care {year}. All rights reserved.
     </p>
   </div>
@@ -115,7 +115,7 @@ export default function Footer() {
     <a
       href="#"
       aria-label="Facebook"
-      className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#D5A827] text-white transition duration-300 hover:bg-[#D5A827]/45"
+      className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#C9CCC5] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#BABEB5]"
     >
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
         <path d="M14 8.5V6.8c0-.8.5-1 1-1h2.7V2.2L14.5 2C11.3 2 10 3.9 10 6.5v2H7v4h3V22h4v-9.5h3.2l.5-4H14Z" />
@@ -126,8 +126,7 @@ export default function Footer() {
     <a
       href="#"
       aria-label="LinkedIn"
-      className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#D5A827] text-white transition duration-300 hover:bg-[#D5A827]/45"
-    >
+     className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#C9CCC5] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#BABEB5]">
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
         <path d="M5.2 7.8H1.8V22h3.4V7.8ZM3.5 2A2 2 0 1 0 3.5 6a2 2 0 0 0 0-4ZM22 13.8c0-4.3-2.3-6.3-5.4-6.3a4.7 4.7 0 0 0-4.2 2.3v-2H9V22h3.4v-7c0-1.8.4-3.6 2.7-3.6 2.2 0 2.3 2.1 2.3 3.7V22H22v-8.2Z" />
       </svg>
@@ -137,7 +136,7 @@ export default function Footer() {
     <a
       href="#"
       aria-label="Instagram"
-      className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#D5A827] text-white transition duration-300 hover:bg-[#D5A827]/45"
+      className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#C9CCC5] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#BABEB5]"
     >
       <svg
         viewBox="0 0 24 24"

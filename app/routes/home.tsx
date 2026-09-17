@@ -102,7 +102,7 @@ Quiet support for independent living.
 
   <a
     href="#families"
-   className="rounded-full border-2 border-white bg-[#E8DFD0] px-7 py-4 font-semibold text-[#3C4738] transition-colors duration-300 hover:bg-[#F3ECE1]"
+   className="rounded-full border-2 border-white bg-[#E8DFD0] px-7 py-4 font-semibold text-black transition-colors duration-300 hover:bg-[#F3ECE1]"
   >
    Talk to us
   </a>

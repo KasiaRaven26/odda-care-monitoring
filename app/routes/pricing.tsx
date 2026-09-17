@@ -11,17 +11,14 @@ export default function PricingPage() {
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black">
-                Simple, transparent pricing
+              PRICING
               </p>
+<h1 className="mt-6 max-w-xl text-[32px] font-semibold leading-[1.12] tracking-tight text-black sm:text-[36px] lg:text-[48px]">
+  Simple, honest pricing  for real peace of mind.
+</h1>
 
-              <h1 className="mt-6 max-w-2xl text-5xl font-semibold leading-[1.04] tracking-[-0.045em] text-black sm:text-6xl lg:text-7xl">
-                The cost of not knowing.
-              </h1>
-
-              <p className="mt-7 max-w-xl text-lg leading-8 text-[#555B52]">
-                Small changes in daily routines are easy to miss when you
-                cannot always be there. Odda helps families notice what matters
-                earlier, while independence is still possible.
+             <p className="mt-7 max-w-xl text-base leading-7 text-black md:text-lg md:leading-8">
+                Odda is a complete home monitoring service, not just a box of sensors. Your subscription includes everything you need: equipment, installation, monitoring, alerts and support.
               </p>
 
               <a
@@ -35,7 +32,7 @@ export default function PricingPage() {
             {/* Image */}
             <div className="relative overflow-hidden rounded-[32px] shadow-[0_24px_60px_rgba(48,54,45,0.14)]">
               <img
-                src="/images/odda-pricing.png"
+                src="/images/odda-pricing1.png"
                 alt="Older woman living independently at home"
                 className="aspect-[4/3] w-full object-cover brightness-[0.82]"
               />
@@ -43,7 +40,7 @@ export default function PricingPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
               <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-9">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
                   Complete Odda service
                 </p>
 
@@ -52,7 +49,7 @@ export default function PricingPage() {
                     £34.99
                   </span>
 
-                  <span className="pb-1.5 text-lg text-white/80">
+                  <span className="pb-1.5 text-lg text-white">
                     per week
                   </span>
                 </div>
@@ -70,10 +67,10 @@ export default function PricingPage() {
               </p>
 
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.04em] text-black sm:text-5xl">
-                Clear pricing. No complicated packages.
+                Clear pricing. <br></br>No complicated packages.
               </h2>
 
-              <p className="mt-5 max-w-lg text-lg leading-8 text-[#656A62]">
+              <p className="mt-5 max-w-lg text-lg leading-8 text-black">
                 The complete Odda system is provided as part of your
                 subscription, so your family has everything needed from the
                 beginning.
@@ -88,14 +85,14 @@ export default function PricingPage() {
                     Weekly subscription
                   </h3>
 
-                  <p className="mt-2 leading-7 text-[#656A62]">
+                  <p className="mt-2 leading-7 text[black">
                     The complete Odda service, equipment and ongoing support.
                   </p>
                 </div>
 
                 <p className="text-2xl font-semibold text-black">
                   £34.99
-                  <span className="ml-1 text-base font-normal text-[#656A62]">
+                  <span className="ml-1 text-base font-normal text-black">
                     / week
                   </span>
                 </p>
@@ -108,14 +105,14 @@ export default function PricingPage() {
                     Professional installation
                   </h3>
 
-                  <p className="mt-2 leading-7 text-[#656A62]">
+                  <p className="mt-2 leading-7 text-black">
                     Initial setup of the Odda system inside the home.
                   </p>
                 </div>
 
                 <p className="text-2xl font-semibold text-black">
                   £99
-                  <span className="ml-1 text-base font-normal text-[#656A62]">
+                  <span className="ml-1 text-base font-normal text-black">
                     one-off
                   </span>
                 </p>
@@ -128,14 +125,14 @@ export default function PricingPage() {
                     Equipment deposit
                   </h3>
 
-                  <p className="mt-2 leading-7 text-[#656A62]">
+                  <p className="mt-2 leading-7 text-black">
                     Fully refundable when the Odda equipment is returned.
                   </p>
                 </div>
 
                 <p className="text-2xl font-semibold text-black">
                   £100
-                  <span className="ml-1 text-base font-normal text-[#656A62]">
+                  <span className="ml-1 text-base font-normal text-black">
                     refundable
                   </span>
                 </p>
@@ -208,10 +205,10 @@ export default function PricingPage() {
             </p>
 
             <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-black sm:text-5xl">
-              Is Odda right for your family?
+              If you're worried about a parent or relative living alone, we would be glad to talk it through.
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#656A62]">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-black">
               Speak with our team and book a free, no-obligation consultation.
             </p>
 
