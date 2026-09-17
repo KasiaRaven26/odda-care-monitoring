@@ -52,7 +52,7 @@ function DesktopDropdown({
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/10 bg-[#F6F1E7]/95 font-['Montserrat'] backdrop-blur-md">
+ <header className="sticky top-0 z-50 border-b border-black/5 bg-white">
       <div className="mx-auto flex max-w-[90rem] items-center justify-between px-6 py-3 lg:px-12">
         {/* Logo */}
         <a
@@ -130,7 +130,7 @@ export default function Navbar() {
 
           <a
             href="/#contact"
-            className="rounded-full bg-[#66735E] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#56614F]"
+            className="rounded-full bg-[#65745E] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#56614F]"
           >
             Get in touch
           </a>
