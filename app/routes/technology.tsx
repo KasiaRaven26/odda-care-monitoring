@@ -162,7 +162,7 @@ export default function TechnologyPage() {
     {/* Home mockup */}
     <div className="group relative h-[480px] overflow-hidden rounded-[22px] bg-white sm:h-[560px]">
       <img
-        src="/images/odda-view-home.png"
+        src="/images/odda-home.png"
         alt="Odda View home screen showing the current home status"
         loading="lazy"
         className="absolute left-1/2 top-1/2 w-[250%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain will-change-transform transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.25]"

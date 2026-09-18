@@ -75,11 +75,11 @@ export default function Navbar() {
             items={["Overview", "Daily insights", "Installation"]}
           />
 
-          <DesktopDropdown
-            label="About"
-            href="/#about"
-            items={["Our story", "Our approach", "Contact"]}
-          />
+         <DesktopDropdown
+  label="About"
+  href="/about"
+  items={["Our story", "Our approach", "Contact"]}
+/>
 
           <DesktopDropdown
             label="Technology"

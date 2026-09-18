@@ -203,29 +203,35 @@ function closeDetails() {
               Sensors gather the signals. Odda View turns them into clear, meaningful updates - learning what normal looks like, noticing important changes and explaining everything in plain, everyday language.
             </p>
           </div>
+<div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+  <article className="overflow-hidden">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+      {/* Home */}
+      <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/images/odda-home.png"
+            alt="Odda View home screen showing the current home status"
+            loading="lazy"
+            className="h-[500px] w-auto object-contain transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.12]"
+          />
+        </div>
+      </div>
 
-          <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
-            <article className="overflow-hidden">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
-                  <img
-                    src="/images/odda-view-home.png"
-                    alt="Odda View home screen showing the current home status"
-                    loading="lazy"
-                    className="absolute left-1/2 top-1/2 w-[250%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain will-change-transform transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.25]"
-                  />
-                </div>
+      {/* Monthly report */}
+      <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/images/odda-monthly-report.png"
+            alt="Odda View monthly report showing activity and home conditions"
+            loading="lazy"
+            className="h-[500px] w-auto scale-[1.08] object-contain transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.20]"
+          />
+        </div>
+      </div>
+    </div>
+  </article>
 
-                <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
-                  <img
-                    src="/images/odda-view-monthly-report.png"
-                    alt="Odda View monthly report showing activity and home conditions"
-                    loading="lazy"
-                    className="absolute left-1/2 top-1/2 w-[250%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain will-change-transform transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.25]"
-                  />
-                </div>
-              </div>
-            </article>
 
             <article className="flex flex-col justify-center px-7 py-9 sm:px-9 lg:px-10">
   
