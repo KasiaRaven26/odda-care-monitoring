@@ -79,7 +79,7 @@ export default function PricingPage() {
 
             <div className="border-t border-black/15">
               {/* Weekly cost */}
-              <div className="grid gap-3 border-b border-black/15 py-7 sm:grid-cols-[1fr_auto] sm:items-center">
+              <div className="grid gap-3 border-black/15 py-7 sm:grid-cols-[1fr_auto] sm:items-center">
                 <div>
                   <h3 className="text-xl font-semibold text-black">
                     Weekly subscription
