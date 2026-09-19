@@ -179,7 +179,7 @@ function DesktopDropdown({ label, href, items }: DropdownMenuProps) {
     <div className="group relative">
       <a
         href={href}
-        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-black/5"
+        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-black"
       >
         {label}
         <svg
@@ -264,14 +264,14 @@ function Navbar() {
           />
           <a
             href="/pricing"
-            className="rounded-full px-4 py-3 text-base font-medium text-black transition-colors hover:bg-black/5"
+            className="rounded-full px-4 py-3 text-base font-light text-black transition-colors hover:bg-black/5"
           >
             Pricing
           </a>
           <a
             href="/faq"
             aria-current="page"
-            className="rounded-full px-4 py-3 text-base font-medium text-black transition-colors hover:bg-black/5"
+            className="rounded-full px-4 py-3 text-base font-light text-black transition-colors hover:bg-black/5"
           >
             FAQ
           </a>
@@ -396,7 +396,7 @@ export default function FaqPage() {
                 <div className="divide-y divide-black/10">
                   {section.items.map((faq) => (
                     <details key={faq.question} className="group">
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-lg font-semibold text-black [&::-webkit-details-marker]:hidden">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-lg font-medium text-black [&::-webkit-details-marker]:hidden">
                         {faq.question}
 
                         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E4E1D7] transition-transform duration-300 group-open:rotate-45">

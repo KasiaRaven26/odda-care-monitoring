@@ -74,6 +74,16 @@ export default function SensorInsights() {
   const hoverTimer = useRef<number | null>(null);
   const closeHoverTimer = useRef<number | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (hoverTimer.current !== null) window.clearTimeout(hoverTimer.current);
+      if (closeHoverTimer.current !== null)
+        window.clearTimeout(closeHoverTimer.current);
+      if (unmountTimer.current !== null)
+        window.clearTimeout(unmountTimer.current);
+    };
+  }, []);
+
   // Animacja tekstu po prawej stronie
   const textPanelRef = useRef<HTMLElement | null>(null);
   const [textPanelVisible, setTextPanelVisible] = useState(false);
@@ -137,7 +147,7 @@ function scheduleOpen(item: TechnologyItem) {
   hoverTimer.current = window.setTimeout(() => {
     hoverTimer.current = null;
     openDetails(item);
-  }, 180);
+  }, 100);
 }
 
 function cancelScheduledOpen() {
@@ -155,7 +165,7 @@ function scheduleClose() {
   closeHoverTimer.current = window.setTimeout(() => {
     closeHoverTimer.current = null;
     closeDetails();
-  }, 220);
+  }, 280);
 }
 
 function cancelScheduledClose() {
@@ -178,8 +188,19 @@ function closeDetails() {
   unmountTimer.current = window.setTimeout(() => {
     setSelectedItem(null);
     unmountTimer.current = null;
-  }, 850);
+  }, 480);
 }
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") closeDetails();
+    }
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [selectedItem]);
   
 
   return (
@@ -247,7 +268,7 @@ function closeDetails() {
     </p>
   </div>
 
-  <div className="my-6 h-px w-full bg-black/10" />
+  <div className="my-6 h-px w-full bg-black" />
 
   <div>
     <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
@@ -326,10 +347,13 @@ function closeDetails() {
       {/* Device details modal */}
       {selectedItem && (
         <div
-          className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-black/35 p-4 transition-opacity duration-[650ms] ease-out sm:p-6 ${
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeDetails();
+          }}
+          className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 transition-opacity duration-300 ease-out sm:p-6 ${
             detailsOpen
-              ? "opacity-100"
-              : "opacity-0"
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
           }`}
         >
           <article
@@ -338,62 +362,51 @@ function closeDetails() {
             aria-labelledby="device-details-title"
             onMouseEnter={cancelScheduledClose}
             onMouseLeave={scheduleClose}
-            className={`pointer-events-auto relative z-10 max-h-[calc(100vh-2rem)] w-full max-w-[540px] origin-center overflow-y-auto rounded-[28px] bg-white p-5 font-['Montserrat'] shadow-[0_30px_90px_rgba(0,0,0,0.24)] will-change-transform transform-gpu transition-[transform,opacity] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:p-6 ${
+            className={`relative z-10 grid max-h-[calc(100vh-2rem)] w-full max-w-[680px] overflow-y-auto rounded-[30px] bg-[#111111] font-['Montserrat'] text-white shadow-[0_30px_90px_rgba(0,0,0,0.30)] will-change-transform transform-gpu transition-[transform,opacity] duration-[460ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-[210px_1fr] ${
               detailsOpen
-                ? "translate-y-0 scale-100 opacity-100"
-                : "translate-y-3 scale-[0.975] opacity-0"
+                ? "translate-y-0 opacity-100"
+                : "translate-y-4 opacity-0"
             }`}
           >
             <button
               type="button"
               aria-label="Close device information"
               onClick={closeDetails}
-              className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#F3F1EA] text-black shadow-[0_6px_20px_rgba(0,0,0,0.10)] transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95"
+              className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-[transform,background-color,border-color] duration-300 ease-out hover:rotate-90 hover:border-white/60 hover:bg-white/20 active:scale-95"
             >
               <ExpandIcon open />
             </button>
 
-            <div className="grid grid-cols-[105px_1fr] items-center gap-5 sm:grid-cols-[135px_1fr] sm:gap-6">
-              <div className="flex aspect-square items-center justify-center overflow-hidden rounded-[20px] bg-[#929F8B]">
-                <img
-                  src={selectedItem.image}
-                  alt={selectedItem.title}
-                  className="h-full w-full object-contain p-5"
-                />
-              </div>
+            <div className="flex min-h-[210px] items-center justify-center bg-[#929F8B] p-8 sm:min-h-full sm:p-7">
+              <img
+                src={selectedItem.image}
+                alt={selectedItem.title}
+                className="h-[145px] w-[145px] object-contain sm:h-[170px] sm:w-[170px]"
+              />
+            </div>
 
-              <div className="pr-9 sm:pr-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
-                  Device details
-                </p>
+            <div className="flex flex-col p-7 sm:p-9 sm:pr-14">
+              
 
-                <h2
-                  id="device-details-title"
-                  className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.04em] text-black sm:text-3xl"
-                >
-                  {selectedItem.title}
-                </h2>
+              <h2
+                id="device-details-title"
+                className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[34px]"
+              >
+                {selectedItem.title}
+              </h2>
 
-                <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                  {selectedItem.description}
+              <p className="mt-5 text-sm leading-7 text-white sm:text-base">
+                {selectedItem.description}
+              </p>
+
+              <div className="mt-7 border-t border-white/15 pt-6">
+               
+
+                <p className="mt-3 text-sm leading-7 text-white sm:text-base">
+                  {selectedItem.placement}
                 </p>
               </div>
             </div>
-
-            <div className="mt-5 rounded-[20px] bg-[#F3F1EA] px-5 py-4">
-              <p className="text-[13px] font-semibold text-[#89967E]">
-                Where to place it
-              </p>
-
-              <p className="mt-2 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                {selectedItem.placement}
-              </p>
-            </div>
-
-            <p className="mt-4 text-xs leading-5 text-black/55">
-              Final positioning is agreed during setup and does not require a
-              permanent installation.
-            </p>
           </article>
         </div>
       )}
