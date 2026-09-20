@@ -89,7 +89,7 @@ Quiet support for independent living.
   
 </h1>
         <p className="mt-7 max-w-xl text-lg font-medium leading-8 text-white">
-  Odda gives families a clear picture of everyday life at home through discreet sensors - without cameras, microphones or anything to wear or press.
+ Odda gives families a clear, everyday picture of life at home - no cameras, no microphones, nothing to wear or press.
 </p>
 
        <div className="mt-9 flex flex-wrap gap-4">
@@ -104,7 +104,7 @@ Quiet support for independent living.
     href="#families"
    className="rounded-full border-2 border-white bg-[#E8DFD0] px-7 py-4 font-semibold text-black transition-colors duration-300 hover:bg-[#F3ECE1]"
   >
-   Talk to us
+   Let's talk
   </a>
 </div>
         </div>
@@ -136,17 +136,12 @@ Quiet support for independent living.
 
   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
 
-<div className="absolute bottom-5 left-6 sm:left-8">
-  <p className="max-w-sm text-xl font-semibold leading-tight text-white sm:text-2xl lg:text-3xl">
+<div className="absolute bottom-10 left-6 sm:left-8">
+  <p className="max-w-sm text-xl font-semibold leading-tight text-white sm:text-2xl lg:text-2xl">
     {slides[currentSlide].title}
   </p>
 
-  <a
-  href="#how-it-works"
-  className="mt-3 inline-flex rounded-full border border-white bg-transparent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
->
-  Read more
-</a>
+  
 </div>
 
   <div className="absolute bottom-6 right-6 flex gap-2">

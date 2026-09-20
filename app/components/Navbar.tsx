@@ -71,7 +71,7 @@ export default function Navbar() {
         <nav className="hidden items-center gap-1 lg:flex">
           <DesktopDropdown
             label="How it works"
-            href="/#how-it-works"
+            href="/how-it-works"
             items={["Overview", "Daily insights", "Installation"]}
           />
 
@@ -130,7 +130,7 @@ export default function Navbar() {
 
           <a
             href="/#contact"
-            className="rounded-full bg-[#65745E] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#56614F]"
+            className="rounded-full bg-[#E8DFD0] px-6 py-3 text-base font-medium text-black transition-colors hover:bg-[#56614F]"
           >
             Get in touch
           </a>
