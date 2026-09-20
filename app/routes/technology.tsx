@@ -99,41 +99,33 @@ export default function TechnologyPage() {
 
       <main className="min-h-screen bg-white px-4 py-16 lg:py-20">
         {/* Hero */}
-      <section className="mx-auto max-w-[1380px] px-2 py-12 sm:px-6 lg:px-10 lg:py-16">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14">
-            {/* Hero text */}
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black">
-                The technology behind Odda
-              </p>
+   {/* Technology hero */}
+ <section className="relative min-h-[560px] overflow-hidden bg-[#E9E4DA] sm:min-h-[640px] lg:min-h-[720px]">
+        <img
+          src="/images/installation.png"
+          alt="Older woman preparing a cup of tea in her kitchen while Odda works quietly in the background"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
+        />
 
-              <h1 className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.12] tracking-tight text-[#89967E] md:text-4xl lg:text-5xl">
-  A simple guide to what’s actually in the home.
-</h1>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
 
-           <p className="mt-7 max-w-xl text-lg leading-8 text-black">
-  Home monitoring technology is new to most families, so we explain everything
-  clearly — no jargon and no assumptions.
-</p>
+        <div className="relative z-10 mx-auto flex min-h-[560px] max-w-[1380px] items-center px-4 py-12 sm:min-h-[640px] sm:px-6 lg:min-h-[720px] lg:px-10">
+          <div className="max-w-[620px] rounded-[34px] border border-white/3  px-7 py-10 shadow-[0_24px_70px_rgba(27,34,24,0.18)] backdrop-blur-sm sm:px-11 sm:py-12 lg:px-14 lg:py-14">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white">
+             Technology we use
+            </p>
 
-<p className="mt-4 max-w-xl text-base leading-7 text-black">
-  Every device is small, battery-powered and designed to blend quietly into the
-  home. Nothing records images or sound, and nothing about the installation is
-  permanent.
-</p>
-            </div>
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.05em] text-white sm:text-5xl">
+             Simple sensors. Meaningful signals.
+            </h1>
 
-            <div className="ml-auto w-full overflow-hidden rounded-[32px] bg-[#F3F1EA] shadow-[0_18px_50px_rgba(48,54,45,0.10)] lg:w-4/5">
-  <img
-    src="/images/odda-sensor-installation-technology.png"
-    alt="Odda installer fitting a sensor inside a home"
-    className="aspect-[4/3] w-full object-cover object-center"
-  />
-</div>
+            <p className="mt-6 text-base font-normal leading-8 text-white sm:text-lg">
+             Small sensors placed around the home pick up movement, doors opening, and everyday activity - nothing worn, nothing to charge, nothing to remember.
+            </p>
           </div>
+        </div>
+      </section>
 
-
-        </section>
 
        {/* Odda View mockups */}
 <section className="mx-auto max-w-[1380px] px-2 py-16 sm:px-6 lg:px-10 lg:py-20">

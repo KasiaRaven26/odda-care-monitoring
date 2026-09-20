@@ -1,6 +1,7 @@
 import type { Route } from "./+types/how-it-works";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import { useEffect, useRef } from "react";
 
 const steps = [
   {
@@ -64,6 +65,63 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function HowItWorksPage() {
+  
+  // DODAJ TUTAJ:
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const timelineLineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timeline = timelineRef.current;
+    const line = timelineLineRef.current;
+
+    if (!timeline || !line) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const timelineSteps = Array.from(
+      timeline.querySelectorAll<HTMLElement>("[data-timeline-step]"),
+    );
+
+    if (reduceMotion) {
+      line.style.transform = "scaleY(1)";
+      timelineSteps.forEach((step) => {
+        step.style.opacity = "1";
+        step.style.transform = "translateY(0)";
+        step.style.filter = "blur(0)";
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const step = entry.target as HTMLElement;
+          step.style.opacity = "1";
+          step.style.transform = "translateY(0)";
+          step.style.filter = "blur(0)";
+          const stepIndex = Number(step.dataset.stepIndex ?? 0);
+          line.style.transform = `scaleY(${(stepIndex + 1) / timelineSteps.length})`;
+
+          observer.unobserve(step);
+        });
+      },
+      { threshold: 0.35, rootMargin: "0px 0px -15% 0px" },
+    );
+
+    timelineSteps.forEach((step, index) => {
+      const delay = `${index * 110}ms`;
+      step.style.transitionDelay = delay;
+      observer.observe(step);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#F8F6F1] font-['Montserrat'] text-black">
       <Navbar />
@@ -85,7 +143,7 @@ export default function HowItWorksPage() {
             </p>
 
             <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.05em] text-white sm:text-5xl">
-              From sensor to peace of mind in four steps.
+              From quiet signals to real reassurance.
             </h1>
 
             <p className="mt-6 text-base font-normal leading-8 text-white sm:text-lg">
@@ -100,30 +158,36 @@ export default function HowItWorksPage() {
       <section className="bg-[#F8F6F1] px-4 py-20 sm:px-6 lg:py-28">
         <div className="mx-auto max-w-[1380px]">
           <div className="mb-14 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black/50">
-              The process
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
+              THE PROCESS
             </p>
 
             <h2 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black sm:text-5xl">
-              Simple technology, set up around real life.
+              People first, then technology.
             </h2>
           </div>
 
-          <div className="overflow-hidden rounded-[36px] border border-black/10 bg-white px-7 py-10 sm:px-11 sm:py-12 lg:px-16 lg:py-16">
-            <div className="relative">
+          <div className="overflow-hidden rounded-[36px] border border-white/10 bg-white px-7 py-10 sm:px-11 sm:py-12 lg:px-16 lg:py-16">
+            <div ref={timelineRef} className="relative">
               <div
+                ref={timelineLineRef}
                 aria-hidden="true"
-                className="absolute bottom-7 left-[26px] top-7 w-px -translate-x-1/2 bg-black/10 sm:left-7"
+                className="absolute bottom-7 left-[26px] top-7 w-px origin-top -translate-x-1/2 scale-y-0 bg-[#AAB5A1] transition-transform duration-700 ease-out will-change-transform sm:left-7 motion-reduce:scale-y-100"
               />
 
             {steps.map((step, index) => (
               <article
                 key={step.number}
-                className={`relative flex items-start gap-6 sm:gap-8 ${
-                  index < steps.length - 1 ? "pb-14 sm:pb-16" : ""
-                }`}
+                data-timeline-step
+                data-step-index={index}
+                className={`relative flex translate-y-4 items-start gap-6 opacity-0 blur-[2px] transition-[opacity,transform,filter] duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform,filter] sm:gap-8 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-0 ${
+  index < steps.length - 1 ? "pb-14 sm:pb-16" : ""
+}`}
               >
-                <span className="relative z-10 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-[#E1E6DC] text-sm font-semibold text-black sm:h-14 sm:w-14">
+                <span
+                  data-step-circle
+                  className="relative z-10 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-[#E1E6DC] text-sm font-semibold text-black sm:h-14 sm:w-14"
+                >
                   {step.number}
                 </span>
 
@@ -132,7 +196,7 @@ export default function HowItWorksPage() {
                     {step.title}
                   </h3>
 
-                  <p className="mt-5 text-base font-normal leading-8 text-black/70">
+                  <p className="mt-5 text-base font-normal leading-8 text-black">
                     {step.description}
                   </p>
                 </div>
@@ -142,6 +206,7 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+
 
       {/* Odda View walkthrough */}
       <section className="bg-[#929F88] px-4 py-20 sm:px-6 lg:py-28">
@@ -206,7 +271,7 @@ export default function HowItWorksPage() {
                   <h3 className="text-2xl font-medium tracking-[-0.035em] text-black">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-base font-normal leading-7 text-black/70">
+                  <p className="mt-3 text-base font-normal leading-7 text-black">
                     {item.text}
                   </p>
                 </div>
