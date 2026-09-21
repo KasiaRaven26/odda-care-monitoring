@@ -114,196 +114,106 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Costs */}
-        <section className="px-6 py-20 lg:px-10 lg:py-28">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black">
+      {/* Hero */}
+     <section className="py-20 lg:py-28">
+      <div className="relative min-h-[700px] w-full overflow-hidden">
+        <img
+          src="/images/livingroom.png"
+          alt="Older woman relaxing at home"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center]"
+        />
+
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="relative z-10 flex min-h-[700px] items-center px-5 py-12 sm:px-8 lg:px-12">
+        <div className="w-full rounded-[34px] border border-white/20 bg-black/30 px-6 py-8 text-white shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-9 sm:py-10 lg:px-12 lg:py-12">
+            <div className="mb-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">
                 One simple service
               </p>
 
-              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.04em] text-black sm:text-5xl">
-                Clear pricing.
-                <br />
-                No complicated packages.
+              <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-5xl">
+                Clear pricing. No complicated packages.
               </h2>
 
-              <p className="mt-5 max-w-lg text-lg leading-8 text-black">
-                The complete Odda system is provided as part of your
-                subscription, so your family has everything needed from the
-                beginning.
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
+                The complete Odda system is provided as part of your subscription,
+                so your family has everything needed from the beginning.
               </p>
             </div>
 
-            <div>
-              {/* Primary recurring cost */}
-              <article className="rounded-[30px] border border-[#66735E]/15 bg-[#EEF1EA] px-6 py-8 sm:px-8 sm:py-9">
-                <div className="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-10">
-                  <div className="flex items-start gap-5">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#DDE4D8] text-[#4F5C48]">
-                      <PricingIcon type="home" />
-                    </span>
+            <div className="grid gap-4 lg:grid-cols-3">
+              <article className="flex min-h-[300px] flex-col rounded-[26px] border border-white/25 bg-white/15 p-7 backdrop-blur-md">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white">
+                  <PricingIcon type="home" />
+                </span>
 
-                    <div>
-                      
+                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-white">
+                  Weekly subscription
+                </h3>
 
-                      <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-black sm:text-[28px]">
-                        Weekly subscription
-                      </h3>
+                <p className="mt-3 leading-7 text-white/70">
+                  The complete Odda service, equipment and ongoing support.
+                </p>
 
-                      <p className="mt-3 max-w-xl leading-7 text-black/70">
-                        The complete Odda service, equipment and ongoing
-                        support.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-black/10 pt-5 sm:min-w-[170px] sm:border-l sm:border-t-0 sm:py-2 sm:pl-8 sm:pt-0 sm:text-right">
-                    <p className="text-[36px] font-semibold leading-none tracking-[-0.045em] text-black sm:text-[42px]">
-                      £34.99
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-black/55">
-                      per week
-                    </p>
-                  </div>
+                <div className="mt-auto border-t border-white/20 pt-6">
+                  <p className="text-[42px] font-semibold leading-none tracking-[-0.045em] text-white">
+                    £34.99
+                  </p>
+                  <p className="mt-2 text-sm text-white/65">per week</p>
                 </div>
               </article>
 
-              {/* Secondary costs */}
-              <div className="mt-5 overflow-hidden rounded-[28px] border border-black/10 bg-white px-6 sm:px-8">
-                <article className="grid gap-6 border-b border-black/15 py-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-10">
-                  <div className="flex items-start gap-5">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F1EFE8] text-black/70">
-                      <PricingIcon type="tools" />
-                    </span>
+              <article className="flex min-h-[300px] flex-col rounded-[26px] border border-white/20 bg-white/10 p-7 backdrop-blur-md">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white">
+                  <PricingIcon type="tools" />
+                </span>
 
-                    <div>
-                      <h3 className="text-xl font-semibold tracking-[-0.025em] text-black sm:text-2xl">
-                        Professional installation
-                      </h3>
-
-                      <p className="mt-2 max-w-xl leading-7 text-black/70">
-                        Initial setup of the Odda system inside the home.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="pl-[68px] sm:min-w-[170px] sm:pl-0 sm:text-right">
-                    <p className="text-3xl font-semibold tracking-[-0.04em] text-black">
-                      £99
-                    </p>
-                    <p className="mt-1 text-sm text-black/55">one-off</p>
-                  </div>
-                </article>
-
-                <article className="grid gap-6 py-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-10">
-                  <div className="flex items-start gap-5">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F1EFE8] text-black/70">
-                      <PricingIcon type="shield" />
-                    </span>
-
-                    <div>
-                      <h3 className="text-xl font-semibold tracking-[-0.025em] text-black sm:text-2xl">
-                        Equipment deposit
-                      </h3>
-
-                      <p className="mt-2 max-w-xl leading-7 text-black/70">
-                        Fully refundable when the Odda equipment is returned.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="pl-[68px] sm:min-w-[210px] sm:pl-0 sm:text-right">
-                    <p className="text-3xl font-semibold tracking-[-0.04em] text-black">
-                      £100
-                    </p>
-                    <p className="mt-1 text-sm text-black/55">refundable</p>
-
-                    <span className="mt-3 inline-flex rounded-full bg-[#E7ECE2] px-3 py-1.5 text-xs font-semibold text-[#52604D]">
-                      Returned when you cancel
-                    </span>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Value */}
-        <section className="bg-[#66735E] px-6 py-20 text-white lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/70">
-                A different way to think about care
-              </p>
-
-              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl">
-                Better information can support better decisions.
-              </h2>
-            </div>
-
-            <div className="mt-14 grid gap-10 md:grid-cols-3">
-              <article className="border-t border-white/35 pt-6">
-                <span className="text-sm text-white/60">01</span>
-                <h3 className="mt-8 text-2xl font-semibold">
-                  Earlier awareness
+                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-white">
+                  Professional installation
                 </h3>
-                <p className="mt-4 leading-7 text-white/80">
-                  Notice meaningful changes in familiar routines before they
-                  become larger concerns.
+
+                <p className="mt-3 leading-7 text-white/70">
+                  Initial setup of the Odda system inside the home.
                 </p>
+
+                <div className="mt-auto border-t border-white/20 pt-6">
+                  <p className="text-[42px] font-semibold leading-none tracking-[-0.045em] text-white">
+                    £99
+                  </p>
+                  <p className="mt-2 text-sm text-white/65">one-off</p>
+                </div>
               </article>
 
-              <article className="border-t border-white/35 pt-6">
-                <span className="text-sm text-white/60">02</span>
-                <h3 className="mt-8 text-2xl font-semibold">
-                  Reassurance between visits
-                </h3>
-                <p className="mt-4 leading-7 text-white/80">
-                  Stay connected to everyday wellbeing even when you cannot be
-                  there in person.
-                </p>
-              </article>
+              <article className="flex min-h-[300px] flex-col rounded-[26px] border border-white/20 bg-white/10 p-7 backdrop-blur-md">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white">
+                  <PricingIcon type="shield" />
+                </span>
 
-              <article className="border-t border-white/35 pt-6">
-                <span className="text-sm text-white/60">03</span>
-                <h3 className="mt-8 text-2xl font-semibold">
-                  Better care decisions
+                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-white">
+                  Equipment deposit
                 </h3>
-                <p className="mt-4 leading-7 text-white/80">
-                  Make choices using a clearer picture of what is actually
-                  happening at home.
+
+                <p className="mt-3 leading-7 text-white/70">
+                  Fully refundable when the Odda equipment is returned.
                 </p>
+
+                <div className="mt-auto border-t border-white/20 pt-6">
+                  <p className="text-[42px] font-semibold leading-none tracking-[-0.045em] text-white">
+                    £100
+                  </p>
+                  <p className="mt-2 text-sm text-white/65">refundable</p>
+                  <span className="mt-3 inline-flex rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-semibold text-white">
+                    Returned when you cancel
+                  </span>
+                </div>
               </article>
             </div>
           </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="bg-[#F6F1E7] px-6 py-20 lg:px-10 lg:py-24">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black">
-              Find out more
-            </p>
-
-            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-black sm:text-5xl">
-              If you&apos;re worried about a parent or relative living alone,
-              we would be glad to talk it through.
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-black">
-              Speak with our team and book a free, no-obligation consultation.
-            </p>
-
-            <a
-              href="/#contact"
-              className="mt-8 inline-flex rounded-full bg-[#66735E] px-7 py-4 font-semibold text-white transition-colors hover:bg-[#56614F]"
-            >
-              Book a free consultation
-            </a>
-          </div>
-        </section>
-      </main>
+        </div>
+      </div>
+    </section>
+    </main>
     </>
   );
 }
