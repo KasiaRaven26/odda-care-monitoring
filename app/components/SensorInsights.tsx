@@ -51,6 +51,29 @@ const technologyItems = [
   },
 ];
 
+const dashboardFeatures = [
+  {
+    title: "Daily activity pattern",
+    description:
+      "See the shape of the day at a glance, including movement around the home, kettle use and door activity.",
+  },
+  {
+    title: "Weekly routine",
+    description:
+      "Understand whether familiar routines are staying consistent across the week, without reading through raw sensor data.",
+  },
+  {
+    title: "Home environment",
+    description:
+      "Check temperature and humidity in one place, with clear status indicators that make unusual conditions easy to notice.",
+  },
+  {
+    title: "Connected devices",
+    description:
+      "Quickly confirm that the Odda Hub and every connected sensor are online and working as expected.",
+  },
+];
+
 type TechnologyItem = (typeof technologyItems)[number];
 
 function ExpandIcon({ open }: { open: boolean }) {
@@ -70,6 +93,7 @@ export default function SensorInsights() {
   const [selectedItem, setSelectedItem] =
     useState<TechnologyItem | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [openDashboardFeature, setOpenDashboardFeature] = useState(0);
   const unmountTimer = useRef<number | null>(null);
   const hoverTimer = useRef<number | null>(null);
   const closeHoverTimer = useRef<number | null>(null);
@@ -175,7 +199,7 @@ function closeDetails() {
 
   return (
     <>
-      {/* Odda View mockups */}
+      {/* Meet Odda — product introduction */}
       <section
         id="how-it-works"
         className="relative z-10 -mt-8 bg-[#929F88] px-4 pb-20 sm:px-6 lg:-mt-12 lg:pb-24"
@@ -198,46 +222,122 @@ function closeDetails() {
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
-            <article className="overflow-hidden">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {/* Home */}
-                <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src="/images/odda-home.png"
-                      alt="Odda View home screen showing the current home status"
-                      loading="lazy"
-                      className="h-[500px] w-full object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.12]"
-                    />
-                  </div>
-                </div>
+          <div className="mt-4 grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
+            <div className="group mx-auto w-full max-w-[720px] overflow-hidden">
+              <img
+                src="/images/desktop.png"
+                alt="Odda View desktop dashboard showing daily activity, weekly routine, home environment and connected devices"
+                loading="lazy"
+                className="mx-auto w-full object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
+              />
+            </div>
 
-                {/* Monthly report */}
-                <div className="group relative h-[480px] overflow-hidden sm:h-[560px]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src="/images/odda-monthly-report.png"
-                      alt="Odda View monthly report showing activity and home conditions"
-                      loading="lazy"
-                      className="h-[500px] w-full translate-y-4 scale-[1.13] object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.24]"
-                    />
-                  </div>
-                </div>
+            <article className="overflow-hidden rounded-[28px] border border-black/10 bg-white/55 px-6 py-7 shadow-[0_18px_45px_rgba(41,50,38,0.08)] backdrop-blur-sm sm:px-8 sm:py-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
+                Inside your dashboard
+              </p>
+
+              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-black sm:text-3xl">
+                The essentials made clear.
+              </h3>
+
+              <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
+                {dashboardFeatures.map((feature, index) => {
+                  const isOpen = openDashboardFeature === index;
+
+                  return (
+                    <div key={feature.title}>
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        onClick={() =>
+                          setOpenDashboardFeature(isOpen ? -1 : index)
+                        }
+                        className="flex w-full items-center justify-between gap-5 py-5 text-left"
+                      >
+                        <span className="text-base font-semibold tracking-[-0.02em] text-black sm:text-lg">
+                          {feature.title}
+                        </span>
+
+                        <span
+                          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#315F4B]/25 bg-[#E1E6DC] text-[#315F4B] transition-transform duration-300 ${
+                            isOpen ? "rotate-45" : "rotate-0"
+                          }`}
+                          aria-hidden="true"
+                        >
+                          <span className="relative h-3.5 w-3.5">
+                            <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
+                            <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
+                          </span>
+                        </span>
+                      </button>
+
+                      <div
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                          isOpen
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="max-w-md pb-5 pr-10 text-sm leading-6 text-black/75 sm:text-base sm:leading-7">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-6 flex items-center gap-3 text-sm font-medium text-black/65">
+                <span
+                  className="flex h-9 w-6 items-center justify-center rounded-[7px] border border-black/20 bg-white shadow-sm"
+                  aria-hidden="true"
+                >
+                  <span className="h-5 w-3 rounded-[3px] bg-[#E1E6DC]" />
+                </span>
+                <span>Also available on your phone</span>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
 
-            <article className="flex flex-col justify-center px-7 py-9 sm:px-9 lg:px-10">
-              <div className="mt-7">
+      {/* Odda View — feature breakdown */}
+      <section className="bg-[#929F88] px-4 pb-20 sm:px-6 lg:pb-24">
+        <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 shadow-[0_24px_70px_rgba(41,50,38,0.12)] sm:px-14 lg:px-[88px] lg:py-16">
+          <div className="mb-8 max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
+              WHAT YOU&apos;LL SEE
+            </p>
+          </div>
+
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+            <div className="group relative flex min-h-[520px] items-center justify-center overflow-hidden sm:min-h-[620px]">
+              <img
+                src="/images/odda-home.png"
+                alt="Odda View phone home screen showing current status, activity and home environment"
+                loading="lazy"
+                className="h-[540px] w-full object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] sm:h-[640px]"
+              />
+            </div>
+
+            <article className="flex flex-col justify-center">
+              <div>
                 <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
                   Everything okay in one look.
                 </h3>
 
                 <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                 One look tells you what matters: <br></br>is everything as usual, or does something need attention.<br></br> A single status - checked, or worth a look - sits at the top of every visit to the app.
-              </p></div>
+                  One look tells you what matters: <br />
+                  is everything as usual, or does something need attention.
+                  <br /> A single status - checked, or worth a look - sits at
+                  the top of every visit to the app.
+                </p>
+              </div>
 
-              <div className="my-6 h-px w-full " />
+              <div className="my-8 h-px w-full bg-black/10" />
 
               <div>
                 <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
@@ -245,18 +345,10 @@ function closeDetails() {
                 </h3>
 
                 <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                A short, downloadable summary - averages and trends in plain terms, ready to share with family or a GP.<br></br> No spreadsheets, no raw sensor exports, just the story of the month in a page.
-             </p> </div>
-
-              <div className="my-6 h-px w-full " />
-
-              <div>
-                <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
-                  Monthly reports
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                 A short, downloadable summary -averages and trends in plain terms, ready to share with family or a GP. No spreadsheets, no raw sensor exports, just the story of the month in a page.
+                  A short, downloadable summary - averages and trends in plain
+                  terms, ready to share with family or a GP.
+                  <br /> No spreadsheets, no raw sensor exports, just the story
+                  of the month in a page.
                 </p>
               </div>
             </article>

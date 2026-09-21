@@ -44,12 +44,10 @@ Not a tech company guessing at care.
               </h1>
 
               <div className="mt-16  border-white/30 pt-8 lg:mt-auto">
-                <p className="text-[88px] font-extralight leading-[0.85] tracking-[-0.07em] text-white sm:text-[104px]">
-                  13
-                </p>
+               
 
-                <p className="mt-5 max-w-sm text-base font-medium leading-7 text-white sm:text-lg">
-                  years in dementia, Parkinson&apos;s <br></br>and end-of-life care.
+                <p className="mt-5 max-w-sm  italic text-base font-light leading-7 text-white/80 sm:text-lg">
+                  "After 13 years supporting people with dementia, Parkinson's and through end-of-life care, I saw how often families were left guessing between visits-and how existing technology could compromise the dignity<br></br> it was meant to protect. <br></br>Families deserve reassurance, not surveillance. <br></br>That's what I built Odda to change."
                 </p>
               </div>
             </div>
@@ -68,7 +66,7 @@ Not a tech company guessing at care.
   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
   <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
-    <p className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+    <p className="text-3xl font-medium tracking-[-0.035em] text-white sm:text-4xl">
       Aggie Arden
     </p>
 
@@ -77,17 +75,14 @@ Not a tech company guessing at care.
     </p>
 
     <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-5 group-hover:max-h-[360px] group-hover:opacity-100 group-focus:mt-5 group-focus:max-h-[360px] group-focus:opacity-100">
-      <p className="border-t border-white/30 pt-5 text-base font-medium leading-7 text-white/90">
+      <p className="border-t border-white/30 italic pt-5 text-base font-medium leading-7 text-white/40">
         After 13 years supporting people with dementia, Parkinson&apos;s and
         through end-of-life care, I saw how often families were left guessing
         between visits—and how existing technology could compromise the dignity
         it was meant to protect.
       </p>
 
-      <blockquote className="mt-5 text-xl font-semibold leading-8 tracking-[-0.02em] text-white sm:text-2xl">
-        “Families need reassurance without turning a loved one&apos;s home into a
-        place of surveillance.”
-      </blockquote>
+    
     </div>
   </div>
 </div>
@@ -98,12 +93,12 @@ Not a tech company guessing at care.
         <section className="bg-[#F6F1E8] py-20 lg:py-28">
           <div className="mx-auto grid max-w-[1380px] gap-12 px-7 sm:px-14 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-20 lg:px-[88px]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
                 Why Odda exists
               </p>
 
-              <blockquote className="mt-6 max-w-md text-3xl font-semibold leading-[1.18] tracking-[-0.04em] text-[#6B7964] sm:text-4xl">
-                “A care visit shows you a snapshot of half an hour—not the
+              <blockquote className="mt-6 max-w-md text-3xl font-semibold leading-[1.18] tracking-[-0.04em] text-black sm:text-4xl">
+                “A care visit shows you a snapshot of half an hour-not the
                 other twenty-three.”
               </blockquote>
             </div>
