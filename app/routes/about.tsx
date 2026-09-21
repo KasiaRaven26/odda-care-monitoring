@@ -54,42 +54,43 @@ Not a tech company guessing at care.
               </div>
             </div>
 
-            {/* Founder photo */}
-            <div className="relative isolate overflow-hidden rounded-[34px] bg-[#EAE4D9]">
-              <img
-                src="/images/Aggie-arden.jpg"
-                alt="Aggie Arden, founder of Odda"
-                className="block aspect-[4/5] h-full w-full object-cover"
-              />
+           {/* Founder photo */}
+<div
+  tabIndex={0}
+  className="group relative isolate overflow-hidden rounded-[34px] bg-[#EAE4D9] outline-none"
+>
+  <img
+    src="/images/Aggie-arden.jpg"
+    alt="Aggie Arden, founder of Odda"
+    className="block aspect-[4/5] h-full w-full object-cover"
+  />
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
-              <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
-                <p className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
-                  Aggie Arden
-                </p>
+  <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
+    <p className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+      Aggie Arden
+    </p>
 
-                <p className="mt-2 text-sm font-semibold text-white/90">
-                  Founder of Odda
-                </p>
+    <p className="mt-2 text-sm font-semibold text-white/90">
+      Founder of Odda
+    </p>
 
-                <p className="mt-5 border-t border-white/30 pt-5 text-base font-medium leading-7 text-white/90">
-                  After 13 years supporting people with dementia, Parkinson&apos;s
-                  and through end-of-life care, I saw how often families were
-                  left guessing between visits and how existing technology could
-                  compromise the dignity it was meant to protect.
-                </p>
+    <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-5 group-hover:max-h-[360px] group-hover:opacity-100 group-focus:mt-5 group-focus:max-h-[360px] group-focus:opacity-100">
+      <p className="border-t border-white/30 pt-5 text-base font-medium leading-7 text-white/90">
+        After 13 years supporting people with dementia, Parkinson&apos;s and
+        through end-of-life care, I saw how often families were left guessing
+        between visits—and how existing technology could compromise the dignity
+        it was meant to protect.
+      </p>
 
-               
-
-                <a
-                  href="/about/aggie-arden"
-                  className="mt-6 inline-flex w-fit items-center border-b border-white/60 pb-1 text-sm font-semibold text-white transition-colors hover:border-white"
-                >
-                  Read Aggie&apos;s full story →
-                </a>
-              </div>
-            </div>
+      <blockquote className="mt-5 text-xl font-semibold leading-8 tracking-[-0.02em] text-white sm:text-2xl">
+        “Families need reassurance without turning a loved one&apos;s home into a
+        place of surveillance.”
+      </blockquote>
+    </div>
+  </div>
+</div>
           </div>
         </section>
 
