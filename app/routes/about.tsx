@@ -32,84 +32,62 @@ export default function About() {
         {/* Hero */}
         <section className="bg-[#A5B19C]">
           <div className="mx-auto grid max-w-[1380px] gap-12 px-7 py-20 sm:px-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20 lg:px-[88px] lg:py-28">
-            <div>
+            <div className="flex h-full flex-col">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
                 About Odda
               </p>
 
-              <h1 className="mt-6 max-w-xl text-3xl font-semibold leading-[1.12] tracking-tight text-white md:text-3xl lg:text-5xl">
-                Built on real care experience, not just technology.
+              <h1 className="mt-6 max-w-xl text-3xl font-semibold leading-[1.12] tracking-tight text-white md:text-3xl lg:text-4xl">
+               Built by someone who's sat with families like yours.<br></br>
+Not a tech company guessing at care.
+<br></br>A carer who knew there had to be a better way.
               </h1>
 
-              <p className="mt-8 text-lg font-medium text-white/85">
-               
-              </p>
+              <div className="mt-16  border-white/30 pt-8 lg:mt-auto">
+                <p className="text-[88px] font-extralight leading-[0.85] tracking-[-0.07em] text-white sm:text-[104px]">
+                  13
+                </p>
+
+                <p className="mt-5 max-w-sm text-base font-medium leading-7 text-white sm:text-lg">
+                  years in dementia, Parkinson&apos;s <br></br>and end-of-life care.
+                </p>
+              </div>
             </div>
 
             {/* Founder photo */}
-            <div className="relative overflow-hidden rounded-[34px] bg-[#EAE4D9]">
+            <div className="relative isolate overflow-hidden rounded-[34px] bg-[#EAE4D9]">
               <img
                 src="/images/Aggie-arden.jpg"
                 alt="Aggie Arden, founder of Odda"
-                className="aspect-[4/5] h-full w-full object-cover"
+                className="block aspect-[4/5] h-full w-full object-cover"
               />
 
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[82%] bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
 
-              <div
-                tabIndex={0}
-                className="group absolute inset-x-7 bottom-7 flex flex-col justify-end outline-none sm:inset-x-9 sm:bottom-9"
-              >
+              <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
                 <p className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
                   Aggie Arden
                 </p>
 
-                {/* Expanding biography */}
-                <div className="mt-2 max-h-[44px] cursor-default overflow-hidden transition-[max-height] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:max-h-[520px] group-focus:max-h-[520px]">
-                  <div className="flex min-h-10 items-center justify-between gap-4">
-                    <p className="text-sm font-semibold text-white">
-                      Founder of Odda 
-                    </p>
+                <p className="mt-2 text-sm font-semibold text-white/90">
+                  Founder of Odda
+                </p>
 
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/40 bg-black/10 text-white backdrop-blur-sm transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-45 group-focus:rotate-45">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M12 5v14M5 12h14"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </span>
-                  </div>
+                <p className="mt-5 border-t border-white/30 pt-5 text-base font-medium leading-7 text-white/90">
+                  After 13 years supporting people with dementia, Parkinson&apos;s
+                  and through end-of-life care, I saw how often families were
+                  left guessing between visits and how existing technology could
+                  compromise the dignity it was meant to protect.
+                </p>
 
-                  <div className="mt-4 translate-y-7 space-y-4 border-t border-white/30 pt-5 text-base font-semibold leading-[1.65] text-white opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-300 group-focus:translate-y-0 group-focus:opacity-100 group-focus:delay-300">
-                    <p>
-                      I’ve spent 13 years working in care—dementia care,
-                      Parkinson’s care and end-of-life care—supporting families
-                      through some of the hardest moments of their lives.
-                    </p>
+               
 
-                    <p>
-                      Time and again, I saw adult children who loved their parents
-                      deeply, wanted them to stay in the home they loved, but had
-                      no real idea how they were doing between visits and phone
-                      calls.
-                    </p>
-
-                    <p>
-                      I’ve also seen where existing solutions fall short. Cameras
-                      feel intrusive and take away dignity. Personal alarms only
-                      work if someone remembers to wear them and presses the
-                      button in time.
-                    </p>
-                  </div>
-                </div>
+                <a
+                  href="/about/aggie-arden"
+                  className="mt-6 inline-flex w-fit items-center border-b border-white/60 pb-1 text-sm font-semibold text-white transition-colors hover:border-white"
+                >
+                  Read Aggie&apos;s full story →
+                </a>
               </div>
             </div>
           </div>

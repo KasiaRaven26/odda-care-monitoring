@@ -104,7 +104,7 @@ export default function PricingPage() {
 
                 <div className="mt-2 flex items-end gap-3">
                   <span className="text-5xl font-semibold tracking-[-0.05em]">
-                    £35.99
+                    £39.99
                   </span>
 
                   <span className="pb-1.5 text-lg text-white">per week</span>
