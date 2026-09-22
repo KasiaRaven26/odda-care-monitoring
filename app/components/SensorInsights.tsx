@@ -94,6 +94,7 @@ export default function SensorInsights() {
     useState<TechnologyItem | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [openDashboardFeature, setOpenDashboardFeature] = useState(0);
+  const [activeDashboardSlide, setActiveDashboardSlide] = useState(0);
   const unmountTimer = useRef<number | null>(null);
   const hoverTimer = useRef<number | null>(null);
   const closeHoverTimer = useRef<number | null>(null);
@@ -106,6 +107,14 @@ export default function SensorInsights() {
       if (unmountTimer.current !== null)
         window.clearTimeout(unmountTimer.current);
     };
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveDashboardSlide((current) => (current === 0 ? 1 : 0));
+    }, 4500);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   function openDetails(item: TechnologyItem) {
@@ -200,161 +209,162 @@ function closeDetails() {
   return (
     <>
       {/* Meet Odda — product introduction */}
-      <section
-        id="how-it-works"
-        className="relative z-10 -mt-8 bg-[#929F88] px-4 pb-20 sm:px-6 lg:-mt-12 lg:pb-24"
-      >
-        <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 shadow-[0_24px_70px_rgba(41,50,38,0.16)] sm:px-14 lg:px-[88px] lg:py-16">
-          <div className="mb-10 max-w-3xl text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
-              ODDA HUB
-            </p>
+<section
+  id="how-it-works"
+  className="relative z-10 -mt-8 bg-[#929F88] px-4 pb-20 [overflow-anchor:none] sm:px-6 lg:-mt-12 lg:pb-24"
+>
+  <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 shadow-[0_24px_70px_rgba(41,50,38,0.16)] sm:px-14 lg:px-[88px] lg:py-16">
+    <div className="mb-10 max-w-3xl text-left">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
+        ODDA VIEW
+      </p>
 
-            <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.045em] text-black">
-              Meet Odda.
-            </h2>
+      <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.045em] text-black">
+        Meet Odda.
+      </h2>
 
-            <p className="mt-5 w-full max-w-2xl text-base leading-7 text-black sm:text-lg">
-              Sensors gather the signals. Odda View turns them into clear,
-              meaningful updates - learning what normal looks like, noticing
-              important changes and explaining everything in plain, everyday
-              language.
-            </p>
+      <p className="mt-5 w-full max-w-2xl text-base leading-7 text-black sm:text-lg">
+        Sensors gather the signals. Odda View turns them into clear,
+        meaningful updates-learning what normal looks like, noticing
+        important changes and explaining everything in plain, everyday
+        language.
+      </p>
+    </div>
+
+    <div className="mt-4 grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
+      {/* Desktop and iPhone carousel */}
+      <div className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[28px] bg-white/30">
+        <div
+          className="flex transform-gpu transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{
+            transform: `translateX(-${activeDashboardSlide * 100}%)`,
+          }}
+        >
+          {/* Desktop mockup */}
+          <div className="flex h-[370px] min-w-full items-center justify-center px-4 pb-12 sm:h-[470px] sm:px-6 lg:h-[520px]">
+            <img
+              src="/images/desktop3.png"
+              alt="Odda View desktop dashboard showing daily activity, weekly routine, home environment and connected devices"
+              loading="lazy"
+              className="w-full max-w-[700px] transform-gpu object-contain transition-transform duration-700 hover:scale-[1.025]"
+            />
           </div>
 
-          <div className="mt-4 grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
-            <div className="group mx-auto w-full max-w-[720px] overflow-hidden">
-              <img
-                src="/images/desktop.png"
-                alt="Odda View desktop dashboard showing daily activity, weekly routine, home environment and connected devices"
-                loading="lazy"
-                className="mx-auto w-full object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
-              />
-            </div>
+          {/* iPhone mockup */}
+          <div className="flex h-[370px] min-w-full items-center justify-center px-4 pb-12 sm:h-[470px] sm:px-6 lg:h-[520px]">
+            <img
+              src="/images/odda-home.png"
+              alt="Odda View dashboard displayed on an iPhone"
+              loading="lazy"
+              className="max-h-[315px] w-auto transform-gpu object-contain drop-shadow-[0_22px_30px_rgba(25,32,23,0.18)] transition-transform duration-700 hover:scale-[1.025] sm:max-h-[410px] lg:max-h-[455px]"
+            />
+          </div>
+        </div>
 
-            <article className="overflow-hidden rounded-[28px] border border-black/10 bg-white/55 px-6 py-7 shadow-[0_18px_45px_rgba(41,50,38,0.08)] backdrop-blur-sm sm:px-8 sm:py-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
-                Inside your dashboard
-              </p>
+        {/* Carousel indicators */}
+        <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5">
+          {[0, 1].map((slideIndex) => (
+            <button
+              key={slideIndex}
+              type="button"
+              aria-label={
+                slideIndex === 0
+                  ? "Show desktop dashboard"
+                  : "Show mobile dashboard"
+              }
+              onClick={() => setActiveDashboardSlide(slideIndex)}
+              className={`h-2 rounded-full transition-all duration-500 ${
+                activeDashboardSlide === slideIndex
+                  ? "w-7 bg-[#315F4B]"
+                  : "w-2 bg-[#315F4B]/30 hover:bg-[#315F4B]/50"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
 
-              <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-black sm:text-3xl">
-                The essentials made clear.
-              </h3>
+      {/* Dashboard accordion */}
+      <article className="overflow-hidden rounded-[28px]  bg-white/55 px-6 py-7 shadow-[0_18px_45px_rgba(41,50,38,0.08)] backdrop-blur-sm [overflow-anchor:none] sm:px-8 sm:py-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
+          Inside your dashboard
+        </p>
 
-              <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
-                {dashboardFeatures.map((feature, index) => {
-                  const isOpen = openDashboardFeature === index;
+        <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-black sm:text-3xl">
+          The essentials made clear.
+        </h3>
 
-                  return (
-                    <div key={feature.title}>
-                      <button
-                        type="button"
-                        aria-expanded={isOpen}
-                        onClick={() =>
-                          setOpenDashboardFeature(isOpen ? -1 : index)
-                        }
-                        className="flex w-full items-center justify-between gap-5 py-5 text-left"
-                      >
-                        <span className="text-base font-semibold tracking-[-0.02em] text-black sm:text-lg">
-                          {feature.title}
-                        </span>
+        <div className="mt-6 h-[420px] space-y-1 overflow-hidden sm:h-[390px]">
+          {dashboardFeatures.map((feature, index) => {
+            const isOpen = openDashboardFeature === index;
 
-                        <span
-                          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#315F4B]/25 bg-[#E1E6DC] text-[#315F4B] transition-transform duration-300 ${
-                            isOpen ? "rotate-45" : "rotate-0"
-                          }`}
-                          aria-hidden="true"
-                        >
-                          <span className="relative h-3.5 w-3.5">
-                            <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
-                            <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
-                          </span>
-                        </span>
-                      </button>
-
-                      <div
-                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-                          isOpen
-                            ? "grid-rows-[1fr] opacity-100"
-                            : "grid-rows-[0fr] opacity-0"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <p className="max-w-md pb-5 pr-10 text-sm leading-6 text-black/75 sm:text-base sm:leading-7">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-6 flex items-center gap-3 text-sm font-medium text-black/65">
-                <span
-                  className="flex h-9 w-6 items-center justify-center rounded-[7px] border border-black/20 bg-white shadow-sm"
-                  aria-hidden="true"
+            return (
+              <div
+                key={feature.title}
+                className={`rounded-[18px] px-4 transition-colors duration-500 ${
+                  isOpen
+                    ? "bg-[#E8ECE4]"
+                    : "bg-transparent hover:bg-[#E8ECE4]/40"
+                }`}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() =>
+                    setOpenDashboardFeature(isOpen ? -1 : index)
+                  }
+                  className="group flex w-full items-center justify-between gap-5 py-4 text-left"
                 >
-                  <span className="h-5 w-3 rounded-[3px] bg-[#E1E6DC]" />
-                </span>
-                <span>Also available on your phone</span>
+                  <span className="text-base font-semibold tracking-[-0.02em] text-black sm:text-lg">
+                    {feature.title}
+                  </span>
+
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-500 ${
+                      isOpen
+                        ? "bg-[#D5DFD0] text-[#315F4B]"
+                        : "bg-transparent text-[#315F4B] group-hover:bg-[#D5DFD0]/60"
+                    }`}
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      aria-hidden="true"
+                      className={`h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        isOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    >
+                      <path
+                        d="M4.5 7.5L10 13l5.5-5.5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+
+                <div
+                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="max-w-md pb-5 pr-10 text-sm leading-6 text-black sm:text-base sm:leading-7">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </article>
-          </div>
+            );
+          })}
         </div>
-      </section>
-
-      {/* Odda View — feature breakdown */}
-      <section className="bg-[#929F88] px-4 pb-20 sm:px-6 lg:pb-24">
-        <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 shadow-[0_24px_70px_rgba(41,50,38,0.12)] sm:px-14 lg:px-[88px] lg:py-16">
-          <div className="mb-8 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
-              WHAT YOU&apos;LL SEE
-            </p>
-          </div>
-
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-            <div className="group relative flex min-h-[520px] items-center justify-center overflow-hidden sm:min-h-[620px]">
-              <img
-                src="/images/odda-home.png"
-                alt="Odda View phone home screen showing current status, activity and home environment"
-                loading="lazy"
-                className="h-[540px] w-full object-contain transform-gpu transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] sm:h-[640px]"
-              />
-            </div>
-
-            <article className="flex flex-col justify-center">
-              <div>
-                <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
-                  Everything okay in one look.
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                  One look tells you what matters: <br />
-                  is everything as usual, or does something need attention.
-                  <br /> A single status - checked, or worth a look - sits at
-                  the top of every visit to the app.
-                </p>
-              </div>
-
-              <div className="my-8 h-px w-full bg-black/10" />
-
-              <div>
-                <h3 className="text-[22px] font-semibold tracking-[-0.035em] text-black sm:text-[26px]">
-                  Weekly patterns
-                </h3>
-
-                <p className="mt-3 text-sm leading-6 text-black sm:text-base sm:leading-7">
-                  A short, downloadable summary - averages and trends in plain
-                  terms, ready to share with family or a GP.
-                  <br /> No spreadsheets, no raw sensor exports, just the story
-                  of the month in a page.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      </article>
+    </div>
+  </div>
+</section>
 
       {/* Technology products */}
       <section className="mx-auto max-w-[1380px] px-2 pb-20 pt-4 sm:px-6 lg:px-10">
@@ -421,7 +431,7 @@ function closeDetails() {
             aria-labelledby="device-details-title"
             onMouseEnter={cancelScheduledClose}
             onMouseLeave={scheduleClose}
-            className={`relative w-full max-w-[900px] overflow-hidden rounded-[32px] border border-black/10 bg-[#F6F1E8] font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            className={`relative w-full max-w-[900px] overflow-hidden rounded-[32px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               detailsOpen
                 ? "translate-y-0 opacity-100"
                 : "translate-y-5 opacity-0"
@@ -431,7 +441,7 @@ function closeDetails() {
               type="button"
               aria-label="Close device information"
               onClick={closeDetails}
-              className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-[#F6F1E8]/90 text-black shadow-[0_6px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
+              className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full  bg-[#F6F1E8]/90 text-black shadow-[0_6px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
             >
               <ExpandIcon open />
             </button>
@@ -461,15 +471,11 @@ function closeDetails() {
                   {selectedItem.description}
                 </p>
 
-                <div className="mt-8 rounded-[22px] bg-[#E1E6DC] px-6 py-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-black">
-                    Where to place it
-                  </p>
+         
+                  
 
-                  <p className="mt-3 text-sm font-normal leading-7 text-black sm:text-base">
-                    {selectedItem.placement}
-                  </p>
-                </div>
+                 
+                
 
                 
               </div>

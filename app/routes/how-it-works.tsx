@@ -152,62 +152,91 @@ export default function HowItWorksPage() {
             </p>
           </div>
         </div>
+        <a
+  href="#process"
+  aria-label="Scroll down to see how Odda works"
+  className="group absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-white/90 transition-colors duration-300 hover:text-white sm:bottom-9"
+>
+  
+
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+    className="h-7 w-7 drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)] motion-safe:animate-bounce"
+  >
+    <path
+      d="M5 9l7 7 7-7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</a>
       </section>
 
-      {/* Numbered process */}
-      <section className="bg-[#F8F6F1] px-4 py-20 sm:px-6 lg:py-28">
-        <div className="mx-auto max-w-[1380px]">
-          <div className="mb-14 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
-              THE PROCESS
-            </p>
+     {/* Numbered process */}
+<section className="bg-[#F8F6F1] px-4 py-14 sm:px-6 lg:py-20">
+  <div className="mx-auto max-w-[1380px]">
+    <div className="grid overflow-hidden rounded-[32px] bg-white px-7 py-10 sm:px-10 sm:py-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:px-14 lg:py-14">
+      {/* Section heading */}
+      <div className="mb-10 max-w-md lg:mb-0">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
+          THE PROCESS
+        </p>
 
-            <h2 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black sm:text-5xl">
-              People first, then technology.
-            </h2>
-          </div>
+        <h2 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black lg:text-5xl">
+          People first,
+          <br />
+          then technology.
+        </h2>
 
-          <div className="overflow-hidden rounded-[36px] border border-white/10 bg-white px-7 py-10 sm:px-11 sm:py-12 lg:px-16 lg:py-16">
-            <div ref={timelineRef} className="relative">
-              <div
-                ref={timelineLineRef}
-                aria-hidden="true"
-                className="absolute bottom-7 left-[26px] top-7 w-px origin-top -translate-x-1/2 scale-y-0 bg-[#AAB5A1] transition-transform duration-700 ease-out will-change-transform sm:left-7 motion-reduce:scale-y-100"
-              />
+        <p className="mt-5 max-w-sm text-base leading-7 text-black">
+          A simple, considered process designed around the person, their home
+          and the people who care about them.
+        </p>
+      </div>
 
-            {steps.map((step, index) => (
-              <article
-                key={step.number}
-                data-timeline-step
-                data-step-index={index}
-                className={`relative flex translate-y-4 items-start gap-6 opacity-0 blur-[2px] transition-[opacity,transform,filter] duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform,filter] sm:gap-8 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-0 ${
-  index < steps.length - 1 ? "pb-14 sm:pb-16" : ""
-}`}
-              >
-                <span
-                  data-step-circle
-                  className="relative z-10 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-[#E1E6DC] text-sm font-semibold text-black sm:h-14 sm:w-14"
-                >
-                  {step.number}
-                </span>
+      {/* Timeline */}
+      <div ref={timelineRef} className="relative">
+        <div
+          ref={timelineLineRef}
+          aria-hidden="true"
+          className="absolute bottom-6 left-[23px] top-6 w-px origin-top -translate-x-1/2 scale-y-0 bg-[#AAB5A1] transition-transform duration-700 ease-out will-change-transform sm:left-6 motion-reduce:scale-y-100"
+        />
 
-                <div className="max-w-4xl pt-1">
-                  <h3 className="text-2xl font-medium leading-tight tracking-[-0.035em] text-black sm:text-[28px]">
-                    {step.title}
-                  </h3>
+        {steps.map((step, index) => (
+          <article
+            key={step.number}
+            data-timeline-step
+            data-step-index={index}
+            className={`relative flex translate-y-4 items-start gap-5 opacity-0 blur-[2px] transition-[opacity,transform,filter] duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform,filter] sm:gap-7 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-0 ${
+              index < steps.length - 1 ? "pb-8 sm:pb-10" : ""
+            }`}
+          >
+            <span
+              data-step-circle
+              className="relative z-10 flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#E1E6DC] text-sm font-semibold text-black sm:h-12 sm:w-12"
+            >
+              {step.number}
+            </span>
 
-                  <p className="mt-5 text-base font-normal leading-8 text-black">
-                    {step.description}
-                  </p>
-                </div>
-              </article>
-            ))}
+            <div className="max-w-3xl pt-0.5">
+              <h3 className="text-xl font-medium leading-tight tracking-[-0.035em] text-black sm:text-2xl">
+                {step.title}
+              </h3>
+
+              <p className="mt-2 max-w-2xl text-sm font-normal leading-7 text-black sm:text-base">
+                {step.description}
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
       {/* Odda View walkthrough */}
       <section className="bg-[#929F88] px-4 py-20 sm:px-6 lg:py-28">
         <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 sm:px-14 lg:px-[72px] lg:py-16">

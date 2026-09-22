@@ -63,7 +63,7 @@ Not a tech company guessing at care.
     className="block aspect-[4/5] h-full w-full object-cover"
   />
 
-  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35" />
+  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
 
   <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
     <p className="text-3xl font-medium tracking-[-0.035em] text-white sm:text-4xl">
