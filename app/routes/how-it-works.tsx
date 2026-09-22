@@ -1,53 +1,57 @@
 import type { Route } from "./+types/how-it-works";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const steps = [
   {
     number: "01",
-    title: "We visit and assess the home.",
+    title: "We set everything up",
     description:
-      "We take time to understand the home, the person living there and what matters to the family. Together, we choose the most useful places for each sensor—with no invasive changes to the home.",
+      "We visit the home, understand what support would be helpful and install the Odda Hub and discreet sensors in the right places.",
   },
   {
     number: "02",
-    title: "Sensors quietly learn the routine.",
+    title: "Odda learns the daily rhythm",
     description:
-      "During the first days and weeks, Odda begins to understand what normal looks like for that particular person—not a generic routine based on somebody else.",
+      "The sensors quietly build a picture of familiar routines, including movement around the home, door activity and changes in the home environment.",
   },
   {
     number: "03",
-    title: "Odda View turns activity into plain updates.",
+    title: "Important changes become clear",
     description:
-      "Instead of technical sensor logs, you see clear information such as when the morning routine began, the latest activity and whether everything looks usual at home.",
+      "Odda View turns everyday signals into simple, meaningful updates, helping you notice when something is different from the usual routine.",
   },
   {
     number: "04",
-    title: "You get notified only when it matters.",
+    title: "The right people stay connected",
     description:
-      "You do not need to watch the app all day. Odda highlights meaningful changes and sends an alert when something may deserve a call, a visit or a closer look.",
+      "Family members and the people involved in care can stay informed, providing reassurance and helping everyone make better decisions together.",
   },
 ];
 
 const practicalQuestions = [
   {
     question: "What happens if the internet or power goes down?",
+    href: "/faq#power-and-internet",
     answer:
       "Odda monitors the connection and sensor status. If the system goes offline or a device needs attention, you will be notified. The exact connectivity setup is confirmed during the home assessment.",
   },
   {
     question: "Does the person at home need to press anything?",
+    href: "/faq#nothing-to-press",
     answer:
       "No. Everyday monitoring happens quietly in the background. There is nothing to wear, charge or remember to press for the system to understand normal activity.",
   },
   {
     question: "How long does installation take?",
+    href: "/faq#installation-time",
     answer:
       "Most installations are completed during one home visit. We position and test the devices, make sure everything is connected and explain Odda View before we leave.",
   },
   {
     question: "Will I receive constant notifications?",
+    href: "/faq#notifications",
     answer:
       "No. Odda is designed to avoid unnecessary alerts. You can check the app whenever you wish, while notifications focus on changes that may genuinely matter.",
   },
@@ -65,61 +69,27 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function HowItWorksPage() {
-  
-  // DODAJ TUTAJ:
   const timelineRef = useRef<HTMLDivElement>(null);
-  const timelineLineRef = useRef<HTMLDivElement>(null);
+  const [timelineVisible, setTimelineVisible] = useState(false);
 
   useEffect(() => {
     const timeline = timelineRef.current;
-    const line = timelineLineRef.current;
 
-    if (!timeline || !line) return;
-
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const timelineSteps = Array.from(
-      timeline.querySelectorAll<HTMLElement>("[data-timeline-step]"),
-    );
-
-    if (reduceMotion) {
-      line.style.transform = "scaleY(1)";
-      timelineSteps.forEach((step) => {
-        step.style.opacity = "1";
-        step.style.transform = "translateY(0)";
-        step.style.filter = "blur(0)";
-      });
-      return;
-    }
+    if (!timeline) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          const step = entry.target as HTMLElement;
-          step.style.opacity = "1";
-          step.style.transform = "translateY(0)";
-          step.style.filter = "blur(0)";
-          const stepIndex = Number(step.dataset.stepIndex ?? 0);
-          line.style.transform = `scaleY(${(stepIndex + 1) / timelineSteps.length})`;
-
-          observer.unobserve(step);
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimelineVisible(true);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.35, rootMargin: "0px 0px -15% 0px" },
+      { threshold: 0.2 },
     );
 
-    timelineSteps.forEach((step, index) => {
-      const delay = `${index * 110}ms`;
-      step.style.transitionDelay = delay;
-      observer.observe(step);
-    });
+    observer.observe(timeline);
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -147,8 +117,9 @@ export default function HowItWorksPage() {
             </h1>
 
             <p className="mt-6 text-base font-normal leading-8 text-white sm:text-lg">
-              No cameras. No microphones.<br></br> Just a clear, everyday picture of how
-              things are going.
+              No cameras. No microphones.
+              <br />
+              Just a clear, everyday picture of how things are going.
             </p>
           </div>
         </div>
@@ -176,8 +147,11 @@ export default function HowItWorksPage() {
 </a>
       </section>
 
-     {/* Numbered process */}
-<section className="bg-[#F8F6F1] px-4 py-14 sm:px-6 lg:py-20">
+ {/* Numbered process */}
+<section
+  id="process"
+  className="bg-[#F8F6F1] px-4 py-14 sm:px-6 lg:py-20"
+>
   <div className="mx-auto max-w-[1380px]">
     <div className="grid overflow-hidden rounded-[32px] bg-white px-7 py-10 sm:px-10 sm:py-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:px-14 lg:py-14">
       {/* Section heading */}
@@ -187,9 +161,9 @@ export default function HowItWorksPage() {
         </p>
 
         <h2 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black lg:text-5xl">
-          People first,
+          Simple to set up.
           <br />
-          then technology.
+          Simple to use.
         </h2>
 
         <p className="mt-5 max-w-sm text-base leading-7 text-black">
@@ -200,24 +174,31 @@ export default function HowItWorksPage() {
 
       {/* Timeline */}
       <div ref={timelineRef} className="relative">
-        <div
-          ref={timelineLineRef}
-          aria-hidden="true"
-          className="absolute bottom-6 left-[23px] top-6 w-px origin-top -translate-x-1/2 scale-y-0 bg-[#AAB5A1] transition-transform duration-700 ease-out will-change-transform sm:left-6 motion-reduce:scale-y-100"
-        />
-
         {steps.map((step, index) => (
           <article
             key={step.number}
-            data-timeline-step
-            data-step-index={index}
-            className={`relative flex translate-y-4 items-start gap-5 opacity-0 blur-[2px] transition-[opacity,transform,filter] duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform,filter] sm:gap-7 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:blur-0 ${
+            style={{
+              transitionDelay: timelineVisible
+                ? `${index * 180 + 100}ms`
+                : "0ms",
+            }}
+            className={`relative flex items-start gap-5 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-7 ${
+              timelineVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-6 opacity-0"
+            } ${
               index < steps.length - 1 ? "pb-8 sm:pb-10" : ""
-            }`}
+            } motion-reduce:translate-x-0 motion-reduce:opacity-100`}
           >
             <span
-              data-step-circle
-              className="relative z-10 flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full bg-[#E1E6DC] text-sm font-semibold text-black sm:h-12 sm:w-12"
+              style={{
+                transitionDelay: timelineVisible
+                  ? `${index * 180 + 180}ms`
+                  : "0ms",
+              }}
+              className={`relative z-10 block w-[46px] shrink-0 pt-0.5 text-3xl font-[200] leading-none tracking-[-0.06em] text-black/30 transition-transform duration-700 sm:w-12 sm:text-[32px] ${
+                timelineVisible ? "scale-100" : "scale-95"
+              }`}
             >
               {step.number}
             </span>
@@ -227,7 +208,18 @@ export default function HowItWorksPage() {
                 {step.title}
               </h3>
 
-              <p className="mt-2 max-w-2xl text-sm font-normal leading-7 text-black sm:text-base">
+              <p
+                style={{
+                  transitionDelay: timelineVisible
+                    ? `${index * 180 + 260}ms`
+                    : "0ms",
+                }}
+                className={`mt-2 max-w-2xl text-sm font-normal leading-7 text-black transition-[opacity,transform] duration-700 sm:text-base ${
+                  timelineVisible
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-3 opacity-0"
+                } motion-reduce:translate-x-0 motion-reduce:opacity-100`}
+              >
                 {step.description}
               </p>
             </div>
@@ -309,67 +301,96 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+{/* Practical questions */}
+<section className="bg-[#F8F6F1] px-4 py-14 sm:px-6 lg:py-16">
+  <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
+    {/* Section heading */}
+    <div className="max-w-md">
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
+        In practice
+      </p>
 
-      {/* Practical questions */}
-      <section className="bg-[#F8F6F1] px-4 py-20 sm:px-6 lg:py-28">
-        <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black/50">
-              In practice
-            </p>
+      <h2 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.045em] text-black sm:text-4xl lg:text-[42px]">
+        A few things families usually ask first.
+      </h2>
 
-            <h2 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black sm:text-5xl">
-              A few things families usually ask first.
-            </h2>
+      <a
+        href="/faq"
+        className="group mt-7 inline-flex items-center gap-3 text-base font-medium text-black"
+      >
+        <span className="border-b border-black pb-1">
+          Visit the full FAQ
+        </span>
 
-            <a
-              href="/faq"
-              className="mt-8 inline-flex items-center gap-2 text-base font-medium text-black underline decoration-black/30 underline-offset-8 transition-colors hover:text-[#66735E]"
+        <span
+          aria-hidden="true"
+          className="text-black transition-transform duration-300 group-hover:translate-x-1"
+        >
+          →
+        </span>
+      </a>
+    </div>
+
+    {/* Clickable FAQ questions */}
+    <div className="border-y border-black/10">
+      {practicalQuestions.map((item) => (
+        <a
+          key={item.question}
+          href={item.href}
+          className="group flex items-center justify-between gap-6 border-b border-black/10 py-5 text-black last:border-b-0"
+        >
+          <span className="text-lg font-medium tracking-[-0.025em] text-black sm:text-xl">
+            {item.question}
+          </span>
+
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black/[0.04] text-black transition-all duration-300 group-hover:translate-x-1 group-hover:bg-black/[0.08]"
+          >
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              className="h-4 w-4"
             >
-              Visit the full FAQ
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
-          <div className="divide-y divide-black/10 border-y border-black/10">
-            {practicalQuestions.map((item) => (
-              <details key={item.question} className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 text-xl font-medium tracking-[-0.025em] text-black [&::-webkit-details-marker]:hidden">
-                  {item.question}
-
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/20 transition-transform duration-300 group-open:rotate-45">
-                    <span className="relative block h-4 w-4">
-                      <span className="absolute left-1/2 top-1/2 h-px w-4 -translate-x-1/2 -translate-y-1/2 bg-current" />
-                      <span className="absolute left-1/2 top-1/2 h-4 w-px -translate-x-1/2 -translate-y-1/2 bg-current" />
-                    </span>
-                  </span>
-                </summary>
-
-                <p className="max-w-3xl pb-7 pr-14 text-base font-normal leading-8 text-black/70">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+              <path
+                d="M4 10h11M11 6l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* CTA */}
-      <section className="bg-[#F8F6F1] px-4 pb-20 sm:px-6 lg:pb-28">
-        <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#A5B19C] px-7 py-16 text-center sm:px-12 lg:py-20">
-          <h2 className="mx-auto max-w-3xl text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black sm:text-5xl">
-            Curious whether Odda would work for your family’s home?
-          </h2>
+      <section className="bg-[#F8F6F1] px-4 pb-16 sm:px-6 lg:pb-20">
+        <div className="mx-auto flex max-w-[1380px] flex-col items-start justify-between gap-8 rounded-[36px] bg-[#A5B19C] px-7 py-11 sm:px-12 sm:py-12 lg:flex-row lg:items-center lg:gap-14 lg:px-16 lg:py-14">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-semibold leading-[1.1] tracking-[-0.045em] text-white sm:text-[34px] lg:text-[32px]">
+              Curious whether Odda<br></br> would work for your family’s home?
+            </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base font-normal leading-8 text-black/75 sm:text-lg">
-            I’m happy to walk you through it—without pressure or obligation.
-          </p>
+            <p className="mt-4 max-w-2xl text-base font-normal leading-7 text-white sm:text-lg">
+              I’m happy to walk you through it-without pressure or obligation.
+            </p>
+          </div>
 
           <a
-            href="/#contact"
-            className="mt-9 inline-flex min-w-[220px] items-center justify-center rounded-full border-2 border-white bg-white px-8 py-4 text-base font-medium text-black transition-colors duration-300 hover:bg-transparent"
+            href="/contact"
+            className="group inline-flex min-w-[190px] shrink-0 items-center justify-center gap-3 rounded-full border-2 border-white bg-white px-7 py-4 text-base font-medium text-black shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_28px_rgba(41,50,38,0.14)]"
           >
-            Let’s talk
+            <span>Let’s talk</span>
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
           </a>
         </div>
       </section>

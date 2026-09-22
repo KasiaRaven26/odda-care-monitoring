@@ -70,7 +70,7 @@ export default function PricingPage() {
                 Pricing
               </p>
 
-              <h1 className="mt-6 max-w-xl text-[32px] font-semibold leading-[1.12] tracking-tight text-black sm:text-[36px] lg:text-[48px]">
+              <h1 className="mt-6 max-w-xl text-[32px] font-semibold leading-[1.12] tracking-tight text-black sm:text-[36px] lg:text-[40px]">
                 Simple, honest pricing for real peace of mind.
               </h1>
 
@@ -88,12 +88,12 @@ export default function PricingPage() {
               </a>
             </div>
 
-            <div className="relative overflow-hidden rounded-[32px] shadow-[0_24px_60px_rgba(48,54,45,0.14)]">
-              <img
-                src="/images/odda-pricing1.png"
-                alt="Older woman living independently at home"
-                className="aspect-[4/3] w-full object-cover brightness-[0.72]"
-              />
+            <div className="group relative w-full max-w-[560px] justify-self-center overflow-hidden rounded-[32px] shadow-[0_24px_60px_rgba(48,54,45,0.14)] lg:justify-self-end">
+             <img
+  src="/images/odda-pricing1.png"
+  alt="Older woman living independently at home"
+  className="aspect-[4/3] w-full object-cover brightness-[0.88] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+/>
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 

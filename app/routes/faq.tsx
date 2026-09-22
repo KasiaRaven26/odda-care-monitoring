@@ -1,4 +1,5 @@
 import type { Route } from "./+types/faq";
+import { useEffect } from "react";
 
 const faqSections = [
   {
@@ -45,9 +46,14 @@ const faqSections = [
           "Yes. Alongside alerts, you’ll receive regular daily or weekly summaries and reports, so you have a general sense of routine rather than only receiving notifications when something changes.",
       },
       {
-        question: "What happens if there’s no internet in the home?",
+        question: "What happens if the internet or power goes down?",
         answer:
-          "Wherever possible, Odda is designed to work without relying on the home’s own Wi-Fi by using its own connection. This is confirmed as part of the home assessment before installation.",
+          "Odda monitors the connection and sensor status. If the system goes offline or a device needs attention, you will be notified. The exact connectivity setup is confirmed during the home assessment.",
+      },
+      {
+        question: "Does the person at home need to press anything?",
+        answer:
+          "No. Everyday monitoring happens quietly in the background. There is nothing to wear, charge or remember to press for the system to understand normal activity.",
       },
       {
         question: "What if a sensor stops working or its battery runs low?",
@@ -60,9 +66,9 @@ const faqSections = [
     title: "Installation & equipment",
     items: [
       {
-        question: "How does installation work?",
+        question: "How long does installation take?",
         answer:
-          "We visit the home, assess the space with you, install the sensors, test everything and explain how it works. No technical knowledge is needed.",
+          "Most installations are completed during one home visit. We position and test the devices, make sure everything is connected and explain Odda View before we leave.",
       },
       {
         question: "Do I need to be technical to use Odda?",
@@ -120,7 +126,7 @@ const faqSections = [
           "Odda includes a way to note visitor periods so normal visits aren’t mistaken for unusual activity. We’ll explain how this works during setup.",
       },
       {
-        question: "Will Odda alert me about every small thing?",
+        question: "Will I receive constant notifications?",
         answer:
           "No. Odda is designed to avoid unnecessary notifications. The aim is to provide meaningful alerts you’ll pay attention to, rather than constant pings.",
       },
@@ -158,6 +164,13 @@ const faqSections = [
   },
 ];
 
+const faqAnchorIds: Record<string, string> = {
+  "What happens if the internet or power goes down?": "power-and-internet",
+  "Does the person at home need to press anything?": "nothing-to-press",
+  "How long does installation take?": "installation-time",
+  "Will I receive constant notifications?": "notifications",
+};
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "FAQ | Odda Care" },
@@ -179,7 +192,7 @@ function DesktopDropdown({ label, href, items }: DropdownMenuProps) {
     <div className="group relative">
       <a
         href={href}
-        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-black"
+        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-black/5"
       >
         {label}
         <svg
@@ -343,6 +356,37 @@ function Navbar() {
 }
 
 export default function FaqPage() {
+  useEffect(() => {
+    function openQuestionFromHash() {
+      const questionId = decodeURIComponent(
+        window.location.hash.replace("#", ""),
+      );
+
+      if (!questionId) return;
+
+      const question = document.getElementById(questionId);
+
+      if (!(question instanceof HTMLDetailsElement)) return;
+
+      question.open = true;
+
+      window.requestAnimationFrame(() => {
+        question.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    }
+
+    const timer = window.setTimeout(openQuestionFromHash, 100);
+    window.addEventListener("hashchange", openQuestionFromHash);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("hashchange", openQuestionFromHash);
+    };
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#F6F1E7] font-['Montserrat'] text-black">
       <Navbar />
@@ -395,7 +439,11 @@ export default function FaqPage() {
 
                 <div className="divide-y divide-black/10">
                   {section.items.map((faq) => (
-                    <details key={faq.question} className="group">
+                    <details
+                      key={faq.question}
+                      id={faqAnchorIds[faq.question]}
+                      className="group scroll-mt-32"
+                    >
                       <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-lg font-medium text-black [&::-webkit-details-marker]:hidden">
                         {faq.question}
 
