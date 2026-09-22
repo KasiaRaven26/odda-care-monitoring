@@ -126,7 +126,7 @@ export default function PricingPage() {
 
           <div className="relative z-10 flex min-h-[700px] items-center px-6 py-12 lg:px-10">
             {/* Main glass frame */}
-            <div className="w-full rounded-[30px] border border-white/3 bg-black/35 px-5 py-6 text-white shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-7 sm:py-8 lg:w-[52%] lg:px-8 lg:py-9">
+           <div className="w-full rounded-[30px] border border-white/10 bg-black/35 px-5 py-6 text-white shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-7 sm:py-8 lg:w-[52%] lg:translate-x-[20%] lg:px-8 lg:py-9">
               <div className="mb-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white">
                   One simple service
