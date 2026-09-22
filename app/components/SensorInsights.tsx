@@ -431,7 +431,7 @@ function closeDetails() {
             aria-labelledby="device-details-title"
             onMouseEnter={cancelScheduledClose}
             onMouseLeave={scheduleClose}
-            className={`relative w-full max-w-[900px] overflow-hidden rounded-[32px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            className={`relative w-full max-w-[680px] overflow-hidden rounded-[32px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               detailsOpen
                 ? "translate-y-0 opacity-100"
                 : "translate-y-5 opacity-0"
@@ -441,7 +441,7 @@ function closeDetails() {
               type="button"
               aria-label="Close device information"
               onClick={closeDetails}
-              className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full  bg-[#F6F1E8]/90 text-black shadow-[0_6px_20px_rgba(0,0,0,0.08)] backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
+              className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full   text-black  backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
             >
               <ExpandIcon open />
             </button>

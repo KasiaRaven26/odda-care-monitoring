@@ -129,11 +129,11 @@ export default function Navbar() {
           </a>
 
           <a
-            href="/#contact"
-            className="rounded-full bg-[#E8DFD0] px-6 py-3 text-base font-medium text-black transition-colors hover:bg-[#56614F]"
-          >
-            Get in touch
-          </a>
+  href="/contact"
+  className="rounded-full bg-[#E8DFD0] px-6 py-3 text-base font-medium text-black transition-colors hover:bg-[#56614F] hover:text-white"
+>
+  Get in touch
+</a>
         </div>
 
         {/* Mobile menu */}
