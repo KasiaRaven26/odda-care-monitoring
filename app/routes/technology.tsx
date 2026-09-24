@@ -213,7 +213,7 @@ export default function TechnologyPage() {
               </h1>
 
               <p className="mt-5 max-w-md text-sm leading-7 text-white sm:text-base">
-                How six quiet devices learn a home’s rhythm and turn it into
+                How few smart sensors learn a home’s rhythm and turn it into
                 something a family can actually understand.
               </p>
             </div>

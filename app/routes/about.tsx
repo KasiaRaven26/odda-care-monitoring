@@ -206,7 +206,7 @@ Not a tech company guessing at care.
                   I’m currently working with families across
                   Stratford-upon-Avon and the Cotswolds, testing hardware
                   thoroughly with local families and building software with my developers that
-                  actually makes sense to real families-<br></br>not just investors.
+                  actually makes sense to real families.
                 </p>
 
               </div>

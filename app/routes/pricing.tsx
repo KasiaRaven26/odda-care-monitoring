@@ -80,12 +80,18 @@ export default function PricingPage() {
                 equipment, installation, monitoring, alerts and support.
               </p>
 
-              <a
-                href="/#contact"
-                className="mt-9 inline-flex rounded-full bg-[#66735E] px-7 py-4 font-semibold text-white transition-colors hover:bg-[#56614F]"
-              >
-                Book a free consultation
-              </a>
+             <a
+  href="/assessment"
+  className="group mt-9 inline-flex items-center justify-center gap-3 rounded-full border border-black px-7 py-4 font-semibold text-black transition-colors duration-300 hover:bg-black hover:text-white"
+>
+  Book a free consultation
+  <span
+    aria-hidden="true"
+    className="transition-transform duration-300 group-hover:translate-x-1"
+  >
+    →
+  </span>
+</a>
             </div>
 
             <div className="group relative w-full max-w-[560px] justify-self-center overflow-hidden rounded-[32px] shadow-[0_24px_60px_rgba(48,54,45,0.14)] lg:justify-self-end">
