@@ -190,7 +190,7 @@ into something it isn't.
 
               <div className="space-y-6 text-base leading-8 text-black sm:text-lg">
                 <p>
-                  Odda is currently working with families across Stratford-upon-Avon and the Cotswolds. I'm building this business carefully and deliberately - testing hardware thoroughly, working closely with my developer to build software that actually makes sense to families, and making sure every household we work with gets a genuinely reliable, trustworthy service.
+                  Odda is currently working with families across Stratford-upon-Avon and The Cotswolds. I'm building this business carefully and deliberately - testing hardware thoroughly, working closely with my developer to build software that actually makes sense to families, and making sure every household we work with gets a genuinely reliable, trustworthy service.
 I'd rather grow slowly and get it right than grow quickly and let a family down.
                 </p>
               </div>
