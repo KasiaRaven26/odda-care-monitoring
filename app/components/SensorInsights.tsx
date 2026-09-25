@@ -211,9 +211,9 @@ function closeDetails() {
       {/* Meet Odda — product introduction */}
 <section
   id="how-it-works"
-  className="relative z-10 -mt-8 bg-[#929F88] px-4 pb-20 [overflow-anchor:none] sm:px-6 lg:-mt-12 lg:pb-24"
+  className="relative bg-white px-4 py-20 [overflow-anchor:none] sm:px-6 lg:py-24"
 >
-  <div className="mx-auto max-w-[1380px] rounded-[40px] bg-[#F8F6F1] px-7 py-12 shadow-[0_24px_70px_rgba(41,50,38,0.16)] sm:px-14 lg:px-[88px] lg:py-16">
+  <div className="mx-auto max-w-[1380px] px-3 sm:px-8 lg:px-[64px]">
     <div className="mb-10 max-w-3xl text-left">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
         ODDA VIEW
@@ -225,7 +225,7 @@ function closeDetails() {
 
       <p className="mt-5 w-full max-w-2xl text-base leading-7 text-black sm:text-lg">
         Sensors gather the signals. Odda View turns them into clear,
-        meaningful updates-learning what normal looks like, noticing
+        meaningful updates — learning what normal looks like, noticing
         important changes and explaining everything in plain, everyday
         language.
       </p>
@@ -233,7 +233,7 @@ function closeDetails() {
 
     <div className="mt-4 grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
       {/* Desktop and iPhone carousel */}
-      <div className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[28px] bg-white/30">
+      <div className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[28px]">
         <div
           className="flex transform-gpu transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{
@@ -284,7 +284,7 @@ function closeDetails() {
       </div>
 
       {/* Dashboard accordion */}
-      <article className="overflow-hidden rounded-[28px]  bg-white/55 px-6 py-7 shadow-[0_18px_45px_rgba(41,50,38,0.08)] backdrop-blur-sm [overflow-anchor:none] sm:px-8 sm:py-8">
+      <article className="rounded-[28px] bg-white px-6 py-7 [overflow-anchor:none] sm:px-8 sm:py-8">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
           Inside your dashboard
         </p>
@@ -293,18 +293,14 @@ function closeDetails() {
           The essentials made clear.
         </h3>
 
-        <div className="mt-6 h-[420px] space-y-1 overflow-hidden sm:h-[390px]">
+        <div className="mt-6 h-[420px] overflow-hidden sm:h-[390px]">
           {dashboardFeatures.map((feature, index) => {
             const isOpen = openDashboardFeature === index;
 
             return (
               <div
                 key={feature.title}
-                className={`rounded-[18px] px-4 transition-colors duration-500 ${
-                  isOpen
-                    ? "bg-[#E8ECE4]"
-                    : "bg-transparent hover:bg-[#E8ECE4]/40"
-                }`}
+                className="border-b border-black/10 px-2"
               >
                 <button
                   type="button"
@@ -318,13 +314,7 @@ function closeDetails() {
                     {feature.title}
                   </span>
 
-                  <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-500 ${
-                      isOpen
-                        ? "bg-[#D5DFD0] text-[#315F4B]"
-                        : "bg-transparent text-[#315F4B] group-hover:bg-[#D5DFD0]/60"
-                    }`}
-                  >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center text-[#315F4B]">
                     <svg
                       viewBox="0 0 20 20"
                       fill="none"
