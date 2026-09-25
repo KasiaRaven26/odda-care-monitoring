@@ -1,12 +1,14 @@
 import { Link } from "react-router";
 
+const icoRegistrationNumber = "";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-white px-4 pb-5 pt-16 sm:px-6 lg:px-10">
       <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[36px] bg-[#F5F2EC] px-7 py-12 sm:px-10 lg:px-16 lg:py-16">
-        {/* Złoty element dekoracyjny */}
+        {/* Gold decorative element */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-[270px] -right-[210px] h-[540px] w-[540px] rounded-full border-[72px] border-[#D5A827]/85"
@@ -20,15 +22,24 @@ export default function Footer() {
               </h3>
 
               <div className="flex flex-col gap-3 text-[15px] text-black/65">
-                <a href="/#how-it-works" className="transition hover:text-black">
+                <a
+                  href="/#how-it-works"
+                  className="transition hover:text-black"
+                >
                   How it works
                 </a>
 
-                <a href="/#technology" className="transition hover:text-black">
+                <a
+                  href="/#technology"
+                  className="transition hover:text-black"
+                >
                   Technology
                 </a>
 
-                <a href="/#pricing" className="transition hover:text-black">
+                <a
+                  href="/#pricing"
+                  className="transition hover:text-black"
+                >
                   Pricing
                 </a>
               </div>
@@ -65,7 +76,7 @@ export default function Footer() {
                 </Link>
 
                 <Link to="/terms" className="transition hover:text-black">
-                  Terms & conditions
+                  Terms &amp; conditions
                 </Link>
 
                 <Link to="/cookies" className="transition hover:text-black">
@@ -107,13 +118,23 @@ export default function Footer() {
                 </Link>
 
                 <Link to="/terms" className="hover:text-black">
-                  Terms & Conditions
+                  Terms &amp; Conditions
                 </Link>
 
                 <Link to="/cookies" className="hover:text-black">
                   Cookie Preferences
                 </Link>
               </div>
+
+              {icoRegistrationNumber && (
+                <p className="mt-5 max-w-md text-xs leading-5 text-black/55">
+                  Odda Ltd is registered with the Information
+                  Commissioner&apos;s Office (ICO). Registration number:{" "}
+                  <span className="font-medium">
+                    {icoRegistrationNumber}
+                  </span>
+                </p>
+              )}
 
               <p className="mt-5 text-xs text-black/50">
                 © Odda Care {year}. All rights reserved.

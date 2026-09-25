@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import type { Route } from "./+types/faq";
-import { useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 const faqSections = [
   {
@@ -181,181 +182,18 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-type DropdownMenuProps = {
-  label: string;
-  href: string;
-  items: { label: string; href: string }[];
-};
-
-function DesktopDropdown({ label, href, items }: DropdownMenuProps) {
-  return (
-    <div className="group relative">
-      <a
-        href={href}
-        className="flex items-center gap-1.5 rounded-full px-4 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-black/5"
-      >
-        {label}
-        <svg
-          viewBox="0 0 20 20"
-          fill="none"
-          aria-hidden="true"
-          className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180"
-        >
-          <path
-            d="M5 7.5 10 12.5 15 7.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </a>
-
-      <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <div className="rounded-[20px] border border-black/10 bg-white/95 p-2 shadow-[0_18px_45px_rgba(0,0,0,0.12)] backdrop-blur-xl">
-          {items.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="block rounded-[14px] px-4 py-3 text-sm font-medium text-black transition-colors hover:bg-[#E1E6DC]"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Navbar() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-[#FBF9F3]">
-      <div className="mx-auto flex max-w-[90rem] items-center justify-between px-6 py-3 lg:px-12">
-        <a
-          href="/"
-          aria-label="Odda Care home"
-          className="shrink-0 transition-opacity hover:opacity-80"
-        >
-          <img
-            src="/images/odda-logo-transparent.png"
-            alt="Odda Care"
-            className="h-16 w-auto mix-blend-multiply lg:h-[77px]"
-          />
-        </a>
-
-        <nav
-          className="hidden items-center gap-1 lg:flex"
-          aria-label="Main navigation"
-        >
-          <DesktopDropdown
-            label="How it works"
-            href="/#how-it-works"
-            items={[
-              { label: "Overview", href: "/#how-it-works" },
-              { label: "Daily insights", href: "/#odda-view" },
-              { label: "Installation", href: "/technology" },
-            ]}
-          />
-          <DesktopDropdown
-            label="About"
-            href="/#about"
-            items={[
-              { label: "Our story", href: "/#about" },
-              { label: "Our approach", href: "/#families" },
-              { label: "Contact", href: "/#contact" },
-            ]}
-          />
-          <DesktopDropdown
-            label="Technology"
-            href="/technology"
-            items={[
-              { label: "Odda Hub", href: "/technology" },
-              { label: "Sensors", href: "/technology#sensors" },
-              { label: "Privacy and security", href: "/technology#privacy" },
-            ]}
-          />
-          <a
-            href="/pricing"
-            className="rounded-full px-4 py-3 text-base font-light text-black transition-colors hover:bg-black/5"
-          >
-            Pricing
-          </a>
-          <a
-            href="/faq"
-            aria-current="page"
-            className="rounded-full px-4 py-3 text-base font-light text-black transition-colors hover:bg-black/5"
-          >
-            FAQ
-          </a>
-        </nav>
-
-        <div className="hidden items-center gap-5 lg:flex">
-          <a
-            href="/login"
-            aria-label="Odda Hub"
-            className="group relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#DDD4C7] text-black transition-colors hover:bg-[#CFC3B3]"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4.5 21c.8-4 3.3-6 7.5-6s6.7 2 7.5 6" />
-            </svg>
-            <span className="pointer-events-none absolute left-1/2 top-full z-50 mt-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
-              Odda Hub
-            </span>
-          </a>
-          <a
-            href="/#contact"
-            className="rounded-full bg-[#65745E] px-7 py-4 text-base font-semibold text-white transition-colors hover:bg-[#56614F]"
-          >
-            Get in touch
-          </a>
-        </div>
-
-        <details className="group relative lg:hidden">
-          <summary className="flex cursor-pointer list-none items-center justify-center rounded-full border border-black/20 px-5 py-3 font-semibold text-black [&::-webkit-details-marker]:hidden">
-            Menu
-          </summary>
-          <nav className="absolute right-0 top-full mt-3 flex w-60 flex-col rounded-3xl border border-black/10 bg-[#FBF9F3] p-3 shadow-xl">
-            {[
-              ["How it works", "/#how-it-works"],
-              ["About", "/#about"],
-              ["Technology", "/technology"],
-              ["Pricing", "/pricing"],
-              ["FAQ", "/faq"],
-              ["Odda Hub", "/login"],
-            ].map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="rounded-2xl px-4 py-3 font-medium text-black hover:bg-[#E1E6DC]"
-              >
-                {label}
-              </a>
-            ))}
-            <a
-              href="/#contact"
-              className="mt-2 rounded-2xl bg-[#65745E] px-4 py-3 text-center font-semibold text-white"
-            >
-              Get in touch
-            </a>
-          </nav>
-        </details>
-      </div>
-    </header>
-  );
-}
-
 export default function FaqPage() {
+  const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>(
+    {},
+  );
+
+  function toggleQuestion(question: string) {
+    setOpenQuestions((current) => ({
+      ...current,
+      [question]: !current[question],
+    }));
+  }
+
   useEffect(() => {
     function openQuestionFromHash() {
       const questionId = decodeURIComponent(
@@ -364,14 +202,19 @@ export default function FaqPage() {
 
       if (!questionId) return;
 
-      const question = document.getElementById(questionId);
+      const matchingQuestion = Object.entries(faqAnchorIds).find(
+        ([, id]) => id === questionId,
+      )?.[0];
 
-      if (!(question instanceof HTMLDetailsElement)) return;
+      if (!matchingQuestion) return;
 
-      question.open = true;
+      setOpenQuestions((current) => ({
+        ...current,
+        [matchingQuestion]: true,
+      }));
 
       window.requestAnimationFrame(() => {
-        question.scrollIntoView({
+        document.getElementById(questionId)?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
@@ -390,9 +233,10 @@ export default function FaqPage() {
   return (
     <main className="min-h-screen bg-[#F6F1E7] font-['Montserrat'] text-black">
       <Navbar />
+
       <section className="px-6 py-16 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
-          {/* Nagłówek i zdjęcie */}
+          {/* FAQ hero */}
           <div className="relative mt-12 aspect-[16/7] overflow-hidden rounded-[2.5rem]">
             <img
               src="/images/odda-family-faq2.png"
@@ -400,72 +244,101 @@ export default function FaqPage() {
               className="h-full w-full object-cover"
             />
 
-            {/* Przyciemnienie mocniejsze po lewej stronie */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
 
-            {/* Tekst i przycisk */}
             <div className="absolute inset-0 flex items-end p-8 md:p-12 lg:p-16">
               <div className="max-w-xl text-white">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em]"></p>
-
-                <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+                <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
                   Frequently Asked Questions
                 </h1>
+
                 <p className="mt-5 max-w-lg text-base leading-7 text-white md:text-lg">
                   Speak with one of our experts and book a free, no-obligation
                   consultation.
                 </p>
 
                 <a
-                  href="/#contact"
-                  className="mt-8 inline-flex rounded-full border border-white bg-white px-7 py-4 text-sm font-semibold text-[#3C4738] transition-all duration-300 hover:bg-white/15 hover:text-white"
+                  href="/book-assessment"
+                  className="group mt-8 inline-flex items-center justify-center gap-3 rounded-full border border-white bg-white px-7 py-4 text-sm font-semibold text-black transition-colors duration-300 hover:bg-transparent hover:text-white"
                 >
                   Book a free consultation
+
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Kategorie FAQ w dwóch kolumnach */}
+          {/* FAQ categories */}
           <div className="mt-16 columns-1 gap-6 lg:columns-2">
             {faqSections.map((section) => (
               <div
                 key={section.title}
                 className="mb-6 break-inside-avoid rounded-[2rem] border border-[#CDAA24]/25 bg-white p-6 sm:p-7"
               >
-                <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#89967E]">
+                <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-black">
                   {section.title}
                 </h2>
 
                 <div className="divide-y divide-black/10">
-                  {section.items.map((faq) => (
-                    <details
-                      key={faq.question}
-                      id={faqAnchorIds[faq.question]}
-                      className="group scroll-mt-32"
-                    >
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-lg font-medium text-black [&::-webkit-details-marker]:hidden">
-                        {faq.question}
+                  {section.items.map((faq) => {
+                    const isOpen = Boolean(openQuestions[faq.question]);
 
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E4E1D7] transition-transform duration-300 group-open:rotate-45">
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.7"
-                            className="h-4 w-4"
-                            aria-hidden="true"
-                          >
-                            <path d="M12 5v14M5 12h14" />
-                          </svg>
-                        </span>
-                      </summary>
+                    return (
+                      <div
+                        key={faq.question}
+                        id={faqAnchorIds[faq.question]}
+                        className="scroll-mt-32"
+                      >
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          onClick={() => toggleQuestion(faq.question)}
+                          className="flex w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium text-black"
+                        >
+                          <span>{faq.question}</span>
 
-                      <p className="pb-5 pr-12 text-base leading-7 text-[#52574F]">
-                        {faq.answer}
-                      </p>
-                    </details>
-                  ))}
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center text-black">
+                            <svg
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              aria-hidden="true"
+                              className={`h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                                isOpen ? "rotate-180" : "rotate-0"
+                              }`}
+                            >
+                              <path
+                                d="M4.5 7.5 10 13l5.5-5.5"
+                                stroke="currentColor"
+                                strokeWidth="1.6"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+
+                        <div
+                          className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                            isOpen
+                              ? "grid-rows-[1fr] opacity-100"
+                              : "grid-rows-[0fr] opacity-0"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <p className="pb-5 pr-12 text-base leading-7 text-black">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}

@@ -38,54 +38,66 @@ export default function About() {
               </p>
 
               <h1 className="mt-6 max-w-xl text-3xl font-semibold leading-[1.12] tracking-tight text-white md:text-3xl lg:text-4xl">
-               Built by someone who's sat with families like yours.<br></br>
-Not a tech company guessing at care.
-<br></br>A carer who knew there had to be a better way.
+                Built on real care experience,
+                <br />
+                not just technology.
               </h1>
 
-              <div className="mt-16  border-white/30 pt-8 lg:mt-auto">
-               
-
-                <p className="mt-5 max-w-sm  italic text-base font-light leading-7 text-white/80 sm:text-lg">
-                  "After 13 years supporting people with dementia, Parkinson's and through end-of-life care, I saw how often families were left guessing between visits-and how existing technology could compromise the dignity<br></br> it was meant to protect. <br></br>Families deserve reassurance, not surveillance. <br></br>That's what I built Odda to change."
+              <div className="mt-16 border-white/30 pt-8 lg:mt-auto">
+                <p className="mt-5 max-w-sm text-base font-light italic leading-7 text-white/80 sm:text-lg">
+                  I didn't come from a technology background.
+                  <br />
+                  I came to it from years of sitting with families, supporting
+                  people with dementia and Parkinson's, and understanding what
+                  genuinely matters when someone is trying to stay independent
+                  at home.
                 </p>
               </div>
             </div>
 
-           {/* Founder photo */}
-<div
-  tabIndex={0}
-  className="group relative isolate overflow-hidden rounded-[34px] bg-[#EAE4D9] outline-none"
->
-  <img
-    src="/images/Aggie-arden.jpg"
-    alt="Aggie Arden, founder of Odda"
-    className="block aspect-[4/5] h-full w-full object-cover"
-  />
+            {/* Founder photo */}
+            <div
+              tabIndex={0}
+              className="group relative isolate w-full overflow-hidden rounded-[34px] bg-[#EAE4D9] outline-none lg:w-[80%] lg:justify-self-center"
+            >
+              <img
+                src="/images/Aggie-arden.jpg"
+                alt="Aggie Arden, founder of Odda"
+                className="block aspect-[4/5] w-full object-cover"
+              />
 
-  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
+              {/* Stały gradient pod tekstem */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
 
-  <div className="absolute inset-x-7 bottom-7 z-10 flex flex-col justify-end sm:inset-x-9 sm:bottom-9">
-    <p className="text-3xl font-medium tracking-[-0.035em] text-white sm:text-4xl">
-      Aggie Arden
-    </p>
+              {/* Delikatne przyciemnienie przy rozwinięciu tekstu */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-700 ease-out group-hover:bg-black/45 group-focus:bg-black/25"
+              />
 
-    <p className="mt-2 text-sm font-semibold text-white/90">
-      Founder of Odda
-    </p>
+              <div className="absolute inset-x-6 bottom-6 z-10 flex flex-col justify-end sm:inset-x-8 sm:bottom-8">
+                <p className="text-2xl font-medium tracking-[-0.035em] text-white sm:text-3xl">
+                  Aggie Arden
+                </p>
 
-    <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-5 group-hover:max-h-[360px] group-hover:opacity-100 group-focus:mt-5 group-focus:max-h-[360px] group-focus:opacity-100">
-      <p className="border-t border-white/30 italic pt-5 text-base font-medium leading-7 text-white/40">
-        After 13 years supporting people with dementia, Parkinson&apos;s and
-        through end-of-life care, I saw how often families were left guessing
-        between visits—and how existing technology could compromise the dignity
-        it was meant to protect.
-      </p>
+                <p className="mt-2 text-sm font-semibold text-white/90">
+                  Founder of Odda
+                </p>
 
-    
-    </div>
-  </div>
-</div>
+                <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:mt-4 group-hover:max-h-[360px] group-hover:opacity-100 group-focus:mt-4 group-focus:max-h-[360px] group-focus:opacity-100">
+                  <p className="border-t border-white/30 pt-4 text-sm font-medium leading-6 text-white">
+                    I've spent over 10 years working in care - including dementia care, 
+person-centred care, Parkinson's care, and end-of-life care. 
+I've supported families through some of the hardest and most 
+important moments of their lives, and I've seen first-hand how 
+much families worry about a parent or relative living alone, 
+and how little information they often have about what's really 
+happening day to day. That gap between visits is where the 
+worry lives - and it's what I set out to change.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -94,7 +106,7 @@ Not a tech company guessing at care.
           <div className="mx-auto grid max-w-[1380px] gap-12 px-7 sm:px-14 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-20 lg:px-[88px]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-                Why Odda exists
+               Why I started Odda
               </p>
 
               <blockquote className="mt-6 max-w-md text-3xl font-semibold leading-[1.18] tracking-[-0.04em] text-black sm:text-4xl">
@@ -104,88 +116,65 @@ Not a tech company guessing at care.
             </div>
 
             <div className="max-w-2xl rounded-[30px] bg-[#E8E1D6] p-7 sm:p-10">
-              <p className="text-lg font-semibold leading-8 text-black">
-                Odda exists to close that gap—without cameras, without
-                microphones and without turning a parent into a data source.
+              <p className="text-lg font-normal leading-8 text-black">
+                Odda exists to close that gap. Not by watching more closely. <br></br>
+By listening better. No cameras. No microphones. <br></br>Just enough 
+information to know they're okay, without turning their<br></br> home 
+into something it isn't.
               </p>
             </div>
           </div>
         </section>
 
-        {/* How Odda works */}
-        <section className="bg-white py-20 lg:py-28">
-          <div className="mx-auto grid max-w-[1380px] gap-12 px-7 sm:px-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20 lg:px-[88px]">
+       
+      
+
+        {/* Values */}
+        <section className="bg-[#6C7965] py-20 text-white lg:py-28">
+          <div className="mx-auto grid max-w-[1380px] gap-14 px-7 sm:px-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24 lg:px-[88px]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-                How Odda works
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
+                What matters to me
               </p>
 
               <h2 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">
-                A quiet picture <br></br>of everyday life.
+                Care should always feel human.
               </h2>
+
+              <div className="mt-10 overflow-hidden rounded-[30px]">
+                <img
+                  src="/images/odda-install.png"
+                  alt="An older woman sharing a warm conversation with her carer at home"
+                  loading="lazy"
+                  className="aspect-[5/5] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+                />
+              </div>
             </div>
 
-            <div className="rounded-[30px] bg-[#F1EDE5] p-7 sm:p-10">
-              <p className="text-base leading-8 text-[#50564E] sm:text-lg">
-                Sensors placed around the home build a quiet picture of daily
-                routine—movement, sleep and activity. Instead of raw data, your
-                family gets plain-language updates: is Mum sleeping normally,
-                is Dad’s routine what it usually is?
-              </p>
+            <div className="self-center">
+              {values.map((value, index) => (
+                <article
+                  key={value.title}
+                  className="grid gap-4 py-8 sm:grid-cols-[64px_1fr] sm:gap-8 sm:py-10"
+                >
+                  <span className="text-2xl font-extralight leading-none text-white">
+                    0{index + 1}
+                  </span>
 
-              <p className="mt-6 text-lg font-semibold leading-8 text-[#65715F]">
-                No dashboards to interpret. No technology to learn.
-              </p>
+                  <div>
+                    <h3 className="max-w-xl text-2xl font-semibold leading-[1.25] tracking-[-0.03em]">
+                      {value.title}
+                    </h3>
+
+                    <p className="mt-4 max-w-xl text-base leading-7 text-white">
+                      {value.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
-
-       {/* Values */}
-<section className="bg-[#6C7965] py-20 text-white lg:py-28">
-  <div className="mx-auto grid max-w-[1380px] gap-14 px-7 sm:px-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24 lg:px-[88px]">
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
-        What matters to me
-      </p>
-
-      <h2 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">
-        Care should always feel human.
-      </h2>
-
-      <div className="mt-10 overflow-hidden rounded-[30px]">
-        <img
-          src="/images/odda-install.png"
-          alt="An older woman sharing a warm conversation with her carer at home"
-          loading="lazy"
-          className="aspect-[5/5] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
-        />
-      </div>
-    </div>
-
-    <div className="self-center ">
-      {values.map((value, index) => (
-        <article
-          key={value.title}
-          className="grid gap py-8 sm:grid-cols-[64px_1fr] sm:gap-8 sm:py-10"
-        >
-          <span className="text-2xl font-extralight leading-none text-grey">
-            0{index + 1}
-          </span>
-
-          <div>
-            <h3 className="max-w-xl text-2xl font-semibold leading-[1.25] tracking-[-0.03em]">
-              {value.title}
-            </h3>
-
-            <p className="mt-4 max-w-xl text-base leading-7 text-white">
-              {value.description}
-            </p>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
 
         {/* Where Odda is today */}
         <section className="bg-[#F6F1E8] py-20 lg:py-28">
@@ -196,49 +185,43 @@ Not a tech company guessing at care.
                   Where Odda is today
                 </p>
 
-                <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em]">
-                  I would rather grow slowly and get it right rather than grow quickly and let a family down.
-                </h2>
+                
               </div>
 
               <div className="space-y-6 text-base leading-8 text-black sm:text-lg">
                 <p>
-                  I’m currently working with families across
-                  Stratford-upon-Avon and the Cotswolds, testing hardware
-                  thoroughly with local families and building software with my developers that
-                  actually makes sense to real families.
+                  Odda is currently working with families across Stratford-upon-Avon and the Cotswolds. I'm building this business carefully and deliberately - testing hardware thoroughly, working closely with my developer to build software that actually makes sense to families, and making sure every household we work with gets a genuinely reliable, trustworthy service.
+I'd rather grow slowly and get it right than grow quickly and let a family down.
                 </p>
-
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section
-          id="contact"
-          className="bg-[#F6F1E8] px-4 pb-20 lg:pb-28"
-        >
+        <section id="contact" className="bg-[#F6F1E8] px-4 pb-20 lg:pb-28">
           <div className="mx-auto max-w-[1380px] rounded-[36px] bg-[#A5B19C] px-7 py-16 text-center sm:px-12 lg:py-20">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
               Get in touch
             </p>
 
-            <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:text-5xl">
+            <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-white sm:text-4xl">
               Worried about somebody living alone?
             </h2>
 
             <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white sm:text-lg">
-              I would be glad to talk it through.<br></br>With no pressure and no obligation.
+              I would be glad to talk it through.
+              <br />
+              With no pressure and no obligation.
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="/#contact"
-                className="rounded-full border-2 border-white bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-transparent hover:text-white"
-              >
-                Book a free assessment
-              </a>
+  href="/book-assessment"
+  className="rounded-full border-2 border-white bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-transparent hover:text-white"
+>
+  Book a free assessment
+</a>
 
               <a
                 href="mailto:hello@odda.care"

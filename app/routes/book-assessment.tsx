@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 
-const calendlyUrl = "https://calendly.com/kasiaraven2507/30min";
-
+const calendlyUrl =
+  "https://calendly.com/kasiaraven2507/30min?text_color=24362B&primary_color=83AD83";
 export default function BookAssessment() {
   return (
     <main className="min-h-screen bg-[#F8F6F1] font-['Montserrat'] text-black">
@@ -17,13 +17,13 @@ export default function BookAssessment() {
             Let’s talk about care at home.
           </h1>
 
-          <p className="mt-5 text-lg leading-8 text-black/70">
+          <p className="mt-5 text-lg leading-8 text-black">
             Choose a time that works for you, tell us a little about your
             situation, and confirm your free conversation.
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-sm">
           <iframe
             title="Book a free Odda assessment"
             src={calendlyUrl}

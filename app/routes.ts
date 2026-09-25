@@ -14,6 +14,7 @@ export default [
   route("pricing", "routes/pricing.tsx"),
   route("about", "routes/about.tsx"),
   route("how-it-works", "routes/how-it-works.tsx"),
+  route("insights", "routes/insights.tsx"),
   route("contact", "routes/contact.tsx"),
   route("book-assessment", "routes/book-assessment.tsx"),
 ] satisfies RouteConfig;

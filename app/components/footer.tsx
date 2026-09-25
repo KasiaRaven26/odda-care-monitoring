@@ -74,17 +74,11 @@ export default function Footer() {
                 Stay connected
               </p>
 
-              <p className="mt-5 text-[15px] leading-7 text-black">
-                Simple technology and meaningful insight for greater peace of
-                mind.
+              <p className="mt-5 text-50px] leading-7 text-black">
+                Independent living,for longer.
               </p>
 
-              <a
-                href="/#contact"
-                className="mt-6 inline-flex rounded-full border border-black bg-black px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-transparent hover:text-black"
-              >
-                Get in touch
-              </a>
+             
             </div>
           </div>
 
@@ -107,6 +101,10 @@ export default function Footer() {
     <p className="mt-5 text-xs text-black">
       © Odda Care {year}. All rights reserved.
     </p>
+    <p className="mt-5 max-w-md text-xs leading-5 text-black">
+  Odda Ltd is registered with the Information Commissioner&apos;s Office (ICO).
+  Registration number: <span className="font-medium">ZC150677</span>
+</p>
   </div>
 
  <div className="flex flex-col items-start gap-8 lg:items-end">

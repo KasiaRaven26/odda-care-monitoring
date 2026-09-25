@@ -38,7 +38,7 @@ export default function WelcomeChat() {
     className="odda-chat-logo h-11 w-auto object-contain mix-blend-multiply"
   />
 
-  <p className="text-xs text-black/60">
+  <p className="text-xs text-black">
     Here to help you get started
   </p>
 </div>
@@ -55,14 +55,13 @@ export default function WelcomeChat() {
 
           <div className="space-y-4 px-5 py-5">
             <p className="max-w-[290px] rounded-2xl rounded-tl-sm bg-white px-4 py-3 text-sm leading-6 shadow-sm">
-              Hi, welcome to Odda. Looking for peace of mind for someone you
-              care about?
+             Welcome to Odda. How can we help?
             </p>
 
             <div className="flex flex-col items-start gap-2">
               <a
                 href="/book-assessment"
-                className="inline-flex items-center gap-3 rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#315F4B]"
+                className="inline-flex items-center gap-3 rounded-full bg- bg-[#DCE8D8] px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-[#315F4B]"
               >
                 Book a free assessment
                 <span aria-hidden="true">↗</span>
@@ -82,7 +81,7 @@ export default function WelcomeChat() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Open Odda chat"
-          className="group ml-auto flex items-center gap-3 rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+          className="group ml-auto flex items-center gap-3 rounded-full border border-black/20 bg-white px-4 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
         >
           <span className="odda-chat-logo flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-[#F8F6F1]">
             <img
