@@ -62,30 +62,39 @@ export default function SensorInsights() {
 
           <div className="mt-4 grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
             {/* Desktop and iPhone carousel */}
-            <div className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[28px]">
-              <div
-                className="flex transform-gpu transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                style={{
-                  transform: `translateX(-${activeDashboardSlide * 100}%)`,
-                }}
-              >
+            <div className="relative mx-auto w-full max-w-[720px]">
+              <div className="relative h-[370px] sm:h-[470px] lg:h-[520px]">
                 {/* Desktop mockup */}
-                <div className="flex h-[370px] min-w-full items-center justify-center px-4 pb-12 sm:h-[470px] sm:px-6 lg:h-[520px]">
+                <div
+                  aria-hidden={activeDashboardSlide !== 0}
+                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-6 ${
+                    activeDashboardSlide === 0
+                      ? "translate-x-0 opacity-100"
+                      : "pointer-events-none -translate-x-4 opacity-0"
+                  }`}
+                >
                   <img
-                    src="/images/desktop3.png"
+                    src="/images/desktop3-transparent.png"
                     alt="Odda View desktop dashboard showing daily activity, weekly routine, home environment and connected devices"
                     loading="lazy"
-                    className="w-full max-w-[700px] transform-gpu object-contain transition-transform duration-700 hover:scale-[1.025]"
+                    className="w-full max-w-[700px] scale-[1.1] transform-gpu object-contain transition-transform duration-700 hover:scale-[1.13]"
                   />
                 </div>
 
                 {/* iPhone mockup */}
-                <div className="flex h-[370px] min-w-full items-center justify-center px-4 pb-12 sm:h-[470px] sm:px-6 lg:h-[520px]">
+                <div
+                  aria-hidden={activeDashboardSlide !== 1}
+                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-6 ${
+                    activeDashboardSlide === 1
+                      ? "translate-x-0 opacity-100"
+                      : "pointer-events-none translate-x-4 opacity-0"
+                  }`}
+                >
                   <img
                     src="/images/odda-home.png"
                     alt="Odda View dashboard displayed on an iPhone"
                     loading="lazy"
-                    className="max-h-[315px] w-auto transform-gpu object-contain drop-shadow-[0_22px_30px_rgba(25,32,23,0.18)] transition-transform duration-700 hover:scale-[1.025] sm:max-h-[410px] lg:max-h-[455px]"
+                    className="max-h-[315px] w-auto scale-[1.1] transform-gpu object-contain drop-shadow-[0_22px_30px_rgba(25,32,23,0.18)] transition-transform duration-700 hover:scale-[1.13] sm:max-h-[410px] lg:max-h-[455px]"
                   />
                 </div>
               </div>
@@ -129,7 +138,11 @@ export default function SensorInsights() {
                   return (
                     <div
                       key={feature.title}
-                      className="border-b border-black/10 px-2"
+                      className={`rounded-2xl border-b border-black/10 px-4 transition-colors duration-300 ease-out ${
+                        isOpen
+                          ? "bg-[#EEF3EC]"
+                          : "hover:bg-[#F5F7F3] focus-within:bg-[#F5F7F3]"
+                      }`}
                     >
                       <button
                         type="button"
@@ -137,13 +150,17 @@ export default function SensorInsights() {
                         onClick={() =>
                           setOpenDashboardFeature(isOpen ? -1 : index)
                         }
-                        className="group flex w-full items-center justify-between gap-5 py-4 text-left"
+                        className="group flex w-full items-center justify-between gap-5 rounded-xl py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#527A66]"
                       >
-                        <span className="text-base font-semibold tracking-[-0.02em] text-black sm:text-lg">
+                        <span
+                          className={`text-base font-semibold tracking-[-0.02em] transition-colors duration-300 group-hover:text-[#315F4B] sm:text-lg ${
+                            isOpen ? "text-[#315F4B]" : "text-black"
+                          }`}
+                        >
                           {feature.title}
                         </span>
 
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center text-[#527A66]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[#527A66] transition-colors duration-300 group-hover:bg-[#E1E9E3]">
                           <svg
                             viewBox="0 0 20 20"
                             fill="none"

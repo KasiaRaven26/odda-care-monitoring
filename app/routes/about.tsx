@@ -117,10 +117,12 @@ worry lives - and it's what I set out to change.
 
             <div className="max-w-2xl rounded-[30px] bg-[#E8E1D6] p-7 sm:p-10">
               <p className="text-lg font-normal leading-8 text-black">
-                Odda exists to close that gap. Not by watching more closely. <br></br>
-By listening better. No cameras. No microphones. <br></br>Just enough 
-information to know they're okay, without turning their<br></br> home 
-into something it isn't.
+                Odda exists to close that gap. Not by watching more closely.
+                <br />
+                By listening better. No cameras. No microphones.
+                <br />
+                Just enough information to know they’re okay, without turning
+                their home into something it isn’t.
               </p>
             </div>
           </div>

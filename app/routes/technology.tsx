@@ -1,4 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  Activity,
+  CameraOff,
+  DoorOpen,
+  Droplets,
+  MicOff,
+  PlugZap,
+  Thermometer,
+  VideoOff,
+} from "lucide-react";
 import Navbar from "../components/Navbar";
 const technologyItems = [
   {
@@ -207,9 +217,9 @@ export default function TechnologyPage() {
               </p>
 
               <h1 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.05em] text-white sm:text-4xl lg:text-[42px]">
-               Small devices. 
+                Simple technology.
                 <br />
-                Big peace of mind.
+                Meaningful reassurance.
               </h1>
 
               <p className="mt-5 max-w-md text-sm leading-7 text-white sm:text-base">
@@ -270,8 +280,17 @@ export default function TechnologyPage() {
 
         {/* Full device breakdown */}
        {/* Devices */}
-<section className="bg-white px-5 py-12 sm:px-8 lg:px-10 lg:py-[72px]">
-  <div className="mx-auto max-w-[1035px]">
+<section className="relative overflow-hidden bg-white px-5 py-12 sm:px-8 lg:px-10 lg:py-[72px]">
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#B5C2A7]/35 blur-3xl"
+  />
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[#E5CFAA]/30 blur-3xl"
+  />
+
+  <div className="relative mx-auto max-w-[1035px]">
     <div className="mb-8 max-w-xl">
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black">
         What’s inside the system
@@ -285,7 +304,12 @@ export default function TechnologyPage() {
     <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {technologyItems.map((item) => (
         <article key={item.title}>
-          <div className="group relative aspect-[4/3] overflow-hidden rounded-[22px] bg-[#929F8B]">
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-[22px] border border-white/60 bg-[#91A27F]/88 shadow-[0_18px_45px_rgba(72,88,70,0.14)] backdrop-blur-xl transition-[transform,background-color,border-color,box-shadow] duration-500 motion-safe:hover:-translate-y-1 hover:border-white/80 hover:bg-[#819274]/92 hover:shadow-[0_24px_55px_rgba(72,88,70,0.20)]">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/25 via-white/0 to-black/[0.03]"
+            />
+
             <img
               src={item.image}
               alt={item.title}
@@ -307,7 +331,7 @@ export default function TechnologyPage() {
               <ExpandIcon open={false} />
             </button>
 
-            <h3 className="absolute bottom-5 left-5 max-w-[80%] text-xl font-semibold leading-tight tracking-[-0.035em] text-white">
+            <h3 className="absolute bottom-5 left-5 z-20 max-w-[80%] text-xl font-semibold leading-tight tracking-[-0.035em] text-white">
               {item.title}
             </h3>
           </div>
@@ -324,7 +348,7 @@ export default function TechnologyPage() {
     onMouseDown={(event) => {
       if (event.target === event.currentTarget) closeDetails();
     }}
-    className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/35 px-4 py-8 backdrop-blur-[4px] transition-opacity duration-500 ease-out ${
+    className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/25 px-4 py-8 backdrop-blur-[6px] transition-opacity duration-500 ease-out ${
       detailsOpen
         ? "pointer-events-auto opacity-100"
         : "pointer-events-none opacity-0"
@@ -336,23 +360,28 @@ export default function TechnologyPage() {
       aria-labelledby="device-details-title"
       onMouseEnter={cancelScheduledClose}
       onMouseLeave={scheduleClose}
-      className={`relative w-full max-w-[480px] overflow-hidden rounded-[24px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`relative w-full max-w-[480px] overflow-hidden rounded-[24px] border border-white/60 bg-[#91A27F]/88 font-['Montserrat'] text-white shadow-[0_30px_90px_rgba(20,25,18,0.30)] backdrop-blur-2xl transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         detailsOpen
           ? "translate-y-0 opacity-100"
           : "translate-y-5 opacity-0"
       }`}
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/25 via-white/0 to-black/[0.04]"
+      />
+
       <button
         type="button"
         aria-label="Close device information"
         onClick={closeDetails}
-        className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full text-black backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
+        className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 text-black backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/25 hover:bg-white active:scale-95"
       >
         <ExpandIcon open />
       </button>
 
-      <div className="grid max-h-[calc(100vh-3rem)] overflow-y-auto md:grid-cols-[0.9fr_1.1fr]">
-        <div className="flex min-h-[200px] items-center justify-center bg-[#929F8B] px-6 py-8 md:min-h-[360px] md:px-8">
+      <div className="relative z-20 grid max-h-[calc(100vh-3rem)] overflow-y-auto md:grid-cols-[0.9fr_1.1fr]">
+        <div className="flex min-h-[200px] items-center justify-center border-white/20 bg-white/10 px-6 py-8 md:min-h-[360px] md:border-r md:px-8">
           <img
             src={selectedItem.image}
             alt={selectedItem.title}
@@ -360,8 +389,8 @@ export default function TechnologyPage() {
           />
         </div>
 
-        <div className="flex flex-col justify-center px-6 py-8 md:px-7 md:py-10">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-black">
+        <div className="flex flex-col justify-center bg-white px-6 py-8 md:px-7 md:py-10">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-black/55">
             Device details
           </p>
 
@@ -372,117 +401,7 @@ export default function TechnologyPage() {
             {selectedItem.title}
           </h2>
 
-          <p className="mt-4 text-sm font-normal leading-6 text-black sm:text-base sm:leading-7">
-            {selectedItem.description}
-          </p>
-        </div>
-      </div>
-    </article>
-  </div>
-)}{/* Devices */}
-<section className="bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
-  <div className="mx-auto max-w-[1380px]">
-    <div className="mb-10 max-w-2xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-black">
-        What’s inside the system
-      </p>
-
-      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-black sm:text-4xl">
-        Small devices working quietly together.
-      </h2>
-    </div>
-
-    <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {technologyItems.map((item) => (
-        <article key={item.title}>
-          <div className="group relative aspect-[16/9] overflow-hidden rounded-[28px] bg-[#929F8B]">
-            <img
-              src={item.image}
-              alt={item.title}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-contain p-6 transform-gpu transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] sm:p-7"
-            />
-
-            <button
-              type="button"
-              aria-haspopup="dialog"
-              aria-label={`Open information about ${item.title}`}
-              onMouseEnter={() => scheduleOpen(item)}
-              onMouseLeave={cancelScheduledOpen}
-              onFocus={() => scheduleOpen(item)}
-              onBlur={cancelScheduledOpen}
-              onClick={() => openDetails(item)}
-              className="absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-white/15 text-white shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md transition-[transform,background-color,border-color,box-shadow] duration-500 hover:scale-110 hover:border-white/70 hover:bg-white/25 active:scale-95"
-            >
-              <ExpandIcon open={false} />
-            </button>
-
-            <h3 className="absolute bottom-5 left-6 max-w-[80%] text-xl font-semibold leading-tight tracking-[-0.035em] text-white">
-              {item.title}
-            </h3>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* Device details modal */}
-{selectedItem && (
-  <div
-    role="presentation"
-    onMouseDown={(event) => {
-      if (event.target === event.currentTarget) closeDetails();
-    }}
-    className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/35 px-4 py-6 backdrop-blur-[4px] transition-opacity duration-500 ${
-      detailsOpen
-        ? "pointer-events-auto opacity-100"
-        : "pointer-events-none opacity-0"
-    }`}
-  >
-    <article
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="device-details-title"
-      onMouseEnter={cancelScheduledClose}
-      onMouseLeave={scheduleClose}
-      className={`relative w-full max-w-[420px] overflow-hidden rounded-[22px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_24px_65px_rgba(20,25,18,0.24)] transition-[opacity,transform] duration-500 ${
-        detailsOpen
-          ? "translate-y-0 opacity-100"
-          : "translate-y-5 opacity-0"
-      }`}
-    >
-      <button
-        type="button"
-        aria-label="Close device information"
-        onClick={closeDetails}
-        className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full text-black transition-transform duration-300 hover:rotate-90 active:scale-95"
-      >
-        <ExpandIcon open />
-      </button>
-
-      <div className="grid max-h-[calc(100dvh-3rem)] overflow-y-auto sm:grid-cols-[0.42fr_0.58fr]">
-        <div className="flex min-h-[150px] items-center justify-center bg-[#929F8B] p-6 sm:min-h-[260px]">
-          <img
-            src={selectedItem.image}
-            alt={selectedItem.title}
-            className="h-full max-h-[160px] w-full max-w-[160px] object-contain"
-          />
-        </div>
-
-        <div className="flex flex-col justify-center px-5 py-6 sm:px-6 sm:py-7">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-black">
-            Device details
-          </p>
-
-          <h2
-            id="device-details-title"
-            className="mt-2 pr-7 text-xl font-medium leading-tight tracking-[-0.045em] text-black sm:text-[22px]"
-          >
-            {selectedItem.title}
-          </h2>
-
-          <p className="mt-3 text-sm font-normal leading-6 text-black">
+          <p className="mt-4 text-sm font-normal leading-6 text-black/75 sm:text-base sm:leading-7">
             {selectedItem.description}
           </p>
         </div>
@@ -491,161 +410,92 @@ export default function TechnologyPage() {
   </div>
 )}
 
-      {/* Device details modal */}
-      {selectedItem && (
-        <div
-          role="presentation"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) closeDetails();
-          }}
-          className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/35 px-4 py-8 backdrop-blur-[4px] transition-opacity duration-500 ease-out ${
-            detailsOpen
-              ? "pointer-events-auto opacity-100"
-              : "pointer-events-none opacity-0"
-          }`}
-        >
-          <article
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="device-details-title"
-            onMouseEnter={cancelScheduledClose}
-            onMouseLeave={scheduleClose}
-            className={`relative w-full max-w-[680px] overflow-hidden rounded-[32px] border border-black/10 bg-white font-['Montserrat'] text-black shadow-[0_30px_90px_rgba(20,25,18,0.28)] transform-gpu transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              detailsOpen
-                ? "translate-y-0 opacity-100"
-                : "translate-y-5 opacity-0"
-            }`}
-          >
-            <button
-              type="button"
-              aria-label="Close device information"
-              onClick={closeDetails}
-              className="absolute right-5 top-5 z-30 flex h-11 w-11 items-center justify-center rounded-full   text-black  backdrop-blur-md transition-[transform,background-color,border-color] duration-300 hover:rotate-90 hover:border-black/30 hover:bg-white active:scale-95"
-            >
-              <ExpandIcon open />
-            </button>
+        {/* Privacy */}
+        <section className="bg-white px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
+          <div className="relative mx-auto max-w-[1380px] overflow-hidden rounded-[36px] bg-[#F2EDE6] px-6 py-10 shadow-[0_24px_70px_rgba(85,72,55,0.08)] sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/25 blur-2xl"
+            />
 
-            <div className="grid max-h-[calc(100vh-4rem)] overflow-y-auto md:grid-cols-[0.9fr_1.1fr]">
-              <div className="flex min-h-[280px] items-center justify-center bg-[#929F8B] px-10 py-12 md:min-h-[520px] md:px-12">
-                <img
-                  src={selectedItem.image}
-                  alt={selectedItem.title}
-                  className="h-full max-h-[330px] w-full max-w-[330px] object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center px-7 py-10 sm:px-10 md:px-12 md:py-14">
-                <p className="text-xs font-medium uppercase tracking-[0.25em] text-black">
-                  Device details
+            <div className="relative grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-16">
+              <div className="max-w-[510px]">
+                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-black">
+                  Privacy by design
                 </p>
 
-                <h2
-                  id="device-details-title"
-                  className="mt-4 pr-12 text-3xl font-medium leading-tight tracking-[-0.045em] text-black sm:text-4xl"
-                >
-                  {selectedItem.title}
+                <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black sm:text-5xl">
+                  A clearer picture, with privacy intact.
                 </h2>
 
-                <p className="mt-6 text-base font-normal leading-7 text-black sm:text-lg sm:leading-8">
-                  {selectedItem.description}
+                <p className="mt-6 max-w-[480px] text-base leading-8 text-black/70 sm:text-lg">
+                  Odda notices small changes in everyday routines while
+                  respecting the privacy of the person at home.
                 </p>
 
-         
-                  
+              </div>
 
-                 
-                
+              <div>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    { label: "No cameras", Icon: CameraOff },
+                    { label: "No microphones", Icon: MicOff },
+                    {
+                      label: "No audio or video recording",
+                      Icon: VideoOff,
+                    },
+                  ].map(({ label, Icon }) => (
+                    <article
+                      key={label}
+                      className="group flex min-h-[170px] flex-col justify-between rounded-[24px] border border-white/60 bg-white/35 p-5 transition-[transform,background-color,border-color] duration-300 motion-safe:hover:-translate-y-1 hover:border-white/90 hover:bg-white/55 sm:p-6"
+                    >
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/55 text-black/70 transition-colors duration-300 group-hover:bg-white/80">
+                        <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.6} />
+                      </span>
 
-                
+                      <h3 className="mt-8 max-w-[170px] text-base font-medium leading-6 text-black">
+                        {label}
+                      </h3>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="mt-4 rounded-[28px] border border-white/60 bg-white/35 p-6 sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+                    What Odda does notice
+                  </p>
+
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
+                    Simple household signals that help build a picture of the
+                    everyday routine.
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {[
+                      { label: "Movement", Icon: Activity },
+                      { label: "Temperature", Icon: Thermometer },
+                      { label: "Humidity", Icon: Droplets },
+                      { label: "Door activity", Icon: DoorOpen },
+                      { label: "Appliance use", Icon: PlugZap },
+                    ].map(({ label, Icon }) => (
+                      <span
+                        key={label}
+                        className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black shadow-[0_3px_12px_rgba(85,72,55,0.06)] transition-[transform,border-color,background-color] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-black/20 hover:bg-white/80"
+                      >
+                        <Icon
+                          aria-hidden="true"
+                          className="h-4 w-4 text-black/60"
+                          strokeWidth={1.7}
+                        />
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </article>
-        </div>
-      )}
-
-       {/* Privacy */}
-<section className="bg-white px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
-  <style>{`
-    @keyframes privacyFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  `}</style>
-
-  <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-    <div className="motion-safe:animate-[privacyFadeIn_700ms_ease-out_both]">
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[black">
-        PRIVACY BY DESIGN
-      </p>
-
-      <h2 className="mt-5 max-w-[520px] text-4xl font-semibold leading-[1.12] tracking-[-0.045em] text-black sm:text-[46px]">
-        A clearer picture, with privacy intact.
-      </h2>
-
-      <p className="mt-6 max-w-[520px] text-base leading-8 text-black/70 sm:text-lg">
-        Odda notices small changes in everyday routines while respecting
-        the privacy of the person at home.
-      </p>
-    </div>
-
-    <div>
-      <div className="grid gap-3 sm:grid-cols-3">
-        {[
-          "No cameras",
-          "No microphones",
-          "No audio or video recording",
-        ].map((item, index) => (
-          <div
-            key={item}
-            className="flex min-h-[120px] items-end rounded-[22px] bg-[#F8F6F1] p-5 motion-safe:animate-[privacyFadeIn_700ms_ease-out_both] sm:p-6"
-            style={{ animationDelay: `${index * 110 + 120}ms` }}
-          >
-            <p className="text-base font-medium leading-6 text-black">
-              {item}
-            </p>
           </div>
-        ))}
-      </div>
-
-      <div
-        className="mt-8 motion-safe:animate-[privacyFadeIn_700ms_ease-out_both]"
-        style={{ animationDelay: "500ms" }}
-      >
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-          WHAT ODDA DOES NOTICE
-        </p>
-
-        <p className="mt-3 text-sm leading-7 text-black sm:text-base">
-          Simple household signals that help build a picture of the
-          everyday routine.
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-2.5">
-          {[
-            "Movement",
-            "Temperature",
-            "Humidity",
-            "Door activity",
-            "Appliance use",
-          ].map((signal) => (
-            <span
-              key={signal}
-              className="rounded-full border border-[#E7A85A]/40 bg-[#FBEEDA] px-4 py-2 text-sm text-[#A76A25] transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              {signal}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 {/* Odda View */}
 <section className="bg-[#FBFAF8] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
   <div className="mx-auto grid max-w-[1380px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
