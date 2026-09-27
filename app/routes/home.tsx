@@ -49,7 +49,7 @@ export default function Home() {
       <section
         aria-label="Odda Care introduction"
         aria-roledescription="carousel"
-        className="relative min-h-[650px] overflow-hidden bg-[#30362F] sm:min-h-[690px] lg:min-h-[720px]"
+        className="relative min-h-[650px] overflow-hidden bg-[#D9D4CB] sm:min-h-[690px] lg:min-h-[720px]"
       >
         {slides.map((slide, index) => {
           const isActive = index === currentSlide;
@@ -64,33 +64,25 @@ export default function Home() {
                   : "invisible pointer-events-none z-0 opacity-0"
               }`}
             >
-              {/* Zdjęcie na telefonach i tabletach */}
+              {/* Zdjęcie wypełnia całe hero, aby tekst pozostał częścią fotografii. */}
               <img
                 src={slide.src}
                 alt={isActive ? slide.alt : ""}
-                className={`absolute inset-0 h-full w-full object-cover lg:hidden ${
+                className={`absolute inset-0 h-full w-full object-cover ${
                   index === 0
-                    ? "object-[62%_center]"
-                    : "object-[65%_70%]"
+                    ? "object-[62%_center] lg:object-[center_48%]"
+                    : "object-[65%_70%] lg:object-[center_55%]"
                 }`}
-              />
-
-              {/* Zdjęcie na desktopie zachowuje proporcje */}
-              <img
-                src={slide.src}
-                alt=""
-                aria-hidden="true"
-                className="absolute right-0 top-0 hidden h-full w-auto max-w-none lg:block"
               />
             </div>
           );
         })}
 
-        {/* Łagodne przyciemnienie lewej strony zdjęcia */}
-        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
+        {/* Transparentne przyciemnienie zapewnia kontrast bez kolorowego panelu. */}
+        <div className="pointer-events-none absolute inset-0 z-20 bg-black/40 lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.48)_40%,rgba(0,0,0,0.18)_62%,rgba(0,0,0,0.02)_82%,rgba(0,0,0,0)_100%)]" />
 
         <div className="relative z-30 flex min-h-[650px] items-center px-4 py-12 sm:min-h-[690px] sm:px-6 lg:min-h-[720px] lg:px-8">
-          <div className="flex w-full max-w-[560px] flex-col justify-center rounded-[32px] border border-white/3 bg-black/20 px-7 py-7 text-white shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:px-9 sm:py-8 lg:px-10">
+          <div className="flex w-full max-w-[560px] flex-col justify-center px-3 py-7 text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.62)] sm:px-5 sm:py-8 lg:px-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/90">
               Intelligent care at home
             </p>
@@ -113,14 +105,14 @@ export default function Home() {
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="/technology"
-                className="rounded-full border border-white bg-transparent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                className="rounded-full border border-white bg-transparent px-5 py-3 text-sm font-semibold text-white [text-shadow:none] transition-colors hover:bg-white hover:text-black"
               >
                 See how Odda works
               </a>
 
               <a
                 href="/book-assessment"
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-[#F3ECE1]"
+                className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black [text-shadow:none] transition-colors hover:bg-[#F3ECE1]"
               >
                 Let&apos;s talk
 

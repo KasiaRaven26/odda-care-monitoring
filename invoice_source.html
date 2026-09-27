@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Draft Invoice — Odda Care Website</title>
+  <style>
+    @page { size: Letter portrait; margin: 1in; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #1f2a22;
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.22;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    .kicker {
+      margin: 0 0 5pt 0;
+      color: #657360;
+      font-size: 9pt;
+      font-weight: bold;
+      letter-spacing: 1.4pt;
+      text-transform: uppercase;
+    }
+    .invoice-title {
+      margin: 0 0 5pt 0;
+      color: #263429;
+      font-size: 28pt;
+      line-height: 1;
+      font-weight: bold;
+      letter-spacing: -0.5pt;
+    }
+    .subtitle {
+      margin: 0;
+      color: #657360;
+      font-size: 11pt;
+    }
+    h2 {
+      margin: 15pt 0 7pt 0;
+      color: #4f6350;
+      font-size: 15pt;
+      line-height: 1.1;
+    }
+    h3 {
+      margin: 10pt 0 4pt 0;
+      color: #263429;
+      font-size: 11.5pt;
+    }
+    p { margin-bottom: 6pt; }
+    .top-grid, .detail-grid, .line-items, .scope-table, .amount-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .top-grid td {
+      width: 50%;
+      padding: 0;
+      vertical-align: top;
+    }
+    .top-grid td:last-child { text-align: right; }
+    .party-box {
+      margin-top: 18pt;
+      padding: 11pt 13pt;
+      border: 1px solid #d9dfd5;
+      background: #f7f5ef;
+    }
+    .party-label {
+      margin-bottom: 4pt;
+      color: #657360;
+      font-size: 8.5pt;
+      font-weight: bold;
+      letter-spacing: 0.8pt;
+      text-transform: uppercase;
+    }
+    .party-name { margin-bottom: 3pt; font-size: 12.5pt; font-weight: bold; }
+    .placeholder {
+      color: #7a5a00;
+      background: #fff2b8;
+      font-weight: bold;
+    }
+    .detail-grid { margin: 14pt 0 12pt 0; }
+    .detail-grid td {
+      width: 25%;
+      padding: 6pt 8pt;
+      border-top: 1px solid #d9dfd5;
+      border-bottom: 1px solid #d9dfd5;
+      vertical-align: top;
+    }
+    .detail-label {
+      display: block;
+      margin-bottom: 3pt;
+      color: #657360;
+      font-size: 8pt;
+      font-weight: bold;
+      letter-spacing: 0.6pt;
+      text-transform: uppercase;
+    }
+    .draft-note {
+      margin: 0 0 13pt 0;
+      padding: 8pt 11pt;
+      border-left: 4pt solid #9aaa91;
+      background: #eef1e9;
+      color: #364438;
+      font-size: 9.5pt;
+    }
+    .line-items th, .line-items td {
+      padding: 8pt 9pt;
+      border: 1px solid #d9dfd5;
+      vertical-align: middle;
+    }
+    .line-items th {
+      background: #e6ebdf;
+      color: #263429;
+      font-size: 9pt;
+      text-align: left;
+    }
+    .line-items th.qty, .line-items td.qty { width: 10%; text-align: center; }
+    .line-items th.amount, .line-items td.amount { width: 25%; text-align: right; }
+    .line-title { font-weight: bold; }
+    .line-detail { margin-top: 3pt; color: #5c665d; font-size: 9.5pt; }
+    .amount-wrap { width: 46%; margin: 9pt 0 0 auto; }
+    .amount-table td { padding: 4pt 7pt; }
+    .amount-table td:last-child { text-align: right; }
+    .amount-total td {
+      padding-top: 8pt;
+      border-top: 2px solid #657360;
+      color: #263429;
+      font-size: 13pt;
+      font-weight: bold;
+    }
+    ul { margin: 3pt 0 7pt 18pt; padding: 0; }
+    li { margin-bottom: 3pt; }
+    .two-col { width: 100%; border-collapse: collapse; }
+    .two-col td { width: 50%; padding: 0 12pt 0 0; vertical-align: top; }
+    .two-col td:last-child { padding: 0 0 0 12pt; }
+    .small { color: #5c665d; font-size: 9pt; }
+    .page-break { page-break-before: always; }
+    .scope-table { margin-top: 8pt; font-size: 9pt; }
+    .scope-table th, .scope-table td {
+      padding: 5pt 6pt;
+      border: 1px solid #d9dfd5;
+      vertical-align: top;
+    }
+    .scope-table th {
+      background: #e6ebdf;
+      color: #263429;
+      text-align: left;
+      font-size: 8.5pt;
+    }
+    .scope-table .no { width: 6%; text-align: center; }
+    .scope-table .page { width: 23%; font-weight: bold; }
+    .scope-table .route { width: 20%; color: #5c665d; }
+    .scope-table .features { width: 51%; }
+    .status-box {
+      margin-top: 10pt;
+      padding: 9pt 11pt;
+      border: 1px solid #d9dfd5;
+      background: #f7f5ef;
+    }
+    .status-box h3 { margin-top: 0; }
+    .footer-note {
+      margin-top: 13pt;
+      padding-top: 7pt;
+      border-top: 1px solid #d9dfd5;
+      color: #657360;
+      font-size: 8pt;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <table class="top-grid">
+    <tr>
+      <td>
+        <p class="kicker">Website design &amp; development</p>
+        <h1 class="invoice-title">INVOICE</h1>
+        <p class="subtitle">Odda Care responsive marketing website</p>
+      </td>
+      <td>
+        <p class="party-label">From</p>
+        <p class="party-name placeholder">[YOUR NAME / BUSINESS]</p>
+        <p class="placeholder">[ADDRESS]</p>
+        <p class="placeholder">[EMAIL &amp; PHONE]</p>
+        <p class="placeholder">[COMPANY / VAT NUMBER, IF APPLICABLE]</p>
+      </td>
+    </tr>
+  </table>
+
+  <div class="party-box">
+    <p class="party-label">Bill to</p>
+    <p class="party-name">Odda Care</p>
+    <p class="placeholder">[CLIENT LEGAL NAME AND BILLING ADDRESS]</p>
+  </div>
+
+  <table class="detail-grid">
+    <tr>
+      <td><span class="detail-label">Invoice no.</span>DRAFT-ODDA-001</td>
+      <td><span class="detail-label">Invoice date</span>27 September 2026</td>
+      <td><span class="detail-label">Due date</span><span class="placeholder">[ENTER DATE]</span></td>
+      <td><span class="detail-label">Payment terms</span><span class="placeholder">[ENTER TERMS]</span></td>
+    </tr>
+  </table>
+
+  <p class="draft-note"><strong>Draft:</strong> complete every yellow field and confirm the agreed fee and VAT treatment before issuing this invoice.</p>
+
+  <table class="line-items">
+    <tr>
+      <th>Description</th>
+      <th class="qty">Qty</th>
+      <th class="amount">Amount (GBP)</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="line-title">Custom Odda Care website — design and development</div>
+        <div class="line-detail">Bespoke, responsive nine-page marketing and lead-generation website, including supplied-content implementation, front-end interactions and Calendly booking integration. Detailed scope appears on page 2.</div>
+      </td>
+      <td class="qty">1</td>
+      <td class="amount placeholder">£[AGREED NET FEE]</td>
+    </tr>
+  </table>
+
+  <div class="amount-wrap">
+    <table class="amount-table">
+      <tr><td>Subtotal</td><td class="placeholder">£[NET FEE]</td></tr>
+      <tr><td>VAT</td><td class="placeholder">£[VAT OR N/A]</td></tr>
+      <tr class="amount-total"><td>Amount due</td><td class="placeholder">£[TOTAL]</td></tr>
+    </table>
+  </div>
+
+  <h2>Scope summary</h2>
+  <table class="two-col">
+    <tr>
+      <td>
+        <ul>
+          <li>9 public pages with responsive mobile, tablet and desktop layouts</li>
+          <li>Custom care-focused visual design and content-rich page sections</li>
+          <li>Shared sticky navigation, mobile menu and global footer</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Carousels, accordions, device dialogs and scroll-reveal interactions</li>
+          <li>Calendly assessment-booking embed and contact enquiry interface</li>
+          <li>React, TypeScript, React Router SSR, Vite and Tailwind CSS</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <h2>Payment details</h2>
+  <table class="two-col">
+    <tr>
+      <td>
+        <p><strong>Account name:</strong> <span class="placeholder">[ENTER]</span><br>
+        <strong>Sort code:</strong> <span class="placeholder">[ENTER]</span><br>
+        <strong>Account number:</strong> <span class="placeholder">[ENTER]</span></p>
+      </td>
+      <td>
+        <p><strong>Payment reference:</strong> DRAFT-ODDA-001<br>
+        <strong>Currency:</strong> GBP<br>
+        <strong>Questions:</strong> <span class="placeholder">[CONTACT EMAIL]</span></p>
+      </td>
+    </tr>
+  </table>
+
+  <p class="footer-note">Draft invoice for Odda Care website services · Page 1 of 2</p>
+
+  <div class="page-break"></div>
+
+  <p class="kicker">Invoice schedule</p>
+  <h1 class="invoice-title" style="font-size: 23pt;">Website scope</h1>
+  <p class="subtitle">Nine public routes included in the current implementation</p>
+
+  <table class="scope-table">
+    <tr>
+      <th class="no">#</th>
+      <th class="page">Page</th>
+      <th class="route">Route</th>
+      <th class="features">Key content and functionality</th>
+    </tr>
+    <tr><td class="no">1</td><td class="page">Home</td><td class="route">/</td><td>Two-slide hero, Odda View showcase, insight accordion, six-device gallery, device details and delayed welcome CTA.</td></tr>
+    <tr><td class="no">2</td><td class="page">How It Works</td><td class="route">/how-it-works</td><td>Four-stage process timeline, dashboard walkthrough, FAQ deep links and consultation CTA.</td></tr>
+    <tr><td class="no">3</td><td class="page">About</td><td class="route">/about</td><td>Founder profile, brand story, four values, service imagery and assessment/contact CTAs.</td></tr>
+    <tr><td class="no">4</td><td class="page">Technology</td><td class="route">/technology</td><td>Sensor-to-hub-to-dashboard flow, six device types, interactive device dialogs, privacy content, alerts and installation flow.</td></tr>
+    <tr><td class="no">5</td><td class="page">Pricing</td><td class="route">/pricing</td><td>Subscription, installation and refundable-deposit presentation, daily-cost explanation and GoCardless branding.</td></tr>
+    <tr><td class="no">6</td><td class="page">FAQ</td><td class="route">/faq</td><td>26 accessible accordion questions across seven categories, including hash-based deep links.</td></tr>
+    <tr><td class="no">7</td><td class="page">Insights</td><td class="route">/insights</td><td>One long-form editorial article with featured image, pull quote and external NHS/Age UK references.</td></tr>
+    <tr><td class="no">8</td><td class="page">Contact</td><td class="route">/contact</td><td>Responsive contact layout and validated enquiry form that currently opens a pre-filled email.</td></tr>
+    <tr><td class="no">9</td><td class="page">Book an Assessment</td><td class="route">/book-assessment</td><td>Responsive embedded 30-minute Calendly scheduling experience.</td></tr>
+  </table>
+
+  <h2>Shared implementation</h2>
+  <ul>
+    <li>Custom English-language brochure and lead-generation website; no purchased theme.</li>
+    <li>Responsive layout, reusable navigation/footer and repeated conversion-focused calls to action.</li>
+    <li>Two automatic carousels, accessible accordions, modal dialogs, deep links, local-storage welcome prompt and motion-aware transitions.</li>
+    <li>Approximately 44 supplied image/logo files in the repository, with roughly 25 unique assets referenced by the interface.</li>
+    <li>Server-rendered React 19 / TypeScript application with React Router framework mode, Vite, Tailwind CSS and Docker configuration.</li>
+  </ul>
+
+  <div class="status-box">
+    <h3>Important status and exclusions</h3>
+    <p class="small">This invoice schedule describes the current website implementation. It does not include the Odda View customer dashboard, authentication, IoT services, a database, CMS, ecommerce, subscription checkout, GoCardless API integration, legal drafting, hosting fees or third-party subscriptions.</p>
+    <p class="small">Before production launch, Odda Care must confirm the real contact email, legal-policy and login destinations, social links, hosting, analytics/cookie requirements and final acceptance testing. The contact form currently uses the visitor’s email application rather than a server-side form service. Any additional launch work should be agreed in writing if it is not already included in the commercial fee above.</p>
+  </div>
+
+  <h2>Commercial note</h2>
+  <p class="small">The fee covers only the scope expressly stated above and any separately agreed written variations. Client-supplied copy, brand assets, photographs, product information and legal/company details are assumed. Additional work requires written approval and may be invoiced separately. Replace this paragraph if different terms were agreed.</p>
+
+  <p class="footer-note">Draft invoice for Odda Care website services · Page 2 of 2</p>
+</body>
+</html>

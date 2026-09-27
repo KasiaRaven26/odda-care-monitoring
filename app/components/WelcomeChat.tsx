@@ -81,13 +81,13 @@ export default function WelcomeChat() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Open Odda chat"
-          className="group ml-auto flex items-center gap-3 rounded-full border border-black/20 bg-white px-4 py-3 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+          className="group ml-auto flex items-center gap-3 rounded-full bg-[#F2ECE3] px-5 py-3 text-sm font-semibold text-[#24342D] shadow-[0_8px_24px_rgba(34,40,36,0.14)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F8F4ED] hover:shadow-[0_12px_28px_rgba(34,40,36,0.18)] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
         >
-          <span className="odda-chat-logo flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-[#F8F6F1]">
+          <span className="odda-chat-logo flex h-10 w-12 shrink-0 items-center justify-center">
             <img
               src="/images/odda-logo-transparent.png"
               alt=""
-              className="h-8 w-8 object-contain mix-blend-multiply"
+              className="h-10 w-auto object-contain"
             />
           </span>
 
