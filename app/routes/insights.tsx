@@ -1,12 +1,23 @@
 import Navbar from "../components/Navbar";
 
+export function meta() {
+  return [
+    { title: "Odda Insights | Odda Care" },
+    {
+      name: "description",
+      content:
+        "Practical ideas about care, independence and staying connected with ageing parents.",
+    },
+  ];
+}
+
 export default function InsightsPage() {
   return (
     <>
       <Navbar />
 
       <main className="min-h-screen bg-white font-['Montserrat'] text-black">
-        <section className="border-b border-black/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <section className="bg-[#F8F6F1] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
           <div className="mx-auto max-w-[1100px]">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-black">
               Odda insights
@@ -26,22 +37,22 @@ export default function InsightsPage() {
 
         <article className="px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
           <div className="mx-auto max-w-[900px]">
-           <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
-  <span className="rounded-full bg-[#E8ECE4] px-4 py-2 text-black">
-    Care at home
-  </span>
+            <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
+              <span className="rounded-full bg-[#E8ECE4] px-4 py-2 text-black">
+                Care at home
+              </span>
 
-  <time
-    dateTime="2026-09-25"
-    className="rounded-full bg-[#F3ECE1] px-4 py-2 text-black"
-  >
-    25 September 2026
-  </time>
+              <time
+                dateTime="2026-09-25"
+                className="rounded-full bg-[#F3ECE1] px-4 py-2 text-black"
+              >
+                25 September 2026
+              </time>
 
-  <span className="rounded-full bg-[#EDF0F2] px-4 py-2 text-black">
-    5 min read
-  </span>
-</div>
+              <span className="rounded-full bg-[#EDF0F2] px-4 py-2 text-black">
+                5 min read
+              </span>
+            </div>
             <h2 className="mt-7 max-w-[850px] text-3xl font-semibold leading-[1.15] tracking-[-0.045em] text-black sm:text-4xl">
               Supporting independence at home starts with a conversation
             </h2>
@@ -53,15 +64,17 @@ export default function InsightsPage() {
               daily life easier.
             </p>
 
-            <figure className="mx-auto mt-10 max-w-[520px]">
+            <figure className="mx-auto mt-10 max-w-[580px] overflow-hidden rounded-[24px] bg-[#F8F6F1]">
               <img
                 src="/images/insights-support-at-home.png"
                 alt="Older woman and her adult daughter talking over tea at home"
-                className="aspect-[3/2] w-full rounded-[24px] object-cover"
+                className="aspect-[3/2] w-full object-cover"
                 loading="lazy"
               />
 
-            
+              <figcaption className="px-5 py-3.5 text-xs leading-5 text-black">
+                Good support begins with listening to what matters most.
+              </figcaption>
             </figure>
 
             <div className="mx-auto mt-12 max-w-[740px] space-y-7 text-base leading-8 text-black sm:text-lg sm:leading-9">
@@ -108,7 +121,7 @@ export default function InsightsPage() {
                 daily life harder.
               </p>
 
-              <blockquote className="border-l-2 border-black pl-6 text-lg font-semibold leading-8 text-black">
+              <blockquote className="my-9 rounded-[22px] bg-[#E7EBE2] px-7 py-7 text-xl font-semibold leading-8 text-black sm:px-8 sm:text-2xl">
                 “What would help you keep doing the things you enjoy?”
               </blockquote>
 

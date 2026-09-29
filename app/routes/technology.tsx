@@ -9,6 +9,7 @@ import {
   Thermometer,
   VideoOff,
 } from "lucide-react";
+import { Link } from "react-router";
 import Navbar from "../components/Navbar";
 const technologyItems = [
   {
@@ -66,41 +67,57 @@ const systemFlow = [
     number: "01",
     title: "Sensors",
     description: "Gather quiet signals from everyday activity around the home.",
-    image: "/images/odda-flow-sensors.png",
+    details:
+      "Motion, door, environmental and smart plug sensors notice simple household events — never images, conversations or private moments.",
+    image: "/images/odda-kit.png",
+    imageAlt: "The complete set of Odda home sensors",
+    imageClassName: "object-cover object-center",
   },
   {
     number: "02",
     title: "Odda Hub",
     description: "Securely processes the signals and sends the data onwards.",
-    image: "/images/odda-flow-hub.png",
+    details:
+      "The hub brings each signal together, adds time and context, and securely sends the useful information to Odda View.",
+    image: "/images/odda-install.png",
+    imageAlt: "Aggie showing how the Odda Hub is set up in a living room",
+    imageClassName: "object-cover object-center",
   },
   {
     number: "03",
     title: "Odda View",
     description: "Turns the information into clear, plain-language updates.",
-    image: "/images/odda-flow-view.png",
+    details:
+      "Odda View makes the signals easy to understand, showing the current home status, useful patterns and alerts that may need attention.",
+    image: "/images/alert1.png",
+    imageAlt: "Odda View app and notifications shown in a phone mockup",
+    imageClassName: "object-cover object-center mix-blend-multiply",
   },
 ];
 
 const installationSteps = [
   {
     number: "01",
+    stage: "Start here",
     title: "Order",
-    description: "Choose Odda for the home you want to support.",
+    description: "Choose the Odda setup that feels right for the home.",
   },
   {
     number: "02",
+    stage: "In-home setup",
     title: "Professional installation",
-    description: "We position and connect every device — £99 one-off.",
+    description: "We position, connect and test every device — £99 one-off.",
     href: "/pricing",
   },
   {
     number: "03",
+    stage: "Learn the app",
     title: "Onboarding",
-    description: "Your family is shown how to use Odda View.",
+    description: "We show your family how to use Odda View with confidence.",
   },
   {
     number: "04",
+    stage: "Ongoing",
     title: "Everyday use",
     description: "Odda learns the routine and shares meaningful updates.",
   },
@@ -251,17 +268,35 @@ export default function TechnologyPage() {
             <div className="mt-12 grid items-stretch gap-y-1 lg:grid-cols-[1fr_52px_1fr_52px_1fr] lg:gap-y-0">
               {systemFlow.map((step, index) => (
                 <div key={step.title} className="contents">
-                  <article className="group overflow-hidden rounded-[30px] bg-white shadow-[0_18px_50px_rgba(49,95,75,0.09)] transition-[transform,box-shadow] duration-500 motion-safe:hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(49,95,75,0.14)]">
+                  <article
+                    tabIndex={0}
+                    aria-describedby={`system-step-${step.number}`}
+                    className="group overflow-hidden rounded-[30px] bg-white shadow-[0_18px_50px_rgba(49,95,75,0.09)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-[#315F4B] focus-visible:ring-offset-4 focus-visible:ring-offset-[#F8F6F1]"
+                  >
                     <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E4DB]">
                       <img
                         src={step.image}
-                        alt=""
-                        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
+                        alt={step.imageAlt}
+                        className={`h-full w-full ${step.imageClassName}`}
                       />
 
-                      <span className="absolute right-5 top-5 flex h-11 min-w-11 items-center justify-center rounded-full bg-white/85 px-3 text-sm font-semibold tracking-[0.1em] text-black/55 shadow-sm backdrop-blur-md">
+                      <div className="pointer-events-none absolute inset-0 bg-[#315F4B]/10 opacity-0 transition-opacity duration-400 group-hover:opacity-100 group-focus:opacity-100" />
+
+                      <span className="absolute right-5 top-5 z-20 flex h-11 min-w-11 items-center justify-center rounded-full bg-white/90 px-3 text-sm font-semibold tracking-[0.1em] text-black shadow-sm backdrop-blur-md">
                         {step.number}
                       </span>
+
+                      <div className="pointer-events-none absolute inset-x-4 bottom-4 z-10 translate-y-3 rounded-[20px] bg-white/95 p-5 text-left opacity-0 shadow-[0_18px_45px_rgba(28,58,46,0.18)] backdrop-blur-md transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 sm:inset-x-5 sm:bottom-5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#315F4B]">
+                          What happens here
+                        </p>
+                        <p
+                          id={`system-step-${step.number}`}
+                          className="mt-2 text-sm leading-6 text-black"
+                        >
+                          {step.details}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="px-7 py-7 sm:px-8 sm:py-8">
@@ -269,8 +304,18 @@ export default function TechnologyPage() {
                         {step.title}
                       </h3>
 
-                      <p className="mt-3 text-base leading-7 text-black/75">
+                      <p className="mt-3 text-base leading-7 text-black">
                         {step.description}
+                      </p>
+
+                      <p className="mt-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#315F4B]">
+                        Hover or tap for details
+                        <span
+                          aria-hidden="true"
+                          className="text-base font-normal transition-transform duration-300 group-hover:rotate-45 group-focus:rotate-45"
+                        >
+                          +
+                        </span>
                       </p>
                     </div>
                   </article>
@@ -415,86 +460,102 @@ export default function TechnologyPage() {
 )}
 
         {/* Privacy */}
-        <section className="bg-white px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
-          <div className="relative mx-auto max-w-[1380px] overflow-hidden rounded-[36px] bg-[#F2EDE6] px-6 py-10 shadow-[0_24px_70px_rgba(85,72,55,0.08)] sm:px-10 sm:py-12 lg:px-16 lg:py-16">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-24 -top-32 h-80 w-80 rounded-full bg-white/25 blur-2xl"
-            />
+        <section className="bg-[#F8F6F1] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
+          <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-0">
+            <div className="max-w-[520px] lg:pr-16">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
+                Privacy by design
+              </p>
 
-            <div className="relative grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-16">
-              <div className="max-w-[510px]">
-                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-black">
-                  Privacy by design
-                </p>
+              <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black sm:text-5xl">
+                Insight into the day. Not into private moments.
+              </h2>
 
-                <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black sm:text-5xl">
-                  A clearer picture, with privacy intact.
-                </h2>
+              <p className="mt-6 text-base leading-8 text-black sm:text-lg">
+                Odda understands changes in everyday routines without watching
+                or listening to the person at home.
+              </p>
 
-                <p className="mt-6 max-w-[480px] text-base leading-8 text-black/70 sm:text-lg">
-                  Odda notices small changes in everyday routines while
-                  respecting the privacy of the person at home.
-                </p>
+              <Link
+                to="/privacy"
+                className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black/70"
+              >
+                Read our privacy policy
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
 
-              </div>
-
+            <div className="border-black/10 lg:border-l lg:pl-16">
               <div>
-                <div className="grid gap-3 sm:grid-cols-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+                  Never captured
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
+                  Designed to notice patterns, not people.
+                </h3>
+
+                <div className="mt-7 grid gap-5 sm:grid-cols-3">
                   {[
                     { label: "No cameras", Icon: CameraOff },
                     { label: "No microphones", Icon: MicOff },
-                    {
-                      label: "No audio or video recording",
-                      Icon: VideoOff,
-                    },
+                    { label: "No audio or video", Icon: VideoOff },
                   ].map(({ label, Icon }) => (
-                    <article
+                    <div
                       key={label}
-                      className="group flex min-h-[170px] flex-col justify-between rounded-[24px] border border-white/60 bg-white/35 p-5 transition-[transform,background-color,border-color] duration-300 motion-safe:hover:-translate-y-1 hover:border-white/90 hover:bg-white/55 sm:p-6"
+                      className="group flex cursor-default items-center gap-3"
                     >
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/55 text-black/70 transition-colors duration-300 group-hover:bg-white/80">
-                        <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.6} />
-                      </span>
-
-                      <h3 className="mt-8 max-w-[170px] text-base font-medium leading-6 text-black">
-                        {label}
-                      </h3>
-                    </article>
-                  ))}
-                </div>
-
-                <div className="mt-4 rounded-[28px] border border-white/60 bg-white/35 p-6 sm:p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-                    What Odda does notice
-                  </p>
-
-                  <p className="mt-3 max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
-                    Simple household signals that help build a picture of the
-                    everyday routine.
-                  </p>
-
-                  <div className="mt-5 flex flex-wrap gap-2.5">
-                    {[
-                      { label: "Movement", Icon: Activity },
-                      { label: "Temperature", Icon: Thermometer },
-                      { label: "Humidity", Icon: Droplets },
-                      { label: "Door activity", Icon: DoorOpen },
-                      { label: "Appliance use", Icon: PlugZap },
-                    ].map(({ label, Icon }) => (
-                      <span
-                        key={label}
-                        className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-sm font-medium text-black shadow-[0_3px_12px_rgba(85,72,55,0.06)] transition-[transform,border-color,background-color] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-black/20 hover:bg-white/80"
-                      >
+                      <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#315F4B]/10 bg-[#E7EBE2] text-[#315F4B] transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:-translate-y-1 group-hover:bg-[#315F4B] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(49,95,75,0.20)]">
+                        <span className="absolute inset-0 scale-0 rounded-full bg-white/15 opacity-0 transition-[transform,opacity] duration-500 group-hover:scale-100 group-hover:opacity-100" />
                         <Icon
                           aria-hidden="true"
-                          className="h-4 w-4 text-black/60"
+                          className="relative h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-6"
                           strokeWidth={1.7}
                         />
-                        {label}
                       </span>
-                    ))}
-                  </div>
+                      <p className="text-sm font-medium leading-5 text-black">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-10 border-t border-black/10 pt-9">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+                  What Odda does notice
+                </p>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-black sm:text-base">
+                  Simple household signals that provide useful context while
+                  preserving dignity at home.
+                </p>
+
+                <div className="mt-7 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
+                  {[
+                    { label: "Movement", Icon: Activity },
+                    { label: "Temperature", Icon: Thermometer },
+                    { label: "Humidity", Icon: Droplets },
+                    { label: "Doors", Icon: DoorOpen },
+                    { label: "Appliances", Icon: PlugZap },
+                  ].map(({ label, Icon }) => (
+                    <div key={label} className="group cursor-default">
+                      <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-[#315F4B]/10 bg-white text-[#315F4B] transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:-translate-y-1 group-hover:bg-[#315F4B] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(49,95,75,0.18)]">
+                        <span className="absolute inset-0 scale-0 rounded-full bg-white/15 opacity-0 transition-[transform,opacity] duration-500 group-hover:scale-100 group-hover:opacity-100" />
+                        <Icon
+                          aria-hidden="true"
+                          className="relative h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-110 motion-safe:group-hover:rotate-6"
+                          strokeWidth={1.7}
+                        />
+                      </span>
+                      <p className="mt-2.5 text-sm font-medium leading-5 text-black">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -532,7 +593,7 @@ export default function TechnologyPage() {
         src="/images/alert1.png"
         alt="Odda View home screen and two push notifications, including a front door alert"
         loading="lazy"
-        className="block h-auto w-full"
+        className="block h-auto w-full mix-blend-multiply"
       />
     </div>
   </div>
@@ -541,66 +602,81 @@ export default function TechnologyPage() {
         <section className="bg-[#F8F6F1] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-[1380px]">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#315F4B]">
-                GETTING STARTED
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
+                THE PROCESS
               </p>
 
               <h2 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-[-0.045em] text-black sm:text-5xl">
-                From order to everyday use.
+                Four simple steps.
               </h2>
+
+              <p className="mt-5 max-w-2xl text-base leading-8 text-black sm:text-lg">
+                From choosing Odda to understanding the first updates, we help
+                your family get everything in place.
+              </p>
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {installationSteps.map((step) => {
-                const content = (
-                  <>
-                    <span className="text-sm font-medium tracking-[0.12em] text-[#315F4B]/55">
+            <div className="relative mt-14 lg:mt-16">
+              <ol className="grid gap-x-8 gap-y-10 lg:grid-cols-4 lg:gap-x-10">
+                {installationSteps.map((step, index) => (
+                  <li
+                    key={step.number}
+                    className="process-step relative min-h-14 pl-20 lg:pl-0"
+                  >
+                    {index < installationSteps.length - 1 && (
+                      <>
+                        <span
+                          aria-hidden="true"
+                          className="process-connector process-connector--y absolute bottom-[-2.5rem] left-[27px] top-14 w-px bg-[#315F4B]/20 lg:hidden"
+                        >
+                          <span className="process-arrowhead process-arrowhead--y absolute -bottom-px -left-[3px] h-2 w-2 border-b border-r border-[#315F4B]/65" />
+                        </span>
+
+                        <span
+                          aria-hidden="true"
+                          className="process-connector process-connector--x absolute left-14 right-[-2.5rem] top-[27px] hidden h-px bg-[#315F4B]/20 lg:block"
+                        >
+                          <span className="process-arrowhead process-arrowhead--x absolute -right-px -top-[3px] h-2 w-2 border-r border-t border-[#315F4B]/65" />
+                        </span>
+                      </>
+                    )}
+                    <span
+                      className="absolute left-0 top-0 z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#315F4B] bg-[#315F4B] text-sm font-semibold tracking-[0.1em] text-white shadow-[0_4px_18px_rgba(49,95,75,0.12)] lg:relative"
+                    >
                       {step.number}
                     </span>
 
-                    <h3 className="mt-8 text-xl font-semibold tracking-[-0.03em] text-black">
-                      {step.title}
-                    </h3>
+                    <div className="lg:mt-8">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#315F4B]">
+                        {step.stage}
+                      </p>
 
-                    <p className="mt-3 text-sm leading-7 text-black">
-                      {step.description}
-                    </p>
+                      <h3 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.03em] text-black">
+                        {step.title}
+                      </h3>
 
-                    {step.href && (
-                      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#315F4B]">
-                        View pricing
-                        <span
-                          aria-hidden="true"
-                          className="transition-transform duration-300 group-hover:translate-x-1"
+                      <p className="mt-3 max-w-[270px] text-sm leading-7 text-black">
+                        {step.description}
+                      </p>
+
+                      {step.href && (
+                        <Link
+                          to={step.href}
+                          className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#315F4B] underline decoration-[#315F4B]/20 underline-offset-4 transition-colors hover:decoration-[#315F4B]/60"
                         >
-                          →
-                        </span>
-                      </span>
-                    )}
-                  </>
-                );
-
-                if (step.href) {
-                  return (
-                    <a
-                      key={step.number}
-                      href={step.href}
-                      className="group rounded-[24px] border border-[#315F4B]/10 bg-white px-6 py-7 shadow-[0_12px_35px_rgba(49,95,75,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(49,95,75,0.10)]"
-                    >
-                      {content}
-                    </a>
-                  );
-                }
-
-                return (
-                  <article
-                    key={step.number}
-                    className="rounded-[24px] border border-[#315F4B]/10 bg-white px-6 py-7 shadow-[0_12px_35px_rgba(49,95,75,0.05)]"
-                  >
-                    {content}
-                  </article>
-                );
-              })}
+                          View pricing
+                          <span
+                            aria-hidden="true"
+                            className="transition-transform duration-300 group-hover:translate-x-1"
+                          >
+                            →
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </section>

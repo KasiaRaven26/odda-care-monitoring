@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import type { Route } from "./+types/faq";
 import Navbar from "../components/Navbar";
 
@@ -9,7 +10,7 @@ const faqSections = [
       {
         question: "What is Odda?",
         answer:
-          "Odda is a home monitoring service that helps families stay connected to an elderly relative’s daily routine. Small, discreet sensors are placed around the home to notice movement, activity and changes in routine — giving you plain-English updates and alerts, so you’re not left guessing how they’re doing.",
+          "Odda is a home monitoring service that helps families stay connected to an older relative’s daily routine. Small, discreet sensors are placed around the home to notice movement, activity and changes in routine — giving you plain-English updates and alerts, so you’re not left guessing how they’re doing.",
       },
       {
         question: "Does Odda use cameras or microphones?",
@@ -139,7 +140,7 @@ const faqSections = [
       {
         question: "How much does Odda cost?",
         answer:
-          "Odda costs £34.99 per week, plus a one-off £99 installation fee and a fully refundable £100 equipment deposit. Full details are available on our Pricing page.",
+          "Odda costs £39.99 per week, plus a one-off £99 installation fee and a fully refundable £100 equipment deposit. Full details are available on our Pricing page.",
       },
       {
         question: "Is there a long contract?",
@@ -172,13 +173,68 @@ const faqAnchorIds: Record<string, string> = {
   "Will I receive constant notifications?": "notifications",
 };
 
+const popularQuestions = [
+  "Does Odda use cameras or microphones?",
+  "How much does Odda cost?",
+  "How long does installation take?",
+  "Is there a long contract?",
+];
+
+const relatedLinks: Record<string, { label: string; to: string }> = {
+  "What does Odda actually monitor?": {
+    label: "Explore the technology",
+    to: "/technology",
+  },
+  "How is our data kept private and secure?": {
+    label: "Read our privacy policy",
+    to: "/privacy",
+  },
+  "How much does Odda cost?": {
+    label: "View full pricing",
+    to: "/pricing",
+  },
+  "How do I get started?": {
+    label: "Book a free assessment",
+    to: "/book-assessment",
+  },
+};
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/£/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function getQuestionId(question: string) {
+  return faqAnchorIds[question] ?? slugify(question);
+}
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqSections.flatMap((section) =>
+    section.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  ),
+};
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "FAQ | Odda Care" },
     {
       name: "description",
-      content: "Frequently asked questions about Odda Care.",
+      content:
+        "Clear answers about Odda Care, home monitoring, privacy, installation, pricing and support.",
     },
+    { "script:ld+json": faqStructuredData },
   ];
 }
 
@@ -186,12 +242,50 @@ export default function FaqPage() {
   const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>(
     {},
   );
+  const [query, setQuery] = useState("");
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredSections = normalizedQuery
+    ? faqSections
+        .map((section) => ({
+          ...section,
+          items: section.items.filter((item) =>
+            `${item.question} ${item.answer}`
+              .toLowerCase()
+              .includes(normalizedQuery),
+          ),
+        }))
+        .filter((section) => section.items.length > 0)
+    : faqSections;
+
+  const resultCount = filteredSections.reduce(
+    (total, section) => total + section.items.length,
+    0,
+  );
 
   function toggleQuestion(question: string) {
     setOpenQuestions((current) => ({
       ...current,
       [question]: !current[question],
     }));
+  }
+
+  function revealQuestion(question: string) {
+    const questionId = getQuestionId(question);
+
+    setQuery("");
+    setOpenQuestions((current) => ({
+      ...current,
+      [question]: true,
+    }));
+    window.history.replaceState(null, "", `#${questionId}`);
+
+    window.setTimeout(() => {
+      document.getElementById(questionId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 50);
   }
 
   useEffect(() => {
@@ -202,9 +296,9 @@ export default function FaqPage() {
 
       if (!questionId) return;
 
-      const matchingQuestion = Object.entries(faqAnchorIds).find(
-        ([, id]) => id === questionId,
-      )?.[0];
+      const matchingQuestion = faqSections
+        .flatMap((section) => section.items)
+        .find((item) => getQuestionId(item.question) === questionId)?.question;
 
       if (!matchingQuestion) return;
 
@@ -231,118 +325,242 @@ export default function FaqPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#F6F1E7] font-['Montserrat'] text-black">
+    <main className="min-h-screen bg-[#F8F6F1] font-['Montserrat'] text-black">
       <Navbar />
 
-      <section className="px-6 py-16 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          {/* FAQ hero */}
-          <div className="relative mt-12 aspect-[16/7] overflow-hidden rounded-[2.5rem]">
-            <img
-              src="/images/odda-family-faq2.png"
-              alt="Older mother and her adult son looking through a family album"
-              className="h-full w-full object-cover"
-            />
+      {/* Compact hero */}
+      <section className="px-7 py-16 sm:px-14 lg:py-20">
+        <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+              FAQ
+            </p>
+            <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">
+              Questions, answered clearly.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-8 sm:text-lg">
+              Find clear answers about how Odda works, what it costs and what
+              daily life with the service looks like.
+            </p>
 
-            <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
+            <div className="relative mt-8 max-w-xl">
+              <label htmlFor="faq-search" className="sr-only">
+                Search frequently asked questions
+              </label>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+              <input
+                id="faq-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search your question"
+                className="w-full rounded-full border border-black/20 bg-white py-4 pl-13 pr-5 text-base outline-none transition-colors duration-300 placeholder:text-black/55 focus:border-[#315F4B]"
+              />
+            </div>
 
-            <div className="absolute inset-0 flex items-end p-8 md:p-12 lg:p-16">
-              <div className="max-w-xl text-white">
-                <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-                  Frequently Asked Questions
-                </h1>
-
-                <p className="mt-5 max-w-lg text-base leading-7 text-white md:text-lg">
-                  Speak with one of our experts and book a free, no-obligation
-                  consultation.
-                </p>
-
-                <a
-                  href="/book-assessment"
-                  className="group mt-8 inline-flex items-center justify-center gap-3 rounded-full border border-white bg-white px-7 py-4 text-sm font-semibold text-black transition-colors duration-300 hover:bg-transparent hover:text-white"
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm">
+              <span className="font-semibold">Popular:</span>
+              {popularQuestions.map((question) => (
+                <button
+                  key={question}
+                  type="button"
+                  onClick={() => revealQuestion(question)}
+                  className="underline decoration-black/25 underline-offset-4 transition-colors duration-300 hover:text-[#315F4B]"
                 >
-                  Book a free consultation
-
-                  <span
-                    aria-hidden="true"
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </a>
-              </div>
+                  {question}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* FAQ categories */}
-          <div className="mt-16 columns-1 gap-6 lg:columns-2">
-            {faqSections.map((section) => (
-              <div
-                key={section.title}
-                className="mb-6 break-inside-avoid rounded-[2rem] border border-[#CDAA24]/25 bg-white p-6 sm:p-7"
+          <figure className="overflow-hidden rounded-[30px] bg-[#E8E1D6] lg:max-w-[440px] lg:justify-self-end">
+            <img
+              src="/images/odda-family-faq2.png"
+              alt="An older mother and her adult son looking through a family album"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </figure>
+        </div>
+      </section>
+
+      {/* Questions */}
+      <section className="bg-white py-20 lg:py-24">
+        <div className="mx-auto grid max-w-[1180px] gap-12 px-7 sm:px-14 lg:grid-cols-[240px_1fr] lg:gap-20">
+          <aside>
+            <div className="lg:sticky lg:top-28">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                Browse by topic
+              </p>
+              <nav
+                aria-label="FAQ categories"
+                className="mt-5 flex gap-5 overflow-x-auto pb-2 lg:flex-col lg:gap-0 lg:overflow-visible lg:pb-0"
               >
-                <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-black">
-                  {section.title}
-                </h2>
+                {filteredSections.map((section) => (
+                  <a
+                    key={section.title}
+                    href={`#${slugify(section.title)}`}
+                    className="flex shrink-0 items-center justify-between gap-5 border-b border-black/10 py-3 text-sm font-medium transition-colors duration-300 hover:text-[#315F4B]"
+                  >
+                    <span>{section.title}</span>
+                    <span className="text-xs">{section.items.length}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
 
-                <div className="divide-y divide-black/10">
-                  {section.items.map((faq) => {
-                    const isOpen = Boolean(openQuestions[faq.question]);
+          <div>
+            {normalizedQuery && (
+              <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-black/15 pb-5">
+                <p className="text-sm font-semibold">
+                  {resultCount} {resultCount === 1 ? "answer" : "answers"} for
+                  “{query.trim()}”
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="text-sm font-semibold underline decoration-black/30 underline-offset-4 transition-colors duration-300 hover:text-[#315F4B]"
+                >
+                  Clear search
+                </button>
+              </div>
+            )}
 
-                    return (
-                      <div
-                        key={faq.question}
-                        id={faqAnchorIds[faq.question]}
-                        className="scroll-mt-32"
-                      >
-                        <button
-                          type="button"
-                          aria-expanded={isOpen}
-                          onClick={() => toggleQuestion(faq.question)}
-                          className="flex w-full items-center justify-between gap-5 py-5 text-left text-lg font-medium text-black"
+            {filteredSections.length > 0 ? (
+              filteredSections.map((section) => (
+                <section
+                  key={section.title}
+                  id={slugify(section.title)}
+                  className="mb-14 scroll-mt-28 last:mb-0"
+                >
+                  <h2 className="border-b border-black/20 pb-5 text-2xl font-semibold tracking-[-0.035em]">
+                    {section.title}
+                  </h2>
+
+                  <div>
+                    {section.items.map((faq) => {
+                      const isOpen = Boolean(openQuestions[faq.question]);
+                      const questionId = getQuestionId(faq.question);
+                      const answerId = `${questionId}-answer`;
+                      const relatedLink = relatedLinks[faq.question];
+
+                      return (
+                        <div
+                          key={faq.question}
+                          id={questionId}
+                          className="scroll-mt-28 border-b border-black/15"
                         >
-                          <span>{faq.question}</span>
+                          <button
+                            type="button"
+                            aria-expanded={isOpen}
+                            aria-controls={answerId}
+                            onClick={() => toggleQuestion(faq.question)}
+                            className="group flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-medium outline-none transition-colors duration-300 hover:text-[#315F4B] focus-visible:text-[#315F4B]"
+                          >
+                            <span>{faq.question}</span>
 
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center text-black">
                             <svg
                               viewBox="0 0 20 20"
                               fill="none"
                               aria-hidden="true"
-                              className={`h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                              className={`h-5 w-5 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                                 isOpen ? "rotate-180" : "rotate-0"
                               }`}
                             >
                               <path
                                 d="M4.5 7.5 10 13l5.5-5.5"
                                 stroke="currentColor"
-                                strokeWidth="1.6"
+                                strokeWidth="1.35"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                               />
                             </svg>
-                          </span>
-                        </button>
+                          </button>
 
-                        <div
-                          className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isOpen
-                              ? "grid-rows-[1fr] opacity-100"
-                              : "grid-rows-[0fr] opacity-0"
-                          }`}
-                        >
-                          <div className="overflow-hidden">
-                            <p className="pb-5 pr-12 text-base leading-7 text-black">
-                              {faq.answer}
-                            </p>
+                          <div
+                            id={answerId}
+                            role="region"
+                            aria-hidden={!isOpen}
+                            className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                              isOpen
+                                ? "grid-rows-[1fr] opacity-100"
+                                : "grid-rows-[0fr] opacity-0"
+                            }`}
+                          >
+                            <div className="overflow-hidden">
+                              <div className="max-w-2xl pb-6 pr-10">
+                                <p className="text-base leading-8">
+                                  {faq.answer}
+                                </p>
+                                {relatedLink && (
+                                  <Link
+                                    to={relatedLink.to}
+                                    tabIndex={isOpen ? 0 : -1}
+                                    className="mt-4 inline-flex border-b border-[#315F4B]/50 pb-0.5 text-sm font-semibold text-[#315F4B] transition-colors duration-300 hover:border-[#315F4B] hover:text-black"
+                                  >
+                                    {relatedLink.label}
+                                  </Link>
+                                )}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))
+            ) : (
+              <div className="border-y border-black/15 py-12">
+                <h2 className="text-2xl font-semibold">No matching answer yet.</h2>
+                <p className="mt-3 max-w-lg leading-7">
+                  Try a shorter search, or contact us and we&apos;ll talk it
+                  through with you.
+                </p>
+                <Link
+                  to="/contact"
+                  className="mt-5 inline-flex border-b border-black pb-1 font-semibold transition-colors duration-300 hover:text-[#315F4B]"
+                >
+                  Contact Odda
+                </Link>
               </div>
-            ))}
+            )}
           </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="bg-[#929F88] py-16 lg:py-20">
+        <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-7 sm:px-14 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+              Still have a question?
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+              Talk it through with Aggie.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7">
+              No pressure, no obligation — just a clear conversation about
+              your family&apos;s situation.
+            </p>
+          </div>
+
+          <Link
+            to="/contact"
+            className="w-fit rounded-full border border-[#F8F6F1] bg-[#F8F6F1] px-7 py-3.5 font-semibold text-black transition-colors duration-300 hover:border-black hover:bg-transparent"
+          >
+            Ask a question
+          </Link>
         </div>
       </section>
     </main>

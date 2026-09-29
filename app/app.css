@@ -22,3 +22,49 @@ body {
     color-scheme: dark;
   }
 }
+
+.process-connector::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #315f4b;
+  opacity: 0.55;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-connector--x::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.process-connector--y::before {
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+
+.process-step:hover .process-connector::before {
+  transform: scale(1);
+}
+
+.process-arrowhead {
+  transform: rotate(45deg);
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease;
+}
+
+.process-step:hover .process-arrowhead--x {
+  transform: translateX(4px) rotate(45deg);
+  border-color: #315f4b;
+}
+
+.process-step:hover .process-arrowhead--y {
+  transform: translateY(4px) rotate(45deg);
+  border-color: #315f4b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-connector::before,
+  .process-arrowhead {
+    transition: none;
+  }
+}

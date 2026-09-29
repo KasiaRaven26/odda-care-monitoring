@@ -1,5 +1,8 @@
 import { Link } from "react-router";
 
+const footerLinkClass =
+  "w-fit underline decoration-transparent decoration-1 underline-offset-4 transition-[color,text-decoration-color] duration-300 ease-out hover:text-[#315F4B] hover:decoration-[#315F4B]/60 focus-visible:text-[#315F4B] focus-visible:decoration-[#315F4B]/60";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -14,15 +17,15 @@ export default function Footer() {
               </h3>
 
               <div className="flex flex-col gap-3 text-[15px] text-black">
-                <Link to="/how-it-works" className="transition hover:text-black">
+                <Link to="/how-it-works" className={footerLinkClass}>
                   How it works
                 </Link>
 
-                <Link to="/technology" className="transition hover:text-black">
+                <Link to="/technology" className={footerLinkClass}>
                   Technology
                 </Link>
 
-                <Link to="/pricing" className="transition hover:text-black">
+                <Link to="/pricing" className={footerLinkClass}>
                   Pricing
                 </Link>
               </div>
@@ -34,15 +37,15 @@ export default function Footer() {
               </h3>
 
               <div className="flex flex-col gap-3 text-[15px] text-black">
-                <Link to="/about" className="transition hover:text-black">
+                <Link to="/about" className={footerLinkClass}>
                   About us
                 </Link>
 
-                <Link to="/faq" className="transition hover:text-black">
+                <Link to="/faq" className={footerLinkClass}>
                   FAQ
                 </Link>
 
-                <Link to="/contact" className="transition hover:text-black">
+                <Link to="/contact" className={footerLinkClass}>
                   Contact
                 </Link>
               </div>
@@ -54,15 +57,15 @@ export default function Footer() {
               </h3>
 
               <div className="flex flex-col gap-3 text-[15px] text-black">
-                <Link to="/privacy" className="transition hover:text-black">
+                <Link to="/privacy" className={footerLinkClass}>
                   Privacy policy
                 </Link>
 
-                <Link to="/terms" className="transition hover:text-black">
+                <Link to="/terms" className={footerLinkClass}>
                   Terms & conditions
                 </Link>
 
-                <Link to="/cookies" className="transition hover:text-black">
+                <Link to="/cookies" className={footerLinkClass}>
                   Cookie policy
                 </Link>
               </div>
@@ -72,15 +75,15 @@ export default function Footer() {
           <div className="mt-12 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs text-black">
-                <Link to="/privacy" className="transition hover:text-black">
+                <Link to="/privacy" className={footerLinkClass}>
                   Privacy Policy
                 </Link>
 
-                <Link to="/terms" className="transition hover:text-black">
+                <Link to="/terms" className={footerLinkClass}>
                   Terms & Conditions
                 </Link>
 
-                <Link to="/cookies" className="transition hover:text-black">
+                <Link to="/cookies" className={footerLinkClass}>
                   Cookie Policy
                 </Link>
               </div>
