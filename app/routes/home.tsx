@@ -68,7 +68,7 @@ export default function Home() {
               <img
                 src={slide.src}
                 alt={isActive ? slide.alt : ""}
-                className={`absolute inset-0 h-full w-full object-cover ${
+                className={`absolute inset-0 h-full w-full object-cover brightness-125 ${
                   index === 0
                     ? "object-[62%_center] lg:object-[center_48%]"
                     : "object-[65%_70%] lg:object-[center_55%]"

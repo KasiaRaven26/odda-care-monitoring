@@ -45,32 +45,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop actions */}
-        <div className="hidden shrink-0 items-center gap-4 xl:flex">
-          <a
-            href="/login"
-            aria-label="Odda View"
-            className="group relative flex h-11 w-11 items-center justify-center rounded-full bg-[#C9CCC5] text-white transition-colors hover:bg-[#CFC3B3]"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4.5 21c.8-4 3.3-6 7.5-6s6.7 2 7.5 6" />
-            </svg>
-
-            <span className="pointer-events-none absolute left-1/2 top-full z-50 mt-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
-              Odda View
-            </span>
-          </a>
-
+        {/* Desktop action */}
+        <div className="hidden shrink-0 items-center xl:flex">
           <a
             href="/contact"
             className="whitespace-nowrap rounded-full bg-[#E8DFD0] px-6 py-3 text-base font-medium text-black transition-colors hover:bg-[#56614F] hover:text-white"
@@ -98,13 +74,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-
-            <a
-              href="/login"
-              className="rounded-2xl px-4 py-3 font-semibold text-black transition-colors hover:bg-[#E1E6DC] hover:text-[#315F4B]"
-            >
-              Odda View
-            </a>
 
             <a
               href="/contact"

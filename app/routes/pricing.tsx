@@ -146,7 +146,7 @@ export default function PricingPage() {
           <div className="absolute inset-0 -z-10 bg-black/25" />
 
           <div className="mx-auto flex min-h-[700px] max-w-[1600px] items-center px-6 py-14 lg:px-10">
-            <div className="w-full rounded-[30px] border border-white/10 bg-black/40 px-5 py-6 text-white shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:px-7 sm:py-8 lg:w-[52%] lg:px-8 lg:py-9">
+            <div className="w-full rounded-[34px] bg-black/40 px-5 py-6 text-white shadow-[0_24px_70px_rgba(27,34,24,0.18)] backdrop-blur-sm sm:px-7 sm:py-8 lg:w-[52%] lg:px-8 lg:py-9">
               <div className="mb-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em]">
                   One simple service

@@ -211,7 +211,7 @@ export default function TechnologyPage() {
   className="absolute inset-0 z-[1] bg-gradient-to-r from-black/75 via-black/35 to-transparent"
 />
           <div className="relative z-10 flex min-h-[570px] w-full items-center py-16 pl-4 pr-5 sm:min-h-[650px] sm:pl-6 sm:pr-8 lg:min-h-[720px] lg:pl-20 lg:pr-10">
-            <div className="w-full max-w-[430px] rounded-[28px] border border-white/15 bg-black/45 px-7 py-8 text-white shadow-[0_24px_70px_rgba(0,0,0,0.26)] backdrop-blur-2xl sm:px-8 sm:py-9 lg:px-9 lg:py-10">
+            <div className="w-full max-w-[430px] rounded-[34px] bg-black/40 px-7 py-8 text-white shadow-[0_24px_70px_rgba(27,34,24,0.18)] backdrop-blur-sm sm:px-8 sm:py-9 lg:px-9 lg:py-10">
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white">
                 ODDA TECHNOLOGY
               </p>
@@ -248,27 +248,31 @@ export default function TechnologyPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid items-stretch lg:grid-cols-[1fr_72px_1fr_72px_1fr]">
+            <div className="mt-12 grid items-stretch gap-y-1 lg:grid-cols-[1fr_52px_1fr_52px_1fr] lg:gap-y-0">
               {systemFlow.map((step, index) => (
                 <div key={step.title} className="contents">
-                  <article className="rounded-[28px] border border-black/5 bg-white px-7 py-8 shadow-[0_14px_40px_rgba(49,95,75,0.07)] sm:px-8">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="block h-14 w-14 overflow-hidden rounded-full bg-[#E1E6DC]">
-                        <img src={step.image} alt="" className="h-full w-full scale-125 object-cover" />
-                      </span>
+                  <article className="group overflow-hidden rounded-[30px] bg-white shadow-[0_18px_50px_rgba(49,95,75,0.09)] transition-[transform,box-shadow] duration-500 motion-safe:hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(49,95,75,0.14)]">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E4DB]">
+                      <img
+                        src={step.image}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
+                      />
 
-                      <span className="text-sm font-medium tracking-[0.12em] text-black/30">
+                      <span className="absolute right-5 top-5 flex h-11 min-w-11 items-center justify-center rounded-full bg-white/85 px-3 text-sm font-semibold tracking-[0.1em] text-black/55 shadow-sm backdrop-blur-md">
                         {step.number}
                       </span>
                     </div>
 
-                    <h3 className="mt-7 text-2xl font-semibold tracking-[-0.035em] text-black">
-                      {step.title}
-                    </h3>
+                    <div className="px-7 py-7 sm:px-8 sm:py-8">
+                      <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black">
+                        {step.title}
+                      </h3>
 
-                    <p className="mt-3 text-base leading-7 text-black">
-                      {step.description}
-                    </p>
+                      <p className="mt-3 text-base leading-7 text-black/75">
+                        {step.description}
+                      </p>
+                    </div>
                   </article>
 
                   {index < systemFlow.length - 1 && <ArrowConnector />}

@@ -28,6 +28,10 @@ export default function SensorInsights() {
   const [activeDashboardSlide, setActiveDashboardSlide] = useState(0);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const interval = window.setInterval(() => {
       setActiveDashboardSlide((current) => (current === 0 ? 1 : 0));
     }, 4500);
@@ -67,7 +71,7 @@ export default function SensorInsights() {
                 {/* Desktop mockup */}
                 <div
                   aria-hidden={activeDashboardSlide !== 0}
-                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-6 ${
+                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:px-6 ${
                     activeDashboardSlide === 0
                       ? "translate-x-0 opacity-100"
                       : "pointer-events-none -translate-x-4 opacity-0"
@@ -84,7 +88,7 @@ export default function SensorInsights() {
                 {/* iPhone mockup */}
                 <div
                   aria-hidden={activeDashboardSlide !== 1}
-                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-6 ${
+                  className={`absolute inset-0 flex items-center justify-center px-4 pb-12 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:px-6 ${
                     activeDashboardSlide === 1
                       ? "translate-x-0 opacity-100"
                       : "pointer-events-none translate-x-4 opacity-0"
@@ -109,6 +113,9 @@ export default function SensorInsights() {
                       slideIndex === 0
                         ? "Show desktop dashboard"
                         : "Show mobile dashboard"
+                    }
+                    aria-current={
+                      activeDashboardSlide === slideIndex ? "true" : undefined
                     }
                     onClick={() => setActiveDashboardSlide(slideIndex)}
                     className={`h-2 rounded-full transition-all duration-500 ${
@@ -138,10 +145,10 @@ export default function SensorInsights() {
                   return (
                     <div
                       key={feature.title}
-                      className={`rounded-2xl border-b border-black/10 px-4 transition-colors duration-300 ease-out ${
+                      className={`rounded-2xl border px-4 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
                         isOpen
-                          ? "bg-[#EEF3EC]"
-                          : "hover:bg-[#F5F7F3] focus-within:bg-[#F5F7F3]"
+                          ? "border-white/70 bg-[#91A27F]/30 shadow-[0_10px_28px_rgba(72,88,70,0.12)]"
+                          : "border-black/10 bg-transparent hover:border-white/70 hover:bg-[#91A27F]/24 hover:shadow-[0_10px_28px_rgba(72,88,70,0.10)] focus-within:border-white/70 focus-within:bg-[#91A27F]/24 focus-within:shadow-[0_10px_28px_rgba(72,88,70,0.10)]"
                       }`}
                     >
                       <button
@@ -160,7 +167,11 @@ export default function SensorInsights() {
                           {feature.title}
                         </span>
 
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[#527A66] transition-colors duration-300 group-hover:bg-[#E1E9E3]">
+                        <span
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[#527A66] transition-colors duration-300 ${
+                            isOpen ? "bg-white/50" : "group-hover:bg-white/45"
+                          }`}
+                        >
                           <svg
                             viewBox="0 0 20 20"
                             fill="none"
