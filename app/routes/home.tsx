@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
 import SensorInsights from "../components/SensorInsights";
+import PriorityList from "../components/PriorityList";
 import Navbar from "../components/Navbar";
 import WelcomeChat from "../components/WelcomeChat";
 
@@ -78,8 +79,8 @@ export default function Home() {
           );
         })}
 
-        {/* Transparentne przyciemnienie zapewnia kontrast bez kolorowego panelu. */}
-        <div className="pointer-events-none absolute inset-0 z-20 bg-black/40 lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.48)_40%,rgba(0,0,0,0.18)_62%,rgba(0,0,0,0.02)_82%,rgba(0,0,0,0)_100%)]" />
+        {/* Delikatne przyciemnienie utrzymuje czytelność tekstu, nie tłumiąc zdjęcia. */}
+        <div className="pointer-events-none absolute inset-0 z-20 bg-black/25 lg:bg-[linear-gradient(90deg,rgba(0,0,0,0.44)_0%,rgba(0,0,0,0.34)_40%,rgba(0,0,0,0.1)_62%,rgba(0,0,0,0.01)_82%,rgba(0,0,0,0)_100%)]" />
 
         <div className="relative z-30 flex min-h-[650px] items-center px-4 py-12 sm:min-h-[690px] sm:px-6 lg:min-h-[720px] lg:px-8">
           <div className="flex w-full max-w-[560px] flex-col justify-center px-3 py-7 text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.62)] sm:px-5 sm:py-8 lg:px-6">
@@ -155,6 +156,7 @@ export default function Home() {
       </section>
 
       <SensorInsights />
+      <PriorityList />
       <WelcomeChat />
     </main>
   );

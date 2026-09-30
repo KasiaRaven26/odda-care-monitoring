@@ -69,9 +69,9 @@ const systemFlow = [
     description: "Gather quiet signals from everyday activity around the home.",
     details:
       "Motion, door, environmental and smart plug sensors notice simple household events — never images, conversations or private moments.",
-    image: "/images/odda-kit.png",
-    imageAlt: "The complete set of Odda home sensors",
-    imageClassName: "object-cover object-center",
+    image: "/images/sensor1.jpeg",
+    imageAlt: "An Odda sensor installed discreetly in a living room",
+    imageClassName: "object-cover object-[center_32%]",
   },
   {
     number: "02",
@@ -353,7 +353,7 @@ export default function TechnologyPage() {
     <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {technologyItems.map((item) => (
         <article key={item.title}>
-          <div className="group relative aspect-[4/3] overflow-hidden rounded-[22px] border border-white/60 bg-[#91A27F]/88 shadow-[0_18px_45px_rgba(72,88,70,0.14)] backdrop-blur-xl transition-[transform,background-color,border-color,box-shadow] duration-500 motion-safe:hover:-translate-y-1 hover:border-white/80 hover:bg-[#819274]/92 hover:shadow-[0_24px_55px_rgba(72,88,70,0.20)]">
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-[22px] border border-white/60 bg-[#91A27F]/88 shadow-[0_18px_45px_rgba(72,88,70,0.14)] backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-500 hover:border-white/80 hover:bg-[#819274]/92 hover:shadow-[0_24px_55px_rgba(72,88,70,0.20)]">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/25 via-white/0 to-black/[0.03]"
@@ -460,104 +460,122 @@ export default function TechnologyPage() {
 )}
 
         {/* Privacy */}
-        <section className="bg-[#F8F6F1] px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
-          <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-0">
-            <div className="max-w-[520px] lg:pr-16">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black">
-                Privacy by design
-              </p>
+        <section className="relative overflow-hidden bg-[#687A62] px-5 py-12 text-white sm:px-8 lg:px-10 lg:py-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-44 -top-44 h-[480px] w-[480px] rounded-full border border-white/10"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full border border-white/10"
+          />
 
-              <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black sm:text-5xl">
-                Insight into the day. Not into private moments.
-              </h2>
+          <div className="relative mx-auto max-w-[1380px]">
+            <div className="grid items-center gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+              <div className="max-w-3xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white">
+                  Privacy by design
+                </p>
 
-              <p className="mt-6 text-base leading-8 text-black sm:text-lg">
-                Odda understands changes in everyday routines without watching
-                or listening to the person at home.
-              </p>
+                <h2 className="mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
+                  Insight into the day.
+                  <span className="block text-white">
+                    Not into private moments.
+                  </span>
+                </h2>
+              </div>
 
-              <Link
-                to="/privacy"
-                className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black/70"
-              >
-                Read our privacy policy
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
+              <div className="max-w-xl lg:justify-self-end">
+                
+                
+              </div>
             </div>
 
-            <div className="border-black/10 lg:border-l lg:pl-16">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-                  Never captured
-                </p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
-                  Designed to notice patterns, not people.
-                </h3>
+            <div className="mt-9 grid border-t border-white/25 pt-8 lg:grid-cols-2">
+                <div className="pb-8 lg:pr-12">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
+                    What Odda notices
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.035em] sm:text-2xl">
+                    Quiet signals from daily life.
+                  </h3>
 
-                <div className="mt-7 grid gap-5 sm:grid-cols-3">
-                  {[
-                    { label: "No cameras", Icon: CameraOff },
-                    { label: "No microphones", Icon: MicOff },
-                    { label: "No audio or video", Icon: VideoOff },
-                  ].map(({ label, Icon }) => (
-                    <div
-                      key={label}
-                      className="group flex cursor-default items-center gap-3"
-                    >
-                      <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#315F4B]/10 bg-[#E7EBE2] text-[#315F4B] transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:-translate-y-1 group-hover:bg-[#315F4B] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(49,95,75,0.20)]">
-                        <span className="absolute inset-0 scale-0 rounded-full bg-white/15 opacity-0 transition-[transform,opacity] duration-500 group-hover:scale-100 group-hover:opacity-100" />
-                        <Icon
-                          aria-hidden="true"
-                          className="relative h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-6"
-                          strokeWidth={1.7}
-                        />
-                      </span>
-                      <p className="text-sm font-medium leading-5 text-black">
-                        {label}
-                      </p>
-                    </div>
-                  ))}
+                  <div className="mt-5 grid grid-cols-2 gap-x-5 sm:grid-cols-3">
+                    {[
+                      { label: "Movement", Icon: Activity },
+                      { label: "Temperature", Icon: Thermometer },
+                      { label: "Humidity", Icon: Droplets },
+                      { label: "Doors", Icon: DoorOpen },
+                      { label: "Appliances", Icon: PlugZap },
+                    ].map(({ label, Icon }) => (
+                      <div
+                        key={label}
+                        className="group flex cursor-default items-center gap-3 border-t border-white/25 py-3"
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#315F4B] shadow-[0_5px_14px_rgba(24,48,38,0.16)] transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:scale-105">
+                          <Icon
+                            aria-hidden="true"
+                            className="h-[18px] w-[18px]"
+                            strokeWidth={1.8}
+                          />
+                        </span>
+                        <p className="text-sm font-medium leading-5">
+                          {label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-10 border-t border-black/10 pt-9">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
-                  What Odda does notice
-                </p>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-black sm:text-base">
-                  Simple household signals that provide useful context while
-                  preserving dignity at home.
-                </p>
+                <div className="border-t border-white/25 pt-7 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
+                    What stays private
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.035em] sm:text-2xl">
+                    Patterns, never people.
+                  </h3>
 
-                <div className="mt-7 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
-                  {[
-                    { label: "Movement", Icon: Activity },
-                    { label: "Temperature", Icon: Thermometer },
-                    { label: "Humidity", Icon: Droplets },
-                    { label: "Doors", Icon: DoorOpen },
-                    { label: "Appliances", Icon: PlugZap },
-                  ].map(({ label, Icon }) => (
-                    <div key={label} className="group cursor-default">
-                      <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-[#315F4B]/10 bg-white text-[#315F4B] transition-[transform,background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:-translate-y-1 group-hover:bg-[#315F4B] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(49,95,75,0.18)]">
-                        <span className="absolute inset-0 scale-0 rounded-full bg-white/15 opacity-0 transition-[transform,opacity] duration-500 group-hover:scale-100 group-hover:opacity-100" />
-                        <Icon
-                          aria-hidden="true"
-                          className="relative h-5 w-5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-110 motion-safe:group-hover:rotate-6"
-                          strokeWidth={1.7}
-                        />
-                      </span>
-                      <p className="mt-2.5 text-sm font-medium leading-5 text-black">
-                        {label}
-                      </p>
-                    </div>
-                  ))}
+                  <div className="mt-5">
+                    {[
+                      {
+                        label: "No cameras",
+                        detail: "No photographs or footage inside the home.",
+                        Icon: CameraOff,
+                      },
+                      {
+                        label: "No microphones",
+                        detail: "No conversations or household sounds captured.",
+                        Icon: MicOff,
+                      },
+                      {
+                        label: "No audio or video",
+                        detail: "No live streams, clips or recordings stored.",
+                        Icon: VideoOff,
+                      },
+                    ].map(({ label, detail, Icon }) => (
+                      <div
+                        key={label}
+                        className="group flex cursor-default items-center gap-4 border-t border-white/25 py-3"
+                      >
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[#315F4B] shadow-[0_5px_14px_rgba(24,48,38,0.16)] transition-transform duration-300 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:scale-105">
+                          <Icon
+                            aria-hidden="true"
+                            className="h-5 w-5"
+                            strokeWidth={1.8}
+                          />
+                        </span>
+                        <div>
+                          <p className="text-sm font-semibold leading-5">
+                            {label}
+                          </p>
+                          <p className="mt-0.5 text-xs leading-5 text-white sm:text-sm">
+                            {detail}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
         </section>
