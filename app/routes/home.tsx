@@ -1,21 +1,21 @@
 import {
   ArrowRight,
-  BriefcaseBusiness,
   CalendarDays,
   CameraOff,
+  ChevronLeft,
   ChevronRight,
   Clock3,
   DoorOpen,
-  MapPin,
   MicOff,
-  ShieldCheck,
   TrendingUp,
   Watch,
 } from "lucide-react";
 import { Link, data } from "react-router";
+import { useRef, useState } from "react";
 import type { Route } from "./+types/home";
 import Navbar from "../components/Navbar";
 import PriorityList from "../components/PriorityList";
+import WelcomeChat from "../components/WelcomeChat";
 
 export type PriorityActionData = {
   ok: boolean;
@@ -62,25 +62,49 @@ const viewFeatures = [
   },
 ];
 
+const viewSlides = [
+  {
+    image: "/images/desktop3-transparent.png",
+    alt: "Odda View desktop dashboard showing today’s activity, weekly routine and home environment",
+    caption: "A clear overview of activity and familiar routines.",
+    imageClass: "h-full w-full object-contain px-5 py-8 sm:px-8 sm:py-10",
+  },
+  {
+    image: "/images/odda-view-home.png",
+    alt: "Odda View home screen showing that everything looks normal",
+    caption: "See the current home status at a glance.",
+    imageClass: "h-full w-full object-contain px-8 py-6 sm:px-14 sm:py-8",
+  },
+  {
+    image: "/images/odda-monthly-report.png",
+    alt: "Odda View monthly report showing a steady activity pattern",
+    caption: "Understand familiar patterns over time.",
+    imageClass: "h-full w-full object-contain px-8 py-6 sm:px-14 sm:py-8",
+  },
+];
+
 const scenarios = [
   {
-    icon: MapPin,
+    image: "/images/scenario-sarah-and-mum.png",
+    imageAlt: "An older woman speaking with her family on the phone at home",
     need: "Living further away",
-    title: "Sarah & her mum — reassurance from a distance",
+    title: "Sarah & her mum – reassurance from a distance",
     story:
       "Sarah lives two hours away from her mum, who enjoys living independently. They speak regularly, but Sarah sometimes wonders how things are between calls. ODDA could help her understand everyday patterns and decide when to check in.",
   },
   {
-    icon: ShieldCheck,
+    image: "/images/scenario-david.png",
+    imageAlt: "An older man watering a houseplant in his living room",
     need: "Privacy and independence",
-    title: "David — independence with privacy",
+    title: "David – independence with privacy",
     story:
       "David wants to stay in his own home and values his privacy. His daughter would like a little more reassurance, but cameras do not feel right for either of them. ODDA could offer a discreet way to understand daily routines without recording audio or video.",
   },
   {
-    icon: BriefcaseBusiness,
+    image: "/images/scenario-emma-and-dad.png",
+    imageAlt: "A woman checking her phone while working at home with her family nearby",
     need: "Balancing family and work",
-    title: "Emma & her dad — staying connected around work",
+    title: "Emma & her dad – staying connected around work",
     story:
       "Emma balances work, children and supporting her dad, who lives alone. She cannot always call during the day. ODDA could give her another way to stay informed about his routine and help her decide when a conversation or visit might be useful.",
   },
@@ -152,7 +176,7 @@ export async function action({ request }: Route.ActionArgs) {
       {
         ok: false,
         message:
-          "Online sign-up is not connected yet. Please email hello@odda.care and we’ll add you to the priority list.",
+          "Online sign-up is not connected yet. Please email hello@odda-tec.co.uk and we’ll add you to the priority list.",
       },
       { status: 503 },
     );
@@ -194,7 +218,7 @@ export async function action({ request }: Route.ActionArgs) {
       {
         ok: false,
         message:
-          "We couldn’t add you just now. Please try again, or email hello@odda.care.",
+          "We couldn’t add you just now. Please try again, or email hello@odda-tec.co.uk.",
       },
       { status: 502 },
     );
@@ -209,15 +233,27 @@ const textLink =
   "group inline-flex items-center gap-2 border-b border-black/30 pb-1 text-sm font-semibold transition-colors hover:border-[#315F4B] hover:text-[#315F4B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#315F4B]";
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [viewSlide, setViewSlide] = useState(0);
+  const viewTouchStart = useRef<number | null>(null);
+
+  const showPreviousViewSlide = () => {
+    setViewSlide((current) => (current - 1 + viewSlides.length) % viewSlides.length);
+  };
+
+  const showNextViewSlide = () => {
+    setViewSlide((current) => (current + 1) % viewSlides.length);
+  };
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#F8F6F1] font-['Montserrat'] text-[#1D2A23]">
       <Navbar />
 
       <section aria-labelledby="home-title" className="bg-[#F8F6F1]">
-        <div className="mx-auto grid min-h-[calc(100svh-73px)] max-w-[1440px] lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+        <div className="mx-auto grid min-h-[calc(100svh-82px)] max-w-[1440px] lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
           <div className="flex items-center px-6 py-16 sm:px-12 lg:px-16 lg:py-20 xl:px-24">
             <div className="max-w-[650px]">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#315F4B]">
+              <p className="!text-xs font-semibold uppercase tracking-[0.24em] !text-[#315F4B]">
                 Discreet support for independent living
               </p>
               <h1 id="home-title" className="mt-5 text-[2.65rem] font-semibold leading-[1.03] tracking-[-0.055em] sm:text-6xl lg:text-[4.2rem]">
@@ -256,7 +292,7 @@ export default function Home() {
       <section id="how-it-works" aria-labelledby="how-title" className="scroll-mt-24 bg-white px-6 py-20 sm:px-12 lg:py-28">
         <div className="mx-auto max-w-[1240px]">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">How ODDA works</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">How ODDA works</p>
             <h2 id="how-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Simple signals. A clearer picture.</h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-[#46564D] sm:text-lg">
               ODDA works quietly in the background, turning everyday activity into information your family can understand.
@@ -279,15 +315,83 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="view-title" className="bg-[#DDE5D9] px-6 py-20 sm:px-12 lg:py-28">
+      <section aria-labelledby="view-title" className="bg-white px-6 py-20 sm:px-12 lg:py-28">
         <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-20">
-          <div className="rounded-[32px] bg-[#F7F4EE] px-4 pb-5 pt-8 shadow-[0_24px_60px_rgba(42,65,52,0.10)] sm:px-7 sm:pb-7">
-            <img src="/images/desktop3-transparent.png" alt="Odda View dashboard showing today’s activity, weekly routine and home environment" loading="lazy" className="mx-auto w-full max-w-[720px]" />
-            <p className="mt-2 text-center text-xs leading-5 text-[#526158]">Illustrative view of the Odda View dashboard.</p>
+          <div
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Odda View app previews"
+            className="overflow-hidden rounded-[32px] border border-[#315F4B]/10 bg-white shadow-[0_24px_60px_rgba(42,65,52,0.10)]"
+            onTouchStart={(event) => {
+              viewTouchStart.current = event.touches[0]?.clientX ?? null;
+            }}
+            onTouchEnd={(event) => {
+              if (viewTouchStart.current === null) return;
+              const distance = viewTouchStart.current - event.changedTouches[0].clientX;
+              if (Math.abs(distance) > 45) {
+                distance > 0 ? showNextViewSlide() : showPreviousViewSlide();
+              }
+              viewTouchStart.current = null;
+            }}
+          >
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ transform: `translateX(-${viewSlide * 100}%)` }}
+              >
+                {viewSlides.map((slide, index) => (
+                  <figure
+                    key={slide.image}
+                    aria-hidden={viewSlide !== index}
+                    className="w-full shrink-0"
+                  >
+                    <div className="aspect-[4/3] overflow-hidden bg-white">
+                      <img src={slide.image} alt={slide.alt} loading="lazy" className={slide.imageClass} />
+                    </div>
+                    <figcaption className="border-t border-[#315F4B]/10 px-6 py-4 text-center text-sm leading-6 text-black">
+                      {slide.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between border-t border-[#315F4B]/10 px-5 py-4">
+              <button
+                type="button"
+                onClick={showPreviousViewSlide}
+                aria-label="Show previous Odda View preview"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#315F4B]/20 bg-white text-[#315F4B] transition-colors hover:bg-[#EEE9DF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315F4B]"
+              >
+                <ChevronLeft aria-hidden="true" className="h-5 w-5" />
+              </button>
+
+              <div className="flex items-center gap-2" aria-label={`Slide ${viewSlide + 1} of ${viewSlides.length}`}>
+                {viewSlides.map((slide, index) => (
+                  <button
+                    key={slide.image}
+                    type="button"
+                    onClick={() => setViewSlide(index)}
+                    aria-label={`Show slide ${index + 1}`}
+                    aria-current={viewSlide === index ? "true" : undefined}
+                    className={`h-2.5 rounded-full transition-[width,background-color] duration-300 ${viewSlide === index ? "w-7 bg-[#315F4B]" : "w-2.5 bg-[#315F4B]/25 hover:bg-[#315F4B]/45"}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={showNextViewSlide}
+                aria-label="Show next Odda View preview"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#315F4B]/20 bg-white text-[#315F4B] transition-colors hover:bg-[#EEE9DF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315F4B]"
+              >
+                <ChevronRight aria-hidden="true" className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Odda View</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Odda View</p>
             <h2 id="view-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">See how their day is unfolding.</h2>
             <p className="mt-6 text-base leading-8 text-[#46564D]">Odda View makes home activity easy to understand, so your family can see what looks familiar and notice when something changes.</p>
             <div className="mt-7 border-t border-[#315F4B]/20">
@@ -310,20 +414,21 @@ export default function Home() {
       <section aria-labelledby="stories-title" className="bg-[#F8F6F1] px-6 py-20 sm:px-12 lg:py-28">
         <div className="mx-auto max-w-[1240px]">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Who ODDA could help</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Who ODDA could help</p>
             <h2 id="stories-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Different lives. A shared need for reassurance.</h2>
-            <p className="mt-6 border-l-2 border-[#B89554] pl-4 text-sm leading-6 text-[#526158]">Illustrative scenarios showing who ODDA could help. These are fictional examples, not customer testimonials.</p>
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {scenarios.map(({ icon: Icon, need, title, story }) => (
-              <article key={title} className="flex h-full flex-col rounded-[26px] border border-[#315F4B]/12 bg-white p-7 sm:p-8">
-                <div className="flex items-center justify-between gap-5">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#DDE5D9] text-[#315F4B]"><Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.6} /></span>
-                  <span className="text-right text-[11px] font-semibold uppercase tracking-[0.13em] text-[#315F4B]">{need}</span>
+            {scenarios.map(({ image, imageAlt, need, title, story }) => (
+              <article key={title} className="group flex h-full flex-col overflow-hidden rounded-[26px] border border-[#315F4B]/12 bg-white transition-[box-shadow,border-color] duration-500 ease-out hover:border-[#315F4B]/25 hover:shadow-[0_18px_45px_rgba(49,95,75,0.12)]">
+                <figure className="aspect-[4/3] overflow-hidden bg-[#EEE9DF]">
+                  <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+                </figure>
+                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.13em] text-[#315F4B]">{need}</span>
+                  <h3 className="mt-4 text-xl font-semibold leading-[1.3] tracking-[-0.025em]">{title}</h3>
+                  <p className="mt-4 text-[15px] leading-7 text-[#526158]">{story}</p>
                 </div>
-                <h3 className="mt-7 text-xl font-semibold leading-[1.3] tracking-[-0.025em]">{title}</h3>
-                <p className="mt-4 text-[15px] leading-7 text-[#526158]">{story}</p>
               </article>
             ))}
           </div>
@@ -332,11 +437,11 @@ export default function Home() {
 
       <section aria-labelledby="technology-title" className="bg-white px-6 py-20 sm:px-12 lg:py-28">
         <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-2 lg:items-center lg:gap-24">
-          <figure className="overflow-hidden rounded-[32px] bg-[#8D9B82]">
+          <figure className="w-full max-w-[520px] justify-self-center overflow-hidden rounded-[32px] bg-[#8D9B82] lg:justify-self-start">
             <img src="/images/odda-kit-product.png" alt="The ODDA Hub and discreet home sensors" loading="lazy" className="aspect-square w-full object-cover" />
           </figure>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Technology & privacy</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Technology & privacy</p>
             <h2 id="technology-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Thoughtful technology. Respect for privacy.</h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-[#46564D]">A small hub and discreet sensors notice simple signals such as movement, door activity and familiar appliance use. ODDA builds a useful picture of routine without turning the home into a place that feels watched.</p>
             <ul className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -349,16 +454,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="about-title" className="bg-[#315F4B] px-6 py-20 text-white sm:px-12 lg:py-24">
+      <section aria-labelledby="about-title" className="bg-[#EEE9DF] px-6 py-20 text-[#1D2A23] sm:px-12 lg:py-24">
         <div className="mx-auto grid max-w-[1120px] gap-10 sm:grid-cols-[220px_1fr] sm:items-center lg:gap-20">
-          <figure className="mx-auto w-full max-w-[260px] overflow-hidden rounded-[28px] bg-[#E9E2D7] sm:mx-0">
+          <figure className="mx-auto w-full max-w-[260px] overflow-hidden rounded-[28px] border border-[#315F4B]/10 bg-white shadow-[0_18px_45px_rgba(49,95,75,0.10)] sm:mx-0">
             <img src="/images/Aggie-arden.jpg" alt="Aggie Arden, founder of ODDA" loading="lazy" className="aspect-[4/5] w-full object-cover" />
           </figure>
           <div>
-            <p className="inline-flex rounded-full bg-[#F8F6F1] px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">About ODDA</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">About ODDA</p>
             <h2 id="about-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Built on real care experience.</h2>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">Founder Aggie Arden spent over ten years working in care, including dementia, Parkinson’s, person-centred and end-of-life care. ODDA grew from seeing how much families can worry about the hours between calls and visits.</p>
-            <Link to="/about" className="group mt-8 inline-flex items-center gap-2 border-b border-white/50 pb-1 text-sm font-semibold text-white transition-colors hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Meet the founder <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#46564D] sm:text-lg">Founder Aggie Arden spent over ten years working in care, including dementia, Parkinson’s, person-centred and end-of-life care. ODDA grew from seeing how much families can worry about the hours between calls and visits.</p>
+            <Link to="/about" className="group mt-8 inline-flex items-center gap-2 border-b border-black/30 pb-1 text-sm font-semibold text-black transition-colors hover:border-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#315F4B]">Meet the founder <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
           </div>
         </div>
       </section>
@@ -366,7 +471,7 @@ export default function Home() {
       <section aria-labelledby="pricing-title" className="bg-[#F8F6F1] px-6 py-16 sm:px-12 lg:py-20">
         <div className="mx-auto flex max-w-[1120px] flex-col gap-8 rounded-[30px] border border-[#315F4B]/15 bg-white px-7 py-10 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-14">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Clear pricing</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Clear pricing</p>
             <h2 id="pricing-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Understand the costs.</h2>
             <p className="mt-4 text-base leading-7 text-[#526158]">See how the weekly subscription, professional installation and refundable equipment deposit fit together, with no complicated packages.</p>
           </div>
@@ -377,20 +482,38 @@ export default function Home() {
       <section aria-labelledby="faq-title" className="bg-white px-6 py-20 sm:px-12 lg:py-28">
         <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Frequently asked questions</p>
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Frequently asked questions</p>
             <h2 id="faq-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em]">A few useful answers.</h2>
             <Link to="/faq" className={`${textLink} mt-7`}>Visit the full FAQ <ChevronRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
           </div>
           <div className="border-t border-[#315F4B]/20">
-            {homeFaqs.map((item) => (
-              <details key={item.question} className="group border-b border-[#315F4B]/20">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left text-lg font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#315F4B] [&::-webkit-details-marker]:hidden">
+            {homeFaqs.map((item, index) => {
+              const isOpen = openFaq === index;
+              const answerId = `home-faq-answer-${index}`;
+
+              return (
+              <div key={item.question} className="border-b border-[#315F4B]/20">
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#315F4B]"
+                >
                   {item.question}
-                  <span aria-hidden="true" className="relative h-5 w-5 shrink-0"><span className="absolute left-0 top-1/2 h-px w-5 bg-current" /><span className="absolute left-1/2 top-0 h-5 w-px bg-current transition-transform group-open:rotate-90 group-open:opacity-0" /></span>
-                </summary>
-                <p className="max-w-2xl pb-6 pr-8 text-[15px] leading-7 text-[#526158]">{item.answer}</p>
-              </details>
-            ))}
+                  <span aria-hidden="true" className="relative h-5 w-5 shrink-0"><span className="absolute left-0 top-1/2 h-px w-5 bg-current" /><span className={`absolute left-1/2 top-0 h-5 w-px bg-current transition-[transform,opacity] duration-300 ${isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"}`} /></span>
+                </button>
+                <div
+                  id={answerId}
+                  className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="max-w-2xl pb-6 pr-8 text-[15px] leading-7 text-[#526158]">{item.answer}</p>
+                  </div>
+                </div>
+              </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -400,9 +523,11 @@ export default function Home() {
           <CalendarDays aria-hidden="true" className="mx-auto h-7 w-7 text-[#315F4B]" strokeWidth={1.5} />
           <h2 id="final-cta-title" className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Stay informed about ODDA.</h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-[#34443B]">Join the priority list for launch news and availability updates.</p>
-          <a href="#priority-list" className={`${primaryButton} mt-7`}>Join the priority list <ArrowRight aria-hidden="true" className="h-4 w-4" /></a>
+          <a href="#priority-list" className={`${primaryButton} mt-7 !bg-[#DDE5D9] hover:!bg-[#EEF2EB]`}>Join the priority list <ArrowRight aria-hidden="true" className="h-4 w-4" /></a>
         </div>
       </section>
+
+      <WelcomeChat />
     </main>
   );
 }

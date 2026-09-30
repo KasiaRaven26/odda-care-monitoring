@@ -16,15 +16,15 @@ export default function PriorityList() {
   }, [fetcher.data]);
 
   return (
-    <section id="priority-list" aria-labelledby="priority-list-title" className="scroll-mt-24 bg-[#A8B59F] px-6 py-20 sm:px-12 lg:py-24">
+    <section id="priority-list" aria-labelledby="priority-list-title" className="scroll-mt-24 bg-[#EEE9DF] px-6 py-20 sm:px-12 lg:py-24">
       <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-20">
         <div className="max-w-lg">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Priority list</p>
+          <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">Priority list</p>
           <h2 id="priority-list-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Be among the first to hear about ODDA.</h2>
           <p className="mt-6 text-base leading-8 text-[#34443B] sm:text-lg">Join our priority list for launch news, availability updates and occasional news about ODDA.</p>
         </div>
 
-        <div className="rounded-[28px] bg-[#F8F6F1] p-6 shadow-[0_18px_48px_rgba(39,57,45,0.10)] sm:p-8">
+        <div className="rounded-[28px] bg-white p-6 shadow-[0_18px_48px_rgba(39,57,45,0.10)] sm:p-8">
           {fetcher.data?.ok ? (
             <div role="status" aria-live="polite" className="flex min-h-[250px] flex-col items-start justify-center">
               <CheckCircle2 aria-hidden="true" className="h-10 w-10 text-[#315F4B]" strokeWidth={1.5} />
@@ -55,7 +55,7 @@ export default function PriorityList() {
               {fetcher.data && !fetcher.data.ok ? (
                 <p role="alert" className="mt-4 border-l-2 border-[#8A3D2E] pl-3 text-sm leading-6 text-[#713225]">
                   {fetcher.data.message}{" "}
-                  {fetcher.data.message.includes("hello@odda.care") ? <a href="mailto:hello@odda.care" className="font-semibold underline underline-offset-2">Email ODDA</a> : null}
+                  {fetcher.data.message.includes("hello@odda-tec.co.uk") ? <a href="mailto:hello@odda-tec.co.uk" className="font-semibold underline underline-offset-2">Email ODDA</a> : null}
                 </p>
               ) : null}
 

@@ -12,6 +12,8 @@ import "./app.css";
 import Footer from "./components/footer";
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", type: "image/png", href: "/odda-favicon.png" },
+  { rel: "shortcut icon", href: "/favicon.ico" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

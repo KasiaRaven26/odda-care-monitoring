@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link } from "react-router";
 import Navbar from "../components/Navbar";
 
-const CONTACT_EMAIL = "hello@odda.care";
+const CONTACT_EMAIL = "hello@odda-tec.co.uk";
 
 const contactReasons = [
   "Ask a question about Odda",
@@ -11,7 +11,7 @@ const contactReasons = [
 ];
 
 const fieldClass =
-  "mt-3 w-full rounded-[14px] border border-black/15 bg-[#F8F6F1] px-4 py-3.5 text-black outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-black/40 focus:border-[#315F4B] focus:shadow-[0_0_0_3px_rgba(49,95,75,0.08)]";
+  "mt-2.5 w-full rounded-[14px] border border-[#315F4B]/15 bg-[#F8F6F1] px-4 py-3.5 text-base text-black outline-none transition-[background-color,border-color,box-shadow] duration-300 placeholder:text-black/40 hover:border-[#315F4B]/30 focus:border-[#315F4B] focus:bg-white focus:shadow-[0_0_0_3px_rgba(49,95,75,0.10)]";
 
 export function meta() {
   return [
@@ -64,7 +64,7 @@ export default function Contact() {
       {/* Introduction */}
       <section className="px-7 pb-14 pt-16 sm:px-14 lg:pb-18 lg:pt-24">
         <div className="mx-auto max-w-[1180px]">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">
+          <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
             Get in touch
           </p>
 
@@ -83,7 +83,7 @@ export default function Contact() {
       {/* Contact details and form */}
       <section className="bg-white py-20 lg:py-24">
         <div className="mx-auto grid max-w-[1180px] gap-12 px-7 sm:px-14 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-20">
-          <aside className="rounded-[30px] bg-[#DDE5D9] px-7 py-9 sm:px-10 sm:py-11">
+          <aside className="rounded-[30px] bg-[#EDF2EA] px-7 py-9 sm:px-10 sm:py-11">
             <div className="flex items-center gap-4">
               <img
                 src="/images/Aggie-arden.jpg"
@@ -93,7 +93,7 @@ export default function Contact() {
               />
               <div>
                 <p className="font-semibold">Aggie Arden</p>
-                <p className="mt-1 text-sm">Founder of Odda</p>
+                <p className="mt-1 !text-sm">Founder of Odda</p>
               </div>
             </div>
 
@@ -121,7 +121,7 @@ export default function Contact() {
             </ul>
 
             <div className="mt-10 border-t border-black/15 pt-7">
-              <p className="text-sm">Prefer to email directly?</p>
+              <p className="!text-sm">Prefer to email directly?</p>
               <a
                 href={"mailto:" + CONTACT_EMAIL}
                 className="mt-2 inline-flex border-b border-black/35 pb-0.5 font-semibold transition-colors duration-300 hover:border-[#315F4B] hover:text-[#315F4B]"
@@ -129,7 +129,7 @@ export default function Contact() {
                 {CONTACT_EMAIL}
               </a>
 
-              <p className="mt-7 text-sm leading-6">
+              <p className="mt-7 !text-sm leading-6">
                 Ready to choose a time instead?
               </p>
               <Link
@@ -141,8 +141,8 @@ export default function Contact() {
             </div>
           </aside>
 
-          <div className="lg:pt-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+          <div className="rounded-[30px] border border-[#315F4B]/12 bg-white p-7 shadow-[0_18px_48px_rgba(49,95,75,0.08)] sm:p-10">
+            <p className="!text-xs font-semibold uppercase tracking-[0.2em] !text-[#315F4B]">
               Send a message
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
@@ -235,7 +235,7 @@ export default function Contact() {
               <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full border border-[#315F4B]/20 bg-[#DDE5D9] px-6 py-3.5 font-semibold text-black transition-colors duration-300 hover:border-[#315F4B]/40 hover:bg-[#CBD7C7]"
+                  className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full bg-[#A8B59F] px-6 py-3.5 font-semibold text-black shadow-[0_4px_14px_rgba(49,95,75,0.08)] transition-[background-color,box-shadow] duration-300 hover:bg-[#C9D3C3] hover:shadow-[0_8px_20px_rgba(49,95,75,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -253,7 +253,7 @@ export default function Contact() {
                   Open email
                 </button>
 
-                <p className="max-w-sm text-xs leading-5">
+                <p className="max-w-sm !text-xs leading-5">
                   Your details will only be used to respond to your enquiry.{" "}
                   <Link
                     to="/privacy"
@@ -268,7 +268,7 @@ export default function Contact() {
                 <p
                   role="status"
                   aria-live="polite"
-                  className="mt-6 border-l-2 border-[#315F4B] pl-4 text-sm leading-6"
+                  className="mt-6 rounded-xl border-l-2 border-[#315F4B] bg-[#EDF2EA] px-4 py-3 !text-sm leading-6"
                 >
                   Your email app should open with the message ready to send. If
                   it does not, email us directly at{" "}

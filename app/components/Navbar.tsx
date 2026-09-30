@@ -1,5 +1,3 @@
-import { useLocation } from "react-router";
-
 const navLinks = [
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
@@ -10,13 +8,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const location = useLocation();
-  const priorityListHref =
-    location.pathname === "/" ? "#priority-list" : "/#priority-list";
-
   return (
     <header className="sticky top-0 z-50 border-b border-[#315F4B]/10 bg-[#FFFDF9]/95 font-['Montserrat'] backdrop-blur-md">
-      <div className="mx-auto flex h-[73px] max-w-[90rem] items-center justify-between gap-4 px-5 sm:px-7 lg:px-10">
+      <div className="mx-auto flex h-[82px] max-w-[96rem] items-center justify-between gap-5 px-5 sm:px-8 lg:px-12">
         {/* Logo */}
         <a
           href="/"
@@ -26,7 +20,7 @@ export default function Navbar() {
           <img
             src="/images/odda-logo-transparent.png"
             alt="ODDA"
-            className="h-12 w-auto mix-blend-multiply"
+            className="h-14 w-auto mix-blend-multiply"
           />
         </a>
 
@@ -54,10 +48,10 @@ export default function Navbar() {
         {/* Desktop action */}
         <div className="hidden shrink-0 items-center xl:flex">
           <a
-            href={priorityListHref}
+            href="/contact"
             className="whitespace-nowrap rounded-full bg-[#A8B59F] px-5 py-3 text-sm font-semibold text-[#1D2A23] transition-colors hover:bg-[#C9D3C3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
           >
-            Join the priority list
+            Get in touch
           </a>
         </div>
 
@@ -82,10 +76,10 @@ export default function Navbar() {
             ))}
 
             <a
-              href={priorityListHref}
+              href="/contact"
               className="mt-2 rounded-2xl bg-[#A8B59F] px-4 py-3 text-center font-semibold text-[#1D2A23] transition-colors hover:bg-[#C9D3C3]"
             >
-              Join the priority list
+              Get in touch
             </a>
           </nav>
         </details>

@@ -45,7 +45,7 @@ export default function About() {
         <section className="bg-[#F8F6F1]">
           <div className="mx-auto grid max-w-[1380px] gap-12 px-7 py-20 sm:px-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20 lg:px-[88px] lg:py-28">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+              <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
                 About Odda
               </p>
 
@@ -74,11 +74,11 @@ export default function About() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
               <figcaption className="absolute inset-x-6 bottom-6 z-10 sm:inset-x-8 sm:bottom-8">
-                <p className="text-2xl font-medium tracking-[-0.035em] text-white sm:text-3xl">
+                <p className="!text-2xl font-medium tracking-[-0.035em] !text-white sm:!text-3xl">
                   Aggie Arden
                 </p>
 
-                <p className="mt-2 text-sm font-semibold text-white/90">
+                <p className="mt-2 !text-sm font-semibold !text-white">
                   Founder of Odda
                 </p>
               </figcaption>
@@ -87,10 +87,10 @@ export default function About() {
         </section>
 
         {/* Founder background */}
-        <section className="bg-white py-20 lg:py-24">
+        <section className="bg-[#EEE9DF] py-20 lg:py-24">
           <div className="mx-auto grid max-w-[1180px] gap-10 px-7 sm:px-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+              <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
                 My background
               </p>
               <h2 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black">
@@ -116,10 +116,10 @@ export default function About() {
         </section>
 
         {/* Why Odda exists */}
-        <section className="bg-[#F8F6F1] py-20 lg:py-24">
+        <section className="bg-white py-20 lg:py-24">
           <div className="mx-auto grid max-w-[1380px] gap-12 px-7 sm:px-14 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-20 lg:px-[88px]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+              <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
                Why I started Odda
               </p>
 
@@ -144,10 +144,10 @@ export default function About() {
       
 
         {/* Values */}
-        <section className="bg-[#315F4B] py-20 text-white lg:py-28">
+        <section className="bg-[#EEE9DF] py-20 text-black lg:py-28">
           <div className="mx-auto grid max-w-[1380px] gap-14 px-7 sm:px-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24 lg:px-[88px]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white">
+              <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
                 What matters to me
               </p>
 
@@ -170,10 +170,10 @@ export default function About() {
                 <article
                   key={value.title}
                   className={`grid gap-4 py-8 sm:grid-cols-[64px_1fr] sm:gap-8 sm:py-10 ${
-                    index > 0 ? "border-t border-white/20" : ""
+                    index > 0 ? "border-t border-black/15" : ""
                   }`}
                 >
-                  <span className="text-2xl font-extralight leading-none text-white">
+                  <span className="text-2xl font-extralight leading-none text-[#315F4B]">
                     0{index + 1}
                   </span>
 
@@ -182,7 +182,7 @@ export default function About() {
                       {value.title}
                     </h3>
 
-                    <p className="mt-4 max-w-xl text-base leading-7 text-white">
+                    <p className="mt-4 max-w-xl text-base leading-7 text-black">
                       {value.description}
                     </p>
                   </div>
@@ -193,11 +193,11 @@ export default function About() {
         </section>
 
         {/* Where Odda is today */}
-        <section className="bg-[#F8F6F1] py-20 lg:py-24">
+        <section className="bg-white py-20 lg:py-24">
           <div className="mx-auto max-w-[1380px] px-7 sm:px-14 lg:px-[88px]">
-            <div className="grid gap-10 border-t border-black/15 pt-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+            <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+                <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
                   Where Odda is today
                 </p>
                 <h2 className="mt-5 max-w-md text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-black">
@@ -224,8 +224,8 @@ export default function About() {
 
         {/* CTA */}
         <section id="contact" className="bg-[#F8F6F1] px-4 pb-20 lg:pb-28">
-          <div className="mx-auto max-w-[1380px] rounded-[36px] bg-[#929F88] px-7 py-16 text-center sm:px-12 lg:py-20">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black">
+          <div className="mx-auto max-w-[1380px] px-7 py-16 text-center sm:px-12 lg:py-20">
+            <p className="!text-xs font-semibold uppercase tracking-[0.22em] !text-[#315F4B]">
               Get in touch
             </p>
 
@@ -242,17 +242,17 @@ export default function About() {
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 to="/book-assessment"
-                className="rounded-full border-2 border-black bg-black px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-transparent hover:text-black"
+                className="rounded-full bg-[#A8B59F] px-8 py-4 font-semibold text-black shadow-[0_4px_14px_rgba(49,95,75,0.08)] transition-[background-color,box-shadow] duration-300 hover:bg-[#C9D3C3] hover:shadow-[0_8px_20px_rgba(49,95,75,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
               >
                 Book a free assessment
               </Link>
 
-              <a
-                href="mailto:hello@odda.care"
-                className="rounded-full border-2 border-black px-8 py-4 font-semibold text-black transition-colors duration-300 hover:bg-white"
+              <Link
+                to="/contact"
+                className="rounded-full bg-[#EEE9DF] px-8 py-4 font-semibold text-black transition-colors duration-300 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
               >
                 Contact me
-              </a>
+              </Link>
             </div>
           </div>
         </section>

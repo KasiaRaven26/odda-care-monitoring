@@ -9,6 +9,12 @@ html {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+:root {
+  --font-size-heading-1: clamp(1.875rem, 3.25vw, 2.5rem);
+  --font-size-heading-2: clamp(1.625rem, 2.75vw, 2.125rem);
+  --font-size-paragraph: 1rem;
+}
+
 html,
 body {
   @apply bg-white;
@@ -20,8 +26,18 @@ body {
 }
 
 h1 {
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-size: var(--font-size-heading-1) !important;
+  color: #000 !important;
   line-height: 1.08;
+}
+
+h2 {
+  font-size: var(--font-size-heading-2) !important;
+}
+
+p {
+  font-size: var(--font-size-paragraph) !important;
+  color: #000 !important;
 }
 
 ::selection {

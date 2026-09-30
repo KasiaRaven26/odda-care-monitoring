@@ -88,7 +88,7 @@ export default function Footer() {
                 </Link>
               </div>
 
-              <p className="mt-5 text-xs text-black">
+              <p className="mt-5 !text-xs text-black">
                 © ODDA Care {year}. All rights reserved.
               </p>
 
@@ -97,7 +97,7 @@ export default function Footer() {
                   ICO
                 </span>
 
-                <p className="text-xs leading-5 text-black">
+                <p className="!text-xs leading-5 text-black">
                   ODDA Ltd is registered with the Information
                   Commissioner&apos;s Office. Registration number:{" "}
                   <span className="font-medium">ZC150677</span>
@@ -113,7 +113,7 @@ export default function Footer() {
                 style={{ mixBlendMode: "multiply" }}
               />
 
-              <p className="mt-2 text-sm font-medium text-black">
+              <p className="mt-2 !text-sm font-medium text-black">
                 Independent living. Everyday reassurance.
               </p>
             </div>

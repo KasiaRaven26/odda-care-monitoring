@@ -59,7 +59,7 @@ newsletter or CRM webhook that accepts this JSON payload:
 Set `ODDA_PRIORITY_LIST_WEBHOOK_TOKEN` when the endpoint uses bearer-token
 authentication. The page only displays a successful sign-up after the webhook
 returns a 2xx response. Without the URL, the form shows a clear configuration
-error and offers `hello@odda.care` as a fallback.
+error and offers `hello@odda-tec.co.uk` as a fallback.
 
 ## Deployment
 
