@@ -33,7 +33,7 @@ export default function Footer() {
 
             <div>
               <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.16em] text-black">
-                Odda
+                ODDA
               </h3>
 
               <div className="flex flex-col gap-3 text-[15px] text-black">
@@ -89,7 +89,7 @@ export default function Footer() {
               </div>
 
               <p className="mt-5 text-xs text-black">
-                © Odda Care {year}. All rights reserved.
+                © ODDA Care {year}. All rights reserved.
               </p>
 
               <div className="mt-5 flex max-w-md items-start gap-3">
@@ -98,7 +98,7 @@ export default function Footer() {
                 </span>
 
                 <p className="text-xs leading-5 text-black">
-                  Odda Ltd is registered with the Information
+                  ODDA Ltd is registered with the Information
                   Commissioner&apos;s Office. Registration number:{" "}
                   <span className="font-medium">ZC150677</span>
                 </p>
@@ -108,13 +108,13 @@ export default function Footer() {
             <div className="flex flex-col items-center self-start text-center lg:self-end">
               <img
                 src="/images/odda-logo-transparent.png"
-                alt="Odda"
+                alt="ODDA"
                 className="h-[68px] w-auto object-contain sm:h-[82px]"
                 style={{ mixBlendMode: "multiply" }}
               />
 
               <p className="mt-2 text-sm font-medium text-black">
-                Independent living, for longer.
+                Independent living. Everyday reassurance.
               </p>
             </div>
           </div>

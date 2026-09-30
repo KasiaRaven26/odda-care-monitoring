@@ -1,26 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 9rem;
-}
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 8rem;
+  scroll-padding-top: 6rem;
 }
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white;
+  color: #1d2a23;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.08;
+}
+
+::selection {
+  background: #d7c398;
+  color: #1d2a23;
 }
 
 .process-connector::before {
@@ -63,6 +69,19 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .process-connector::before,
   .process-arrowhead {
     transition: none;

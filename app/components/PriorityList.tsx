@@ -1,110 +1,67 @@
-import { useState, type FormEvent } from "react";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Link, useFetcher } from "react-router";
+import type { PriorityActionData } from "../routes/home";
 
-const PRIORITY_LIST_EMAIL = "hello@odda.care";
+const fieldClass =
+  "mt-2 w-full rounded-xl border border-[#315F4B]/30 bg-white px-4 py-3.5 text-base text-[#1D2A23] outline-none transition-[border-color,box-shadow] placeholder:text-[#617067] focus:border-[#315F4B] focus:shadow-[0_0_0_3px_rgba(49,95,75,0.12)]";
 
 export default function PriorityList() {
-  const [emailPrepared, setEmailPrepared] = useState(false);
+  const fetcher = useFetcher<PriorityActionData>();
+  const formRef = useRef<HTMLFormElement>(null);
+  const isSubmitting = fetcher.state !== "idle";
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const email = String(formData.get("email") || "");
-    const subject = encodeURIComponent("Join the Odda Priority List");
-    const body = encodeURIComponent(
-      [
-        "Please add me to the Odda Priority List for the first 15 families and to the newsletter.",
-        "",
-        "Email: " + email,
-      ].join("\n"),
-    );
-
-    setEmailPrepared(true);
-
-    window.setTimeout(() => {
-      window.location.href =
-        "mailto:" +
-        PRIORITY_LIST_EMAIL +
-        "?subject=" +
-        subject +
-        "&body=" +
-        body;
-    }, 50);
-  }
+  useEffect(() => {
+    if (fetcher.data?.ok) formRef.current?.reset();
+  }, [fetcher.data]);
 
   return (
-    <section
-      aria-labelledby="priority-list-title"
-      className="bg-white px-7 py-20 sm:px-14 lg:py-24"
-    >
-      <div className="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
-        <div className="max-w-xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">
-            Priority List
-          </p>
-          <h2
-            id="priority-list-title"
-            className="mt-4 text-3xl font-semibold leading-[1.1] tracking-[-0.04em] sm:text-4xl"
-          >
-            Be one of the first 15 families to experience Odda.
-          </h2>
-          <p className="mt-5 text-base leading-7 text-black sm:text-lg sm:leading-8">
-            Join our newsletter for exclusive early access. The first 15
-            families on the list will be first in the queue when Odda becomes
-            available.
-          </p>
+    <section id="priority-list" aria-labelledby="priority-list-title" className="scroll-mt-24 bg-[#A8B59F] px-6 py-20 sm:px-12 lg:py-24">
+      <div className="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-20">
+        <div className="max-w-lg">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#315F4B]">Priority list</p>
+          <h2 id="priority-list-title" className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl">Be among the first to hear about ODDA.</h2>
+          <p className="mt-6 text-base leading-8 text-[#34443B] sm:text-lg">Join our priority list for launch news, availability updates and occasional news about ODDA.</p>
         </div>
 
-        <div className="lg:pl-10">
-          
-          <h3 className="mt-3 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
-            Join the Priority List
-          </h3>
-          <p className="mt-4 max-w-lg text-sm leading-7 text-black sm:text-base">
-            Leave your email for launch updates and your opportunity to be
-            among the first families supported by Odda.
-          </p>
-
-          <form onSubmit={handleSubmit} className="mt-7">
-            <label htmlFor="priority-email" className="text-sm font-semibold">
-              Email address
-            </label>
-            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
-              <input
-                id="priority-email"
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                placeholder="you@example.com"
-                className="min-w-0 flex-1 rounded-full border border-black/30 bg-white px-5 py-3.5 text-black outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-black/60 focus:border-black focus:shadow-[0_0_0_3px_rgba(0,0,0,0.08)]"
-              />
-              <button
-                type="submit"
-                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-black bg-transparent px-6 py-3.5 font-semibold text-black transition-colors duration-300 hover:bg-white"
-              >
-                Join the list
-                <ArrowRight
-                  aria-hidden="true"
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                  strokeWidth={1.8}
-                />
-              </button>
+        <div className="rounded-[28px] bg-[#F8F6F1] p-6 shadow-[0_18px_48px_rgba(39,57,45,0.10)] sm:p-8">
+          {fetcher.data?.ok ? (
+            <div role="status" aria-live="polite" className="flex min-h-[250px] flex-col items-start justify-center">
+              <CheckCircle2 aria-hidden="true" className="h-10 w-10 text-[#315F4B]" strokeWidth={1.5} />
+              <h3 className="mt-5 text-2xl font-semibold tracking-[-0.03em]">You’re on the list.</h3>
+              <p className="mt-3 max-w-md text-sm leading-7 text-[#526158]">{fetcher.data.message}</p>
             </div>
+          ) : (
+            <fetcher.Form ref={formRef} method="post">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block text-sm font-semibold">
+                  Email address <span aria-hidden="true" className="text-[#8A3D2E]">*</span>
+                  <input type="email" name="email" required autoComplete="email" aria-describedby={fetcher.data?.errors?.email ? "priority-email-error" : undefined} aria-invalid={Boolean(fetcher.data?.errors?.email)} placeholder="you@example.com" className={fieldClass} />
+                  {fetcher.data?.errors?.email ? <span id="priority-email-error" className="mt-2 block text-xs font-medium text-[#8A3D2E]">{fetcher.data.errors.email}</span> : null}
+                </label>
 
-            <p className="mt-4 text-xs leading-5 text-black">
-              We&apos;ll only use your email for Odda news and Priority List
-              updates. You can unsubscribe at any time. Submitting opens a
-              ready-to-send email to Odda.
-            </p>
+                <label className="block text-sm font-semibold">
+                  First name <span className="font-normal text-[#617067]">(optional)</span>
+                  <input type="text" name="firstName" autoComplete="given-name" maxLength={80} aria-describedby={fetcher.data?.errors?.firstName ? "priority-name-error" : undefined} aria-invalid={Boolean(fetcher.data?.errors?.firstName)} placeholder="Your first name" className={fieldClass} />
+                  {fetcher.data?.errors?.firstName ? <span id="priority-name-error" className="mt-2 block text-xs font-medium text-[#8A3D2E]">{fetcher.data.errors.firstName}</span> : null}
+                </label>
+              </div>
 
-            {emailPrepared ? (
-              <p role="status" className="mt-4 text-sm font-semibold text-black">
-                Your email is ready — send it to complete your request.
-              </p>
-            ) : null}
-          </form>
+              <button type="submit" disabled={isSubmitting} className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#A8B59F] px-6 py-3 text-sm font-semibold text-[#1D2A23] shadow-[0_4px_14px_rgba(49,95,75,0.08)] transition-[background-color,box-shadow] hover:bg-[#C9D3C3] hover:shadow-[0_8px_20px_rgba(49,95,75,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B] disabled:cursor-wait disabled:opacity-65 disabled:shadow-none">
+                {isSubmitting ? "Joining…" : "Join the priority list"}
+                {!isSubmitting ? <ArrowRight aria-hidden="true" className="h-4 w-4" /> : null}
+              </button>
+
+              {fetcher.data && !fetcher.data.ok ? (
+                <p role="alert" className="mt-4 border-l-2 border-[#8A3D2E] pl-3 text-sm leading-6 text-[#713225]">
+                  {fetcher.data.message}{" "}
+                  {fetcher.data.message.includes("hello@odda.care") ? <a href="mailto:hello@odda.care" className="font-semibold underline underline-offset-2">Email ODDA</a> : null}
+                </p>
+              ) : null}
+
+              <p className="mt-5 text-xs leading-5 text-[#526158]">We’ll only use your details for ODDA updates. You can unsubscribe at any time. See our <Link to="/privacy" className="font-semibold underline decoration-[#315F4B]/40 underline-offset-2 hover:text-[#315F4B]">privacy policy</Link>.</p>
+            </fetcher.Form>
+          )}
         </div>
       </div>
     </section>

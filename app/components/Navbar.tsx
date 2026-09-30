@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+
 const navLinks = [
   { label: "How it works", href: "/how-it-works" },
   { label: "About", href: "/about" },
@@ -8,32 +10,36 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const location = useLocation();
+  const priorityListHref =
+    location.pathname === "/" ? "#priority-list" : "/#priority-list";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white">
-      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-6 px-6 py-3 lg:px-12">
+    <header className="sticky top-0 z-50 border-b border-[#315F4B]/10 bg-[#FFFDF9]/95 font-['Montserrat'] backdrop-blur-md">
+      <div className="mx-auto flex h-[73px] max-w-[90rem] items-center justify-between gap-4 px-5 sm:px-7 lg:px-10">
         {/* Logo */}
         <a
           href="/"
-          aria-label="Odda Care home"
+          aria-label="ODDA home"
           className="shrink-0 transition-opacity hover:opacity-80"
         >
           <img
             src="/images/odda-logo-transparent.png"
-            alt="Odda Care"
-            className="h-16 w-auto mix-blend-multiply lg:h-[77px]"
+            alt="ODDA"
+            className="h-12 w-auto mix-blend-multiply"
           />
         </a>
 
         {/* Desktop navigation */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-3 xl:flex"
+          className="hidden items-center gap-1 xl:flex"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative whitespace-nowrap px-3 py-3 text-[15px] font-semibold text-black transition-colors duration-300 hover:text-[#315F4B] focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315F4B]"
+              className="group relative whitespace-nowrap px-3 py-3 text-sm font-semibold text-[#1D2A23] transition-colors duration-300 hover:text-[#315F4B] focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#315F4B]"
             >
               {link.label}
 
@@ -48,22 +54,22 @@ export default function Navbar() {
         {/* Desktop action */}
         <div className="hidden shrink-0 items-center xl:flex">
           <a
-            href="/contact"
-            className="whitespace-nowrap rounded-full bg-[#E8DFD0] px-6 py-3 text-base font-medium text-black transition-colors hover:bg-[#56614F] hover:text-white"
+            href={priorityListHref}
+            className="whitespace-nowrap rounded-full bg-[#A8B59F] px-5 py-3 text-sm font-semibold text-[#1D2A23] transition-colors hover:bg-[#C9D3C3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]"
           >
-            Get in touch
+            Join the priority list
           </a>
         </div>
 
         {/* Mobile and tablet navigation */}
         <details className="relative xl:hidden">
-          <summary className="cursor-pointer list-none rounded-full border border-black px-5 py-3 font-semibold text-black transition-colors hover:bg-[#E8ECE4]">
+          <summary className="cursor-pointer list-none rounded-full bg-[#EEE9DF] px-5 py-2.5 text-sm font-semibold text-[#1D2A23] transition-colors hover:bg-[#E8ECE4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#315F4B]">
             Menu
           </summary>
 
           <nav
             aria-label="Mobile navigation"
-            className="absolute right-0 top-full mt-3 flex max-h-[calc(100vh-110px)] w-64 flex-col overflow-y-auto rounded-3xl border border-black/10 bg-[#F6F1E7] p-3 shadow-xl"
+            className="absolute right-0 top-full mt-3 flex max-h-[calc(100vh-100px)] w-72 flex-col overflow-y-auto rounded-3xl border border-black/10 bg-[#F6F1E7] p-3 shadow-xl"
           >
             {navLinks.map((link) => (
               <a
@@ -76,10 +82,10 @@ export default function Navbar() {
             ))}
 
             <a
-              href="/contact"
-              className="mt-2 rounded-2xl bg-[#E8DFD0] px-4 py-3 text-center font-medium text-black transition-colors hover:bg-[#56614F] hover:text-white"
+              href={priorityListHref}
+              className="mt-2 rounded-2xl bg-[#A8B59F] px-4 py-3 text-center font-semibold text-[#1D2A23] transition-colors hover:bg-[#C9D3C3]"
             >
-              Get in touch
+              Join the priority list
             </a>
           </nav>
         </details>

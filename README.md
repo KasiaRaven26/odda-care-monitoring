@@ -42,6 +42,25 @@ Create a production build:
 npm run build
 ```
 
+## Priority-list sign-ups
+
+Copy `.env.example` to `.env` and set `ODDA_PRIORITY_LIST_WEBHOOK_URL` to a
+newsletter or CRM webhook that accepts this JSON payload:
+
+```json
+{
+  "email": "person@example.com",
+  "firstName": "Alex",
+  "source": "odda-homepage-priority-list",
+  "consentedAt": "2026-09-30T12:00:00.000Z"
+}
+```
+
+Set `ODDA_PRIORITY_LIST_WEBHOOK_TOKEN` when the endpoint uses bearer-token
+authentication. The page only displays a successful sign-up after the webhook
+returns a 2xx response. Without the URL, the form shows a clear configuration
+error and offers `hello@odda.care` as a fallback.
+
 ## Deployment
 
 ### Docker Deployment

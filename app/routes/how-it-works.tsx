@@ -1,6 +1,5 @@
 import type { Route } from "./+types/how-it-works";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
 import { useEffect, useRef, useState } from "react";
 
 const steps = [
@@ -395,7 +394,6 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }
